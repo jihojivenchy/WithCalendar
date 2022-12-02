@@ -7,19 +7,17 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
+import FirebaseFirestore
+import UIColor_Hex_Swift
 
 final class WritingScheduleViewController: UIViewController {
 //MARK: - Properties
+    private let db = Firestore.firestore()
     
     private let dismissButton = UIButton()
-    
-    private let saveDataButton : UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-        button.tintColor = .darkGray
-        
-        return button
-    }()
+    private let saveDataButton = UIButton()
+       
     
     private let scrollView = UIScrollView()
     
@@ -34,25 +32,32 @@ final class WritingScheduleViewController: UIViewController {
     private let startButton = UIButton()
     private let endButton = UIButton()
     
-    private let dateCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
     private let datePicker = UIDatePicker()
     
     private let dateFormatter = DateFormatter()
+    
+    private lazy var indicatorView : UIActivityIndicatorView = {
+       let ia = UIActivityIndicatorView()
+        ia.hidesWhenStopped = true
+        ia.style = .large
+        
+        return ia
+    }()
+    
+    private let calendar = Calendar.current
     
 
 //MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addSubViews()
-        
-        UserDefaults.standard.set("", forKey: "writedMemo") //메모 초기화
+        initUserDefaults()
     }
     
     
@@ -74,6 +79,9 @@ final class WritingScheduleViewController: UIViewController {
         }
         
         view.addSubview(saveDataButton)
+        saveDataButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        saveDataButton.tintColor = .darkGray
+        saveDataButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
         saveDataButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.right.equalTo(view).inset(10)
@@ -82,6 +90,7 @@ final class WritingScheduleViewController: UIViewController {
         
         view.addSubview(scrollView)
         scrollView.backgroundColor = .customGray
+        scrollView.delegate = self
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(dismissButton.snp_bottomMargin).offset(20)
             make.bottom.right.left.equalToSuperview()
@@ -113,7 +122,7 @@ final class WritingScheduleViewController: UIViewController {
         chooseColorButton.setTitleColor(.darkGray, for: .normal)
         chooseColorButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         chooseColorButton.clipsToBounds = true
-        chooseColorButton.backgroundColor = .white
+        chooseColorButton.backgroundColor = .customLightPuple
         chooseColorButton.layer.borderColor = UIColor.darkGray.cgColor
         chooseColorButton.layer.borderWidth = 1
         chooseColorButton.layer.cornerRadius = 10
@@ -167,7 +176,7 @@ final class WritingScheduleViewController: UIViewController {
         guard let savedDate = UserDefaults.standard.string(forKey: "selectedDate") else{return}
         
         setDateView.addSubview(startButton)
-        startButton.setTitle("시작: \(savedDate)", for: .normal)
+        startButton.setTitle(savedDate, for: .normal)
         startButton.setTitleColor(.darkGray, for: .normal)
         startButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         startButton.clipsToBounds = true
@@ -184,7 +193,7 @@ final class WritingScheduleViewController: UIViewController {
         }
         
         setDateView.addSubview(endButton)
-        endButton.setTitle("종료: \(savedDate)", for: .normal)
+        endButton.setTitle(savedDate, for: .normal)
         endButton.setTitleColor(.darkGray, for: .normal)
         endButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
         endButton.clipsToBounds = true
@@ -200,14 +209,11 @@ final class WritingScheduleViewController: UIViewController {
             make.height.equalTo(40)
         }
         
-        
-//        setDateView.addSubview(dateCollectionView)
-//        dateCollectionView.backgroundColor = .clear
-//        dateCollectionView.snp.makeConstraints { make in
-//            make.top.equalTo(endButton.snp_bottomMargin).offset(20)
-//            make.left.right.equalToSuperview().inset(20)
-//            make.height.equalTo(300)
-//        }
+        scrollView.addSubview(indicatorView)
+        indicatorView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(view)
+            make.width.height.equalTo(70)
+        }
         
     }
     
@@ -231,6 +237,13 @@ final class WritingScheduleViewController: UIViewController {
         sender.cancelsTouchesInView = false
     }//스크롤뷰 터치 시에 endEditing 발생
   
+    private func initUserDefaults() {
+        
+        UserDefaults.standard.set("", forKey: "writedMemo") //메모 초기화
+        UserDefaults.standard.set("#98A8F8FF", forKey: "selectedColor") //컬러 customPuple색(기본 색)으로 초기화
+        UserDefaults.standard.set("0", forKey: "selectedIndex") //컬러 선택 이미지 indexPath.row 기본 색과 동일하게 초기화
+        
+    }
     
     
 //MARK: - ButtonMethod
@@ -238,11 +251,17 @@ final class WritingScheduleViewController: UIViewController {
         
         if sender.tag == 0 {
             sender.backgroundColor = .systemBlue
+            sender.setTitleColor(.white, for: .normal)
             endButton.backgroundColor = .white
+            endButton.setTitleColor(.darkGray, for: .normal)
+            
             setDatePicker(tag: 0)
         }else{
             sender.backgroundColor = .systemBlue
+            sender.setTitleColor(.white, for: .normal)
             startButton.backgroundColor = .white
+            startButton.setTitleColor(.darkGray, for: .normal)
+            
             setDatePicker(tag: 1)
         }
     }
@@ -250,10 +269,10 @@ final class WritingScheduleViewController: UIViewController {
     
     private func setDatePicker(tag : Int) {
         guard let selectedDate = UserDefaults.standard.string(forKey: "selectedDate") else {return}
-    
-        dateFormatter.locale = Locale(identifier: "ko-KR")
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        let currentDate = dateFormatter.date(from: selectedDate)
+        
+        self.dateFormatter.locale = Locale(identifier: "ko-KR")
+        self.dateFormatter.dateFormat = "yyyy년 MM월 d일"
+        guard let currentDate = self.dateFormatter.date(from: selectedDate) else{return}
         
         if tag == 0 {
             setDateView.addSubview(datePicker)
@@ -261,7 +280,9 @@ final class WritingScheduleViewController: UIViewController {
             datePicker.datePickerMode = .date
             datePicker.preferredDatePickerStyle = .inline
             datePicker.tag = tag
-            datePicker.date = currentDate ?? Date()
+            datePicker.date = currentDate
+            datePicker.minimumDate = .none
+            datePicker.maximumDate = .none
             datePicker.addTarget(self, action: #selector(dateChange(_:)), for: .valueChanged)
             datePicker.snp.makeConstraints { make in
                 make.top.equalTo(endButton.snp_bottomMargin).offset(20)
@@ -270,13 +291,15 @@ final class WritingScheduleViewController: UIViewController {
             }
             
         }else {
+            
             setDateView.addSubview(datePicker)
             datePicker.locale = Locale(identifier: "ko-KR")
             datePicker.datePickerMode = .date
             datePicker.preferredDatePickerStyle = .inline
             datePicker.tag = tag
-            datePicker.date = currentDate ?? Date()
+            datePicker.date = currentDate
             datePicker.minimumDate = currentDate
+            datePicker.maximumDate = Calendar.autoupdatingCurrent.date(byAdding: self.calculateMaximumDate(currentDate: currentDate), to: currentDate)
             datePicker.addTarget(self, action: #selector(dateChange(_:)), for: .valueChanged)
             datePicker.snp.makeConstraints { make in
                 make.top.equalTo(endButton.snp_bottomMargin).offset(20)
@@ -284,28 +307,48 @@ final class WritingScheduleViewController: UIViewController {
                 make.height.equalTo(300)
             }
         }
-        
     }
     
     @objc private func dateChange(_ sender : UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        let buttonTitle = dateFormatter.string(from: sender.date)
+        self.dateFormatter.dateFormat = "yyyy년 MM월 d일"
+        let buttonTitle = self.dateFormatter.string(from: sender.date)
+        
+        self.dateFormatter.dateFormat = "yyyy년 MM월"
+        UserDefaults.standard.set(self.dateFormatter.string(from: sender.date), forKey: "queryDate")
         
         if sender.tag == 0 { //종료일이 시작일 이전 날짜로 지정할 수 없도록
-            startButton.setTitle("시작: \(buttonTitle)", for: .normal)
-            endButton.setTitle("종료: \(buttonTitle)", for: .normal)
+            startButton.setTitle(buttonTitle, for: .normal)
             UserDefaults.standard.set(buttonTitle, forKey: "selectedDate")
             
         }else {
-            endButton.setTitle("종료: \(buttonTitle)", for: .normal)
+            endButton.setTitle(buttonTitle, for: .normal)
+            
         }
         
     }
     
-    @objc private func colorButtonPressed(_ sender : UIButton) {
+    private func calculateMaximumDate(currentDate : Date) -> DateComponents{
+        var components = DateComponents()
         
-        present(ChooseColorViewController(), animated: true)
+        self.dateFormatter.dateFormat = "d"
+        
+        let lastDay = self.calendar.range(of: .day, in: .month, for: currentDate)?.count ?? Int()
+        let selectedDay = self.dateFormatter.string(from: currentDate)
+        
+        components.day = lastDay - (Int(selectedDay) ?? Int())
+        
+        return components
+    }
+    
+    
+    
+//MARK: - ButtonMethod
+    
+    @objc private func colorButtonPressed(_ sender : UIButton) {
+        let vc = ChooseColorViewController()
+        vc.dataDelegate = self
+        
+        self.present(vc, animated: true)
     }
     
     @objc private func memoButtonPressed(_ sender : UIButton) {
@@ -313,16 +356,100 @@ final class WritingScheduleViewController: UIViewController {
         present(WritingMemoViewController(), animated: true)
     }
     
-    
-    
-    
-//MARK: - ButtonMethod
-    
     @objc private func dismissButtonPressed(_ sender : UIButton) {
         self.dismiss(animated: true)
         
     }
+    
+    
+    
+    
+//MARK: - DataMethod
+    @objc private func saveButtonPressed(_ sender : UIButton) {
+        self.indicatorView.startAnimating()
+        
+        guard let queryDate = UserDefaults.standard.string(forKey: "queryDate") else{return} //쿼리용 날짜
+        guard let calendarTitle = UserDefaults.standard.string(forKey: "currentCalendar") else{return}
+        guard let startDate = self.startButton.title(for: .normal) else{return}
+        guard let endDate = self.endButton.title(for: .normal) else{return}
+        guard let titleText = self.titleTextField.text else {return}
+        guard let selectedColor = UserDefaults.standard.string(forKey: "selectedColor") else{return}
+        guard let writedMemo = UserDefaults.standard.string(forKey: "writedMemo") else{return}
+        
+        if titleText != "" { //빈 제목은 저장 불가
+            
+            self.setData(queryDate: queryDate, calendarTitle: calendarTitle, startDate: startDate, endDate: endDate, text: titleText, color: selectedColor, memo: writedMemo)
+        }else{
+            
+            self.nilTextAlert()
+            self.indicatorView.stopAnimating()
+        }
+        
+    }
+    
+    private func setData(queryDate : String, calendarTitle : String, startDate : String, endDate : String, text : String, color : String, memo : String) {
+        guard let user = Auth.auth().currentUser else{return}
+        
+        if startDate == endDate { //일정 기간이 하루일 때
+            db.collection(user.uid).document(calendarTitle).collection("달력내용").addDocument(data:
+                                                                   ["startDate" : startDate,
+                                                                    "queryDate" : queryDate,
+                                                                    "titleText" : text,
+                                                                    "selectedColor" : color,
+                                                                    "labelColor" : color,
+                                                                    "writedMemo" : memo,
+                                                                    "backGrondColor" : "#00000000",
+                                                                    "checkRange" : "short",
+                                                                    "date" : Date().timeIntervalSince1970])
+            
+            self.indicatorView.stopAnimating()
+            self.dismiss(animated: true)
+            
+        }else{//일정 기간을 모두 저장해주어야 한다. 라벨의 색은 clear
+            
+            self.dateFormatter.dateFormat = "yyyy년 MM월 d일"
+            var date = startDate //처음 시작
+            var resultDate = self.dateFormatter.date(from: startDate) //담을 그릇
+            
+            var dd = self.dateFormatter.date(from: endDate)
+            dd = self.calendar.date(byAdding: DateComponents(day: +1), to: dd ?? Date())
+            let calculateEndDate = dateFormatter.string(from: dd ?? Date())
+            
+            while date != calculateEndDate{
+                db.collection(user.uid).document(calendarTitle).collection("달력내용").addDocument(data:
+                                                                                                ["startDate" : date,
+                                                                                                 "endDate" : endDate,
+                                                                                                 "queryDate" : queryDate,
+                                                                                                 "titleText" : text,
+                                                                                                 "selectedColor" : color,
+                                                                                                 "backGrondColor" : color,
+                                                                                                 "labelColor" : "#00000000",
+                                                                                                 "writedMemo" : memo,
+                                                                                                 "checkRange" : "long",
+                                                                                                 "date" : Date().timeIntervalSince1970])
 
+                resultDate = self.calendar.date(byAdding: DateComponents(day: +1), to: resultDate ?? Date())
+                date = dateFormatter.string(from: resultDate ?? Date())
+                
+            }
+            
+            
+            self.indicatorView.stopAnimating()
+            self.dismiss(animated: true)
+        }
+        
+    }
+    
+    private func nilTextAlert() {
+        let alert = UIAlertController(title: "제목 확인", message: "제목을 적어주세요.", preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "확인", style: .default)
+        alertAction.setValue(UIColor.black, forKey: "titleTextColor")
+        alert.addAction(alertAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - Extension
@@ -331,3 +458,18 @@ extension WritingScheduleViewController : UITextFieldDelegate {
         textField.endEditing(true)
     }
 }
+
+extension WritingScheduleViewController : sendSelectedDataDelegate {
+    
+    func sendData(data: String) {
+        self.chooseColorButton.backgroundColor = UIColor(data)
+        
+    }
+}
+
+extension WritingScheduleViewController : UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+}
+

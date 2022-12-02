@@ -1,13 +1,13 @@
 //
-//  LoginViewController.swift
+//  ShareSignalViewController.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/11/03.
+//  Created by 엄지호 on 2022/11/17.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class ShareSignalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,24 +7,25 @@
 
 import UIKit
 import SnapKit
+import UIColor_Hex_Swift
 
 final class ChooseColorViewController: UIViewController {
 //MARK: - Properties
+    
+    var dataDelegate : sendSelectedDataDelegate?
     
     private let colorView = UIView()
     private let colorLabel = UILabel()
     private let colorCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
       
-    private let colorArray : [UIColor] = [UIColor.darkGray, UIColor.customLightPuple ?? UIColor(), UIColor.customLacoste ?? UIColor(), UIColor.customAhbocado ?? UIColor(), UIColor.customPastelPink ?? UIColor(), UIColor.customSoda ?? UIColor(), UIColor.customMint ?? UIColor(), UIColor.customPink ?? UIColor(), UIColor.customBaige ?? UIColor(), UIColor.customYellow ?? UIColor(), UIColor.customOrange ?? UIColor(), UIColor.customChocolet ?? UIColor(), UIColor.customHotPink ?? UIColor(), UIColor.customPastelBlue ?? UIColor(), UIColor.customPastelGreen ?? UIColor()]
+    private let colorArray : [UIColor] = [UIColor.customLightPuple ?? UIColor(), UIColor.customLacoste ?? UIColor(), UIColor.customAhbocado ?? UIColor(), UIColor.customPastelPink ?? UIColor(), UIColor.customSoda ?? UIColor(), UIColor.customMint ?? UIColor(), UIColor.customPink ?? UIColor(), UIColor.customBaige ?? UIColor(), UIColor.customYellow ?? UIColor(), UIColor.customOrange ?? UIColor(), UIColor.customChocolet ?? UIColor(), UIColor.customHotPink ?? UIColor(), UIColor.customPastelBlue ?? UIColor(), UIColor.customPastelGreen ?? UIColor()]
     
     private var indexNumber : Int?
-    
     
 //MARK: - LifeCycle
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         
     }
     
@@ -41,9 +42,9 @@ final class ChooseColorViewController: UIViewController {
 //MARK: - ViewMethod
     
     private func addSubViews() {
+        guard let selectedColor = UserDefaults.standard.string(forKey: "selectedColor") else{return}
         
         view.backgroundColor = .clear
-        view.layer.opacity = 1
         
         view.addSubview(colorView)
         colorView.backgroundColor = .white
@@ -73,11 +74,7 @@ final class ChooseColorViewController: UIViewController {
         colorLabel.textAlignment = .center
         colorLabel.font = .boldSystemFont(ofSize: 23)
         colorLabel.sizeToFit()
-        if let selectedColor = UserDefaults.standard.string(forKey: "selectedColor") {
-            colorLabel.textColor = UIColor(hex: selectedColor)
-        }else {
-            colorLabel.textColor = .black
-        }
+        colorLabel.textColor = UIColor(selectedColor)
         colorLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
             make.centerX.equalToSuperview()
@@ -116,6 +113,8 @@ extension ChooseColorViewController : UICollectionViewDataSource {
             }
         }
         
+        
+        
         return cell
     }
     
@@ -128,8 +127,11 @@ extension ChooseColorViewController : UICollectionViewDelegate {
         
         self.colorLabel.textColor = selectedItem.colorImage.backgroundColor
         
-        UserDefaults.standard.set("\(colorArray[indexPath.row].toHexString())", forKey: "selectedColor")
+        UserDefaults.standard.set("\(colorArray[indexPath.row].hexString())", forKey: "selectedColor")
         UserDefaults.standard.set("\(indexPath.row)", forKey: "selectedIndex")
+        
+        
+        dataDelegate?.sendData(data: colorArray[indexPath.row].hexString())
         
         self.indexNumber = indexPath.row
         
@@ -150,4 +152,10 @@ extension ChooseColorViewController : UICollectionViewDelegateFlowLayout {
         
         return .zero
     }
+}
+
+
+protocol sendSelectedDataDelegate {
+    
+    func sendData(data : String)
 }

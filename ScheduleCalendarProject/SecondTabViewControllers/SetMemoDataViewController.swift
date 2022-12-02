@@ -1,13 +1,13 @@
 //
-//  UserRegisterViewController.swift
+//  SetMemoDataViewController.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/11/03.
+//  Created by 엄지호 on 2022/11/24.
 //
 
 import UIKit
 
-class UserRegisterViewController: UIViewController {
+class SetMemoDataViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
