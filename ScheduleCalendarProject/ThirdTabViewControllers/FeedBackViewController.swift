@@ -1,13 +1,13 @@
 //
-//  ShareSignalViewController.swift
+//  FeedBackViewController.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/11/17.
+//  Created by 엄지호 on 2022/12/03.
 //
 
 import UIKit
 
-class ShareSignalViewController: UIViewController {
+class FeedBackViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

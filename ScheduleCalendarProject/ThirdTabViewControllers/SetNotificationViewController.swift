@@ -1,13 +1,13 @@
 //
-//  SetMemoDataViewController.swift
+//  SetNotificationViewController.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/11/24.
+//  Created by 엄지호 on 2022/12/03.
 //
 
 import UIKit
 
-class SetMemoDataViewController: UIViewController {
+class SetNotificationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
