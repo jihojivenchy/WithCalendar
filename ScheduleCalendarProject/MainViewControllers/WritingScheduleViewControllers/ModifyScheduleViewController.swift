@@ -1,8 +1,8 @@
 //
-//  TestModifyViewController.swift
+//  ModifyScheduleViewController2.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/12/14.
+//  Created by 엄지호 on 2022/12/08.
 //
 
 import UIKit
@@ -12,7 +12,7 @@ import FirebaseFirestore
 import UIColor_Hex_Swift
 import UserNotifications
 
-class TestModifyViewController: UIViewController {
+final class ModifyScheduleViewController: UIViewController {
 //MARK: - Properties
     private let db = Firestore.firestore()
     private let notificationCenter = UNUserNotificationCenter.current()
@@ -29,25 +29,28 @@ class TestModifyViewController: UIViewController {
     private var cellSubTitleArray : [String] = []
     
     var sendedDate = String() //데이트 피커 뷰에 전달할 날짜정보
+    
     var calendarMemoData : CalendarMemoData?   //수정할 데이터 표시
-//    private var documentID = String()          //수정할 데이터의 도큐먼트 아이디 저장
-//    private var notiIdentifier = String()      //저장해 두었던 알림 메세지 identifier를 저장
-    private var controlIndex = Int()
+    private var documentID = String()          //수정할 데이터의 도큐먼트 아이디 저장
+    private var notiIdentifier = String()      //저장해 두었던 알림 메세지 identifier를 저장
     
     private let dateFormatter = DateFormatter()
     
 //MARK: - LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         addSubViews()
         setSendedData()
         
         modifyScehduleTableView.delegate = self
         modifyScehduleTableView.dataSource = self
         modifyScehduleTableView.register(SetWritedScheduleTableViewCell.self, forCellReuseIdentifier: SetWritedScheduleTableViewCell.cellIdentifier)
-        modifyScehduleTableView.register(DateModeControlTableViewCell.self, forCellReuseIdentifier: DateModeControlTableViewCell.cellIdentifier)
         modifyScehduleTableView.rowHeight = 70
     }
     
@@ -56,7 +59,7 @@ class TestModifyViewController: UIViewController {
     private func addSubViews() {
         
         view.backgroundColor = .displayModeColor5
-        
+    
         view.addSubview(dismissButton)
         dismissButton.setBackgroundImage(UIImage(systemName: "x.circle"), for: .normal)
         dismissButton.addTarget(self, action: #selector(dismissButtonPressed(_:)), for: .touchUpInside)
@@ -116,12 +119,13 @@ class TestModifyViewController: UIViewController {
         guard let safeCalendarMemoData = self.calendarMemoData else{return}
         checkHolidayData(color: safeCalendarMemoData.selectedColor) //공휴일 데이터인지 확인
         
+        self.notiIdentifier = safeCalendarMemoData.titleMemo
+        self.documentID = safeCalendarMemoData.documentID
         self.titleTextField.text = safeCalendarMemoData.titleMemo
         self.dismissButton.tintColor = UIColor(safeCalendarMemoData.selectedColor)
         self.deleteButton.tintColor = UIColor(safeCalendarMemoData.selectedColor)
         self.saveDataButton.tintColor = UIColor(safeCalendarMemoData.selectedColor)
         self.titleTextField.layer.borderColor = UIColor(safeCalendarMemoData.selectedColor).cgColor
-        self.controlIndex = safeCalendarMemoData.controlIndex
         
         self.cellSubTitleArray = [safeCalendarMemoData.startDate, safeCalendarMemoData.endDate, "", safeCalendarMemoData.detailMemo]
     }//가져온 데이터들 자리에 배치
@@ -139,7 +143,7 @@ class TestModifyViewController: UIViewController {
         pvc.presentingViewController?.dismiss(animated: true)
     }
     
-    private func colorCellPressed(){
+    private func colorCellPressed() {
         guard let color = self.dismissButton.tintColor?.hexString() else{return}
         
         let vc = ChooseColorViewController()
@@ -159,28 +163,22 @@ class TestModifyViewController: UIViewController {
     }
     
     private func dateCellPressed(indexNumber : Int) {
-        
-        if indexNumber == 0{ //startDate 변경하기
+        if indexNumber == 0{
             self.sendedDate = self.cellSubTitleArray[0]
-            
-        }else{ //endDate 변경하기
+        }else{
             self.sendedDate = self.cellSubTitleArray[1]
-            
         }
         
         let vc = SetDatePickerViewController()
-        
         vc.delegate = self
         vc.sendedDate = self.sendedDate
-        vc.minimumDate = self.cellSubTitleArray[0]
         vc.indexNumber = indexNumber
-        vc.controlIndex = self.controlIndex
         
         present(vc, animated: true)
     }
     
     private func nilTextAlert() {
-        let alert = UIAlertController(title: "오류", message: "양식에 맞게 작성해주세요.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "오류", message: "일정 제목을 적어주세요.", preferredStyle: .alert)
         
         let alertAction = UIAlertAction(title: "확인", style: .default)
         alertAction.setValue(UIColor.black, forKey: "titleTextColor")
@@ -200,14 +198,11 @@ class TestModifyViewController: UIViewController {
         guard let calendarTitle = UserDefaults.standard.string(forKey: "currentCalendar") else{return}
         guard let titleText = self.titleTextField.text else {return}
         guard let selectedColor = self.dismissButton.tintColor?.hexString() else{return}
-        let startDate = self.cellSubTitleArray[0]
-        let endDate = self.cellSubTitleArray[1]
         
-        
-        if titleText == "", startDate == "", endDate == ""{
+        if titleText == "" {
             nilTextAlert()
         }else{
-            setData(queryDate: queryDate, calendarTitle: calendarTitle, startDate: startDate, endDate: endDate, text: titleText, color: selectedColor, memo: self.cellSubTitleArray[3], controlIndex: self.controlIndex)
+            setData(queryDate: queryDate, calendarTitle: calendarTitle, startDate: self.cellSubTitleArray[0], endDate: self.cellSubTitleArray[1], text: titleText, color: selectedColor, memo: self.cellSubTitleArray[3])
         }
     }
     
@@ -228,155 +223,123 @@ class TestModifyViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: - DataMethod
+//MARK: - DataMethod
     private func deleteMemoData() {
         guard let user = Auth.auth().currentUser else{return}
         guard let calendarTitle = UserDefaults.standard.string(forKey: "currentCalendar") else{return}
-        guard let safeCalendarMemoData = self.calendarMemoData else{return}
         
-        self.db.collection(user.uid).document(calendarTitle).collection("달력내용").document(safeCalendarMemoData.documentID).delete()
-        self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [safeCalendarMemoData.titleMemo])
+        self.db.collection(user.uid).document(calendarTitle).collection("달력내용").document(self.documentID).delete()
+        self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [self.notiIdentifier])
         self.twiceDismiss()
     }
     
-    private func setData(queryDate : String, calendarTitle : String, startDate : String, endDate : String, text : String, color : String, memo : String, controlIndex : Int) {
+    private func setData(queryDate : String, calendarTitle : String, startDate : String, endDate : String, text : String, color : String, memo : String) {
         guard let user = Auth.auth().currentUser else{return}
-        guard let safeCalendarMemoData = self.calendarMemoData else{return}
         
-        let count = calculateDayDifference(startDay: startDate, endDay: endDate, controlIndex: controlIndex) //당일 일정인지, 기간일정인지 계산
-        
-        if count == 0 { //당일 일정일 때 배경 색은 clear
-            db.collection(user.uid).document(calendarTitle).collection("달력내용").document(safeCalendarMemoData.documentID).setData(["startDate" : startDate,
-                          "endDate"   : endDate,
-                          "queryDate" : queryDate,
-                          "titleText" : text,
-                          "selectedColor" : color,
-                          "labelColor" : color,
-                          "detailMemo" : memo,
-                          "backGrondColor" : "#00000000",
-                          "count" : count,
-                          "controlIndex" : controlIndex])
+        if startDate == endDate { //일정 기간이 하루일 때
+            db.collection(user.uid).document(calendarTitle).collection("달력내용").document(documentID).setData([                                                                                   "startDate" : startDate,
+                                                                                    "endDate"   : endDate,
+                                                                                    "queryDate" : queryDate,
+                                                                                    "titleText" : text,
+                                                                                    "selectedColor" : color,
+                                                                                    "labelColor" : color,
+                                                                                    "detailMemo" : memo,
+                                                                                    "backGrondColor" : "#00000000",
+                                                                                    "count" : 0])
             
             self.twiceDismiss()
-            self.setNotification(calendatName: calendarTitle, startDate: startDate, endDate: endDate, titleMemo: text, controlIndex: controlIndex)
+            self.setNotification(calendatName: calendarTitle, startDate: startDate, endDate: endDate, titleMemo: text)
             
-        }else{//기간일정일 때 라벨의 색은 clear
-            db.collection(user.uid).document(calendarTitle).collection("달력내용").document(safeCalendarMemoData.documentID).setData(["startDate" : startDate,
-                          "endDate" : endDate,
-                          "queryDate" : queryDate,
-                          "titleText" : text,
-                          "selectedColor" : color,
-                          "backGrondColor" : color,
-                          "labelColor" : "#00000000",
-                          "detailMemo" : memo,
-                          "count" : count,
-                          "controlIndex" : controlIndex])
+        }else{//일정 기간을 모두 저장해주어야 한다. 라벨의 색은 clear
+            
+            self.dateFormatter.dateFormat = "yyyy년 MM월 dd일 HH시 mm분"
+            guard let d1 = dateFormatter.date(from: startDate) else{return}
+            guard let d2 = dateFormatter.date(from: endDate) else{return}
+            
+            self.dateFormatter.dateFormat = "d"
+            
+            guard let start = Int(dateFormatter.string(from: d1)) else{return}
+            guard let end = Int(dateFormatter.string(from: d2)) else{return}
+            
+            let count = end - start
 
+            db.collection(user.uid).document(calendarTitle).collection("달력내용").document(documentID).setData([
+                                                                               "startDate" : startDate,
+                                                                               "endDate" : endDate,
+                                                                               "queryDate" : queryDate,
+                                                                               "titleText" : text,
+                                                                               "selectedColor" : color,
+                                                                               "backGrondColor" : color,
+                                                                               "labelColor" : "#00000000",
+                                                                               "detailMemo" : memo,
+                                                                               "count" : count])
             
             self.twiceDismiss()
-            self.setNotification(calendatName: calendarTitle, startDate: startDate, endDate: endDate, titleMemo: text, controlIndex: controlIndex)
+            self.setNotification(calendatName: calendarTitle, startDate: startDate, endDate: endDate, titleMemo: text)
         }
     }
     
-    private func calculateDayDifference(startDay : String, endDay : String, controlIndex : Int) -> Int {
-        
-        if controlIndex == 0 { //하루종일 모드인지 시간설정 모드인지 확인
-            self.dateFormatter.dateFormat = "yyyy년 MM월 d일"
-        }else{
-            self.dateFormatter.dateFormat = "yyyy년 MM월 d일 HH시 mm분"
-        }
-        
-        let d1 = dateFormatter.date(from: startDay) ?? Date()
-        let d2 = dateFormatter.date(from: endDay) ?? Date()
-        
-        self.dateFormatter.dateFormat = "d"
-        
-        let start = Int(dateFormatter.string(from: d1)) ?? Int()
-        let end = Int(dateFormatter.string(from: d2)) ?? Int()
-        
-        let count = end - start
-        
-        return count
-    }
+    
     
 }
 
 //MARK: - Extension
-extension TestModifyViewController : UITableViewDataSource {
+extension ModifyScheduleViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.cellTitleNameArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SetWritedScheduleTableViewCell.cellIdentifier, for: indexPath) as! SetWritedScheduleTableViewCell
         
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: DateModeControlTableViewCell.cellIdentifier, for: indexPath) as! DateModeControlTableViewCell
-            
-            cell.delegate = self
-            cell.control.selectedSegmentTintColor = self.dismissButton.tintColor
-            cell.control.selectedSegmentIndex = self.controlIndex
-            cell.backgroundColor = .clear
-            cell.contentView.isUserInteractionEnabled = false
-            cell.selectionStyle = .none
-            
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: SetWritedScheduleTableViewCell.cellIdentifier, for: indexPath) as! SetWritedScheduleTableViewCell
-            
-            cell.titleImageView.image = UIImage(systemName: self.cellTitleImageArray[indexPath.row - 1])
-            cell.titleLabel.text = self.cellTitleNameArray[indexPath.row - 1]
-            cell.subTitleLabel.text = self.cellSubTitleArray[indexPath.row - 1]
-            
-            cell.titleImageView.tintColor = self.dismissButton.tintColor
-            cell.titleLabel.textColor = self.dismissButton.tintColor
-            cell.subTitleLabel.textColor = self.dismissButton.tintColor
-            
-            cell.accessoryType = .disclosureIndicator
-            cell.tintColor = .white
-            cell.backgroundColor = .clear
-            cell.contentView.isUserInteractionEnabled = true
-            cell.selectionStyle = .default
-            
-            return cell
-        }
+        cell.titleImageView.image = UIImage(systemName: self.cellTitleImageArray[indexPath.row])
+        cell.titleLabel.text = self.cellTitleNameArray[indexPath.row]
+        cell.subTitleLabel.text = self.cellSubTitleArray[indexPath.row]
+        
+        cell.titleImageView.tintColor = self.dismissButton.tintColor
+        cell.titleLabel.textColor = self.dismissButton.tintColor
+        cell.subTitleLabel.textColor = self.dismissButton.tintColor
+        cell.tintColor = self.dismissButton.tintColor
+        
+        cell.accessoryType = .disclosureIndicator
+        cell.backgroundColor = .clear
+        
+        return cell
     }
     
 }
 
-extension TestModifyViewController : UITableViewDelegate {
+extension ModifyScheduleViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.view.endEditing(true)
         
-        if indexPath.row == 1{        //시작
+        if indexPath.row == 0{
             self.dateCellPressed(indexNumber: 0)
-            
-        }else if indexPath.row == 2{  //종료
+        }else if indexPath.row == 1{
             self.dateCellPressed(indexNumber: 1)
-            
-        }else if indexPath.row == 3{  //컬러
+        }else if indexPath.row == 2{
             self.colorCellPressed()
-            
-        }else if indexPath.row == 4{  //메모
+        }else{
             self.memoCellPressed()
         }
     }
 }
 
-extension TestModifyViewController : UITextFieldDelegate {
+extension ModifyScheduleViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
     }
 }
 
-extension TestModifyViewController : UIScrollViewDelegate {
+extension ModifyScheduleViewController : UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
 }
 
-extension TestModifyViewController : ChooseColorDelegate {
+extension ModifyScheduleViewController : ChooseColorDelegate {
     func sendColor(hexColor: String) {
         self.dismissButton.tintColor = UIColor(hexColor)
         self.saveDataButton.tintColor = UIColor(hexColor)
@@ -387,15 +350,14 @@ extension TestModifyViewController : ChooseColorDelegate {
     }
 }
 
-extension TestModifyViewController : WritingMemoDelegate {
+extension ModifyScheduleViewController : WritingMemoDelegate {
     func sendText(text: String) {
         self.cellSubTitleArray[3] = text
-        
         self.modifyScehduleTableView.reloadData()
     }
 }
 
-extension TestModifyViewController : SetDatePickerDelegate {
+extension ModifyScheduleViewController : SetDatePickerDelegate {
     func sendData(date: String, index : Int) {
         if index == 0 {
             self.cellSubTitleArray[0] = date
@@ -410,61 +372,12 @@ extension TestModifyViewController : SetDatePickerDelegate {
     }
 }
 
-extension TestModifyViewController : DateModeControlDelegate {
-    func sendDateMode(index: Int) {
-        self.controlIndex = index
-        let start = self.cellSubTitleArray[0]
-        let end = self.cellSubTitleArray[1]
-        
-        if index == 0 {
-            self.dateFormatter.dateFormat = "yyyy년 MM월 d일 HH시 mm분"
-            
-            guard let formattedStartDate = dateFormatter.date(from: start) else{return}
-            guard let formattedEndDate = dateFormatter.date(from: end) else{return}
-            
-            self.dateFormatter.dateFormat = "yyyy년 MM월 d일"
-            
-            cellSubTitleArray[0] = dateFormatter.string(from: formattedStartDate)
-            cellSubTitleArray[1] = dateFormatter.string(from: formattedEndDate)
-            
-            self.modifyScehduleTableView.reloadData()
-        }else{
-            self.dateFormatter.dateFormat = "yyyy년 MM월 d일"
-            
-            guard let formattedStartDate = dateFormatter.date(from: start) else{return}
-            guard let formattedEndDate = dateFormatter.date(from: end) else{return}
-            
-            self.dateFormatter.dateFormat = "yyyy년 MM월 d일 HH시 mm분"
-            
-            cellSubTitleArray[0] = dateFormatter.string(from: formattedStartDate)
-            cellSubTitleArray[1] = dateFormatter.string(from: formattedEndDate)
-            
-            self.modifyScehduleTableView.reloadData()
-        }
-    }
-}
-
-extension TestModifyViewController {
+extension ModifyScheduleViewController {
     
-    private func setNotification(calendatName : String, startDate: String, endDate : String, titleMemo : String, controlIndex : Int) {
-        guard let safeCalendarMemoData = self.calendarMemoData else{return}
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [safeCalendarMemoData.titleMemo]) //기존알림 삭제
+    private func setNotification(calendatName : String, startDate: String, endDate : String, titleMemo : String) {
         
-        var component = DateComponents()
-        var date = Date()
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [self.notiIdentifier]) //기존알림 삭제
         
-        if controlIndex == 0 {
-            dateFormatter.dateFormat = "yyyy년 MM월 d일"
-            date = dateFormatter.date(from: startDate) ?? Date()
-            component = Calendar.current.dateComponents([.year, .month, .day], from: date)
-            
-        }else{
-            dateFormatter.dateFormat = "yyyy년 MM월 d일 HH시 mm분"
-            date = dateFormatter.date(from: startDate) ?? Date()
-            component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-        }
-        
-        let notificationCenter = UNUserNotificationCenter.current()
         let notificationContent = UNMutableNotificationContent()
         
         notificationContent.title = calendatName
@@ -472,6 +385,11 @@ extension TestModifyViewController {
         notificationContent.body = titleMemo
         notificationContent.badge = 1
         
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 HH시 mm분"
+        let date = dateFormatter.date(from: startDate)
+        
+        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date ?? Date())
+        component.second = 3
         
         let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
         
@@ -486,4 +404,3 @@ extension TestModifyViewController {
         }
     }
 }
-

@@ -20,9 +20,8 @@ final class RequestViewController: UIViewController {
     private let personImageView = UIImageView()
     
     let nameLabel = UILabel()
-    let emailLabel = UILabel()
-    var userUid = ""
-    var myName = ""
+    var userUid = String()
+    var myName = String()
     
     private let explainLabel = UILabel()
     
@@ -49,16 +48,16 @@ final class RequestViewController: UIViewController {
         backgroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
         backgroundView.layer.shadowRadius = 10
         backgroundView.layer.shadowOpacity = 0.5
-        backgroundView.backgroundColor = .customGray
+        backgroundView.backgroundColor = .displayModeColor3
         backgroundView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.width.equalTo(300)
-            make.height.equalTo(350)
+            make.height.equalTo(300)
         }
         
         backgroundView.addSubview(personImageView)
         personImageView.image = UIImage(systemName: "person.crop.circle")
-        personImageView.tintColor = .black
+        personImageView.tintColor = .displayModeColor2
         personImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
             make.centerX.equalToSuperview()
@@ -67,7 +66,7 @@ final class RequestViewController: UIViewController {
         
         backgroundView.addSubview(nameLabel)
         nameLabel.textAlignment = .center
-        nameLabel.textColor = .black
+        nameLabel.textColor = .displayModeColor2
         nameLabel.font = .boldSystemFont(ofSize: 20)
         nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -76,41 +75,30 @@ final class RequestViewController: UIViewController {
             make.height.equalTo(20)
         }
         
-        backgroundView.addSubview(emailLabel)
-        emailLabel.textAlignment = .center
-        emailLabel.textColor = .black
-        emailLabel.font = .boldSystemFont(ofSize: 20)
-        emailLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(nameLabel.snp_bottomMargin).offset(20)
-            make.right.left.equalToSuperview().inset(20)
-            make.height.equalTo(20)
-        }
-        
         backgroundView.addSubview(explainLabel)
-        explainLabel.text = "공유 달력을 요청하시겠습니까? \n(공유 달력은 1개만 생성 가능)"
+        explainLabel.text = "Follow"
         explainLabel.numberOfLines = 2
-        explainLabel.textColor = .black
+        explainLabel.textColor = .displayModeColor2
         explainLabel.textAlignment = .center
         explainLabel.font = .boldSystemFont(ofSize: 16)
         explainLabel.clipsToBounds = true
         explainLabel.layer.cornerRadius = 10
         explainLabel.layer.borderWidth = 1
-        explainLabel.layer.borderColor = UIColor.black.cgColor
+        explainLabel.layer.borderColor = UIColor.displayModeColor2?.cgColor
         explainLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp_bottomMargin).offset(35)
+            make.top.equalTo(nameLabel.snp_bottomMargin).offset(35)
             make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(110)
+            make.height.equalTo(100)
             make.centerX.equalToSuperview()
         }
         
         backgroundView.addSubview(yesButton)
         yesButton.addTarget(self, action: #selector(yesButtonPressed(_:)), for: .touchUpInside)
-        yesButton.setTitle("요청", for: .normal)
-        yesButton.setTitleColor(.black, for: .normal)
+        yesButton.setTitle("확인", for: .normal)
+        yesButton.setTitleColor(.displayModeColor2, for: .normal)
         yesButton.clipsToBounds = true
         yesButton.layer.cornerRadius = 10
-        yesButton.layer.borderColor = UIColor.black.cgColor
+        yesButton.layer.borderColor = UIColor.displayModeColor2?.cgColor
         yesButton.layer.borderWidth = 1
         yesButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(15)
@@ -122,10 +110,10 @@ final class RequestViewController: UIViewController {
         backgroundView.addSubview(calcelButton)
         calcelButton.addTarget(self, action: #selector(calcelButtonPressed(_:)), for: .touchUpInside)
         calcelButton.setTitle("취소", for: .normal)
-        calcelButton.setTitleColor(.black, for: .normal)
+        calcelButton.setTitleColor(.displayModeColor2, for: .normal)
         calcelButton.clipsToBounds = true
         calcelButton.layer.cornerRadius = 10
-        calcelButton.layer.borderColor = UIColor.black.cgColor
+        calcelButton.layer.borderColor = UIColor.displayModeColor2?.cgColor
         calcelButton.layer.borderWidth = 1
         calcelButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(15)
@@ -139,57 +127,45 @@ final class RequestViewController: UIViewController {
 //MARK: - ButtonMethod
     
     @objc private func yesButtonPressed(_ sender : UIButton) {
-        
-        addPersonalCalendarAlert()
+        doubleCheck()
     }
     
-    private func addPersonalCalendarAlert() {
-        let alert = UIAlertController(title: "요청", message: "달력 제목을 입력해주세요.", preferredStyle: .alert)
+    private func doubleCheck() {
+        guard let name = nameLabel.text else{return}
         
-        alert.addTextField { (textField) in
-            textField.textColor = .black
-            textField.font = .systemFont(ofSize: 15)
-        }
-        
-        let changeAction = UIAlertAction(title: "요청", style: .default) { (action) in
-            
-            guard let text = alert.textFields?[0].text else{return}
-            guard let user = Auth.auth().currentUser else{return self.setAlert(title: "로그인", subTitle: "로그인이 필요합니다.")}
-            
-            if user.uid != self.userUid { //본인에게 요청하는 지 확인
-                
-                if text != "" { //달력의 이름을 적었는지
-                    let dFMatter = DateFormatter()
-                    dFMatter.dateFormat = "yyyy년 MM월 dd일 HH:mm"
-                    let date = dFMatter.string(from: Date())
-                    
-                    self.db.collection("\(self.userUid)요청").addDocument(data: ["calendarTitle" : text,
-                                                                               "sender" : self.myName,
-                                                                                "date" : date])
-                    self.dismiss(animated: true)
+        if let user = Auth.auth().currentUser {
+            db.collection("\(user.uid).팔로잉").whereField("name", isEqualTo: name).getDocuments { querySnapShot, error in
+                if let e = error {
+                    print("Error Check User : \(e)")
                 }else{
-                    self.setAlert(title: "달력 이름을 적어주세요.", subTitle: "")
+                    if querySnapShot!.documents.isEmpty {
+                        self.setFollowingUserData(myUid: user.uid, userName: name)
+                    }
+                    
+                    self.dismiss(animated: true)
                 }
             }
-            
-            
+        }else{
+            setAlert(title: "로그인", subTitle: "로그인이 필요합니다.")
         }
-        changeAction.setValue(UIColor.black, forKey: "titleTextColor")
         
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        cancelAction.setValue(UIColor.black, forKey: "titleTextColor")
-        
-        alert.addAction(changeAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
     }
     
+    private func setFollowingUserData(myUid : String, userName : String) {
+        
+        db.collection("\(myUid).팔로잉").document(userUid).setData(["name" : userName,
+                                                                     "uid" : userUid])
+        
+        db.collection("\(userUid).팔로워").document(myUid).setData(["name" : myName,
+                                                                     "uid" : myUid])
+    }
+    
+   
     private func setAlert(title : String, subTitle : String) {
         let alert = UIAlertController(title: title, message: subTitle, preferredStyle: .alert)
         
         let loginAction = UIAlertAction(title: "확인", style: .default)
-        loginAction.setValue(UIColor.black, forKey: "titleTextColor")
+        loginAction.setValue(UIColor.displayModeColor2, forKey: "titleTextColor")
         
         
         alert.addAction(loginAction)

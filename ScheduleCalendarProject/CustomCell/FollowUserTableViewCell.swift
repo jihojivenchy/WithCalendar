@@ -1,13 +1,13 @@
 //
-//  TextStackViewTableViewCell.swift
+//  FollowUserTableViewCell.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/12/13.
+//  Created by 엄지호 on 2022/12/19.
 //
 
 import UIKit
 
-class TextStackViewTableViewCell: UITableViewCell {
+class FollowUserTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
