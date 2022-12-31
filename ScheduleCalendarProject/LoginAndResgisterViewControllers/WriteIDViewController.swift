@@ -1,13 +1,13 @@
 //
-//  SearchCalendarDataViewController.swift
+//  WriteIDViewController.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/12/23.
+//  Created by 엄지호 on 2022/12/27.
 //
 
 import UIKit
 
-class SearchCalendarDataViewController: UIViewController {
+class WriteIDViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
