@@ -1,8 +1,8 @@
 //
-//  ShareCalendarViewController.swift
+//  CalendarCategoryViewController.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2022/12/19.
+//  Created by 엄지호 on 2023/01/02.
 //
 
 import UIKit
@@ -10,14 +10,15 @@ import SnapKit
 import Tabman
 import Pageboy
 
-final class SocialCalendarViewController: TabmanViewController {
+final class CalendarCategoryViewController: TabmanViewController {
 //MARK: - Properties
-
-    private var viewControllers : Array<UIViewController> = []
-    private var titleArray : [String] = ["Following", "Followers"]
+    final var delegate : CalendarCellPressDelegate?
     
-    private lazy var addFollowingButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.badge.plus"), style: .plain, target: self, action: #selector(addButtonPressed(_:)))
+    private var viewControllers : Array<UIViewController> = []
+    private var titleArray : [String] = ["개인달력", "공유달력"]
+    
+    private lazy var addCalendarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addButtonPressed(_:)))
         
         return button
     }()
@@ -27,11 +28,13 @@ final class SocialCalendarViewController: TabmanViewController {
         return button
     }()
     
-//MARK: - Life Cycle
+    //MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.tintColor = .displayModeColor2
         navigationController?.navigationBar.prefersLargeTitles = true
+        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -46,11 +49,14 @@ final class SocialCalendarViewController: TabmanViewController {
         setBar()
     }
     
-//MARK: - View Method
+    //MARK: - View Method
     
     private func appendViewControllers() {
-        let vc1 = FollowingViewController()
-        let vc2 = FollowersViewController()
+        let vc1 = PrivateCalendarViewController()
+        let vc2 = ShareCalendarViewController()
+        
+        vc1.delegate = self
+        vc2.delegate = self
         
         self.viewControllers.append(vc1)
         self.viewControllers.append(vc2)
@@ -63,10 +69,10 @@ final class SocialCalendarViewController: TabmanViewController {
         appearance.backgroundColor = .displayModeColor1
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = .displayModeColor2
+        navigationController?.navigationBar.topItem?.title = ""
         
-        navigationItem.title = "Social Calendars"
-        navigationItem.rightBarButtonItem = addFollowingButton
+        navigationItem.title = "Category"
+        navigationItem.rightBarButtonItem = addCalendarButton
         navigationItem.backBarButtonItem = navigationBackButton
     }
     
@@ -79,7 +85,7 @@ final class SocialCalendarViewController: TabmanViewController {
         
         bar.backgroundView.style = .clear //버튼 백그라운드 스타일
         bar.layout.contentMode = .fit
-    
+        
         bar.buttons.customize { (button) in
             button.tintColor = .darkGray
             button.selectedTintColor = .displayModeColor2
@@ -94,15 +100,14 @@ final class SocialCalendarViewController: TabmanViewController {
         
     }
     
-//MARK: - ButtonMethod
-    @objc private func addButtonPressed(_ sender : UIButton) {
-        self.navigationController?.pushViewController(SearchUserViewController(), animated: true)
+    //MARK: - ButtonMethod
+    @objc private func addButtonPressed(_ sender : UIBarButtonItem) {
+        self.navigationController?.pushViewController(AddShareCalendarViewController(), animated: true)
     }
-
 }
 
 //MARK: - Extension
-extension SocialCalendarViewController : PageboyViewControllerDataSource, TMBarDataSource {
+extension CalendarCategoryViewController : PageboyViewControllerDataSource, TMBarDataSource {
     func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
         return viewControllers.count
     }
@@ -126,5 +131,22 @@ extension SocialCalendarViewController : PageboyViewControllerDataSource, TMBarD
         
         return .at(index: 0)
     }
-    
+}
+
+protocol CalendarCellPressDelegate {
+    func cellPressed()
+}
+
+extension CalendarCategoryViewController : PrivateCalendarCellDelegate {
+    func privateCellPressed() {
+        self.delegate?.cellPressed()
+        print("zz")
+    }
+}
+
+extension CalendarCategoryViewController : ShareCalendarCellDelegate {
+    func shareCellPressed() {
+        self.delegate?.cellPressed()
+        print("gg")
+    }
 }

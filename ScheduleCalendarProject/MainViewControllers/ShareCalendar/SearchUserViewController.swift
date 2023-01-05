@@ -14,12 +14,14 @@ final class SearchUserViewController: UIViewController {
 //MARK: - Properties
     private let db = Firestore.firestore()
     private var searchUserArray : [SearchUserData] = []
+    final var searchDelegate : SearchViewDelegate?
     
     private lazy var searchBar : UISearchBar = {
         let sb = UISearchBar()
         sb.placeholder = "Code 입력"
         sb.delegate = self
         sb.tintColor = .displayModeColor2
+        sb.barTintColor = .customSignatureColor
         
         return sb
     }()
@@ -34,7 +36,6 @@ final class SearchUserViewController: UIViewController {
         
         addSubViews()
         navBarAppearance()
-        getMyNameData()
         
         userTableView.register(DisplayModeTableViewCell.self, forCellReuseIdentifier: DisplayModeTableViewCell.cellIdentifier)
         userTableView.delegate = self
@@ -61,7 +62,6 @@ final class SearchUserViewController: UIViewController {
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.tintColor = .displayModeColor2
-        navigationController?.navigationBar.prefersLargeTitles = false
         
         navigationItem.titleView = searchBar
         searchBar.becomeFirstResponder()
@@ -73,6 +73,8 @@ final class SearchUserViewController: UIViewController {
             if let e = error {
                 print("Error search User Data : \(e)")
             }else{
+                self.searchUserArray = []
+                
                 if let snapShotDocument = querySnapShot?.documents {
                     for doc in snapShotDocument {
                         let data = doc.data()
@@ -91,23 +93,6 @@ final class SearchUserViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    private func getMyNameData() {
-        guard let user = Auth.auth().currentUser else{return}
-        
-        db.collection("Users").document(user.uid).getDocument{ querySnapShot, error in
-            if let e = error {
-                print("Error search User Data : \(e)")
-            }else{
-                
-                guard let data = querySnapShot?.data() else{return}
-                guard let nickName = data["NickName"] as? String else{return}
-                
-                self.myNameData = nickName
-            }
-        }
-    
     }
     
     
@@ -144,11 +129,12 @@ extension SearchUserViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DisplayModeTableViewCell.cellIdentifier, for: indexPath) as! DisplayModeTableViewCell
         
-        
         cell.displayLabel.text = self.searchUserArray[indexPath.row].nickName
-    
+        cell.displayLabel.font = .boldSystemFont(ofSize: 16)
+        
         cell.backgroundColor = .clear
         cell.separatorInset = UIEdgeInsets.zero
+        cell.accessoryType = .disclosureIndicator
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = .displayModeColor3
@@ -164,11 +150,24 @@ extension SearchUserViewController : UITableViewDelegate {
         
         let vc = RequestViewController()
         vc.nameLabel.text = self.searchUserArray[indexPath.row].nickName
-        vc.userUid = self.searchUserArray[indexPath.row].uid
-        vc.myName = self.myNameData
+        vc.uid = self.searchUserArray[indexPath.row].uid
+        vc.delegate = self
+        
+        vc.modalPresentationStyle = .custom
         
         present(vc, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+extension SearchUserViewController : RequestViewDelegate {
+    func invitePressed(name: String, uid: String) {
+        searchDelegate?.sendinviteData(name: name, uid: uid)
+    }
+    
+}
+
+protocol SearchViewDelegate {
+    func sendinviteData(name : String, uid : String)
 }
