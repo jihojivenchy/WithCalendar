@@ -1,0 +1,45 @@
+//
+//  EditMemoDataService.swift
+//  ScheduleCalendarProject
+//
+//  Created by 엄지호 on 2023/05/09.
+//
+
+import Foundation
+import FirebaseAuth
+import FirebaseFirestore
+
+struct EditMemoDataService {
+    let db = Firestore.firestore()
+    
+    //메모 데이터 수정
+    func updateMemoData(documentID: String, data: MemoData, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let user = Auth.auth().currentUser else{return}
+        
+        db.collection("\(user.uid).메모").document(documentID).updateData(["memo" : data.memo,
+                                                                         "date" : data.date,
+                                                                         "fix" : data.fix,
+                                                                         "fixColor" : data.fixColor]) { error in
+            if let e = error {
+                completion(.failure(e))
+            }else{
+                completion(.success(()))
+            }
+        }
+    }
+    
+    //메모 데이터 삭제
+    func deleteMemoData(documentID : String, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let user = Auth.auth().currentUser else{return}
+        
+        db.collection("\(user.uid).메모").document(documentID).delete { error in
+            if let e = error {
+                completion(.failure(e))
+            }else{
+                completion(.success("success"))
+            }
+        }
+    }
+    
+    
+}

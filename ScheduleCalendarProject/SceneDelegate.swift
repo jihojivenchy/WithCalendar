@@ -13,12 +13,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene) //SceneDelegate의 프로퍼티인 window에 넣어준다.
         
         let calendarNavigationController = UINavigationController(rootViewController: CalendarViewController())
-        let memoNavigationController = UINavigationController(rootViewController: SimpleMemoViewController())
+        let memoNavigationController = UINavigationController(rootViewController: MemoViewController())
         let menuNavigationController = UINavigationController(rootViewController: MenuViewController())
         
         let tabBarController = UITabBarController()
@@ -38,11 +37,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             items[2].title = "메뉴"
         }
         
-        tabBarController.tabBar.barTintColor = .black
+        tabBarController.tabBar.tintColor = .blackAndWhiteColor
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
+        //유저가 저장해둔 인터페이스 모드로 적용.
+        let rawValue = UserDefaults.standard.integer(forKey: "Appearance")
+        window?.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: rawValue) ?? .unspecified
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
