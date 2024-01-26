@@ -16,7 +16,7 @@
 </br>
 
 ## 📱앱스토어
-- [With Calendar]([https://apps.apple.com/kr/app/요리도감/id1644290667](https://apps.apple.com/kr/app/with-calendar/id1661333206))
+- [With Calendar](https://apps.apple.com/kr/app/with-calendar/id1661333206)
 
 </br>
 
@@ -43,7 +43,7 @@
 #### 학습
 - 연결 실패, 시간 초과, 서버 오류 등 네트워킹 시 나타날 수 있는 에러를 확인하고, 이에 대한 적절한 대응 방법에 대해 학습
 - 병렬요청 처리, 작업의 우선순위 설정 등을 통해 네트워크 요청을 최적화하는 방법에 대해 학습
-- [URLSession 정리](https://iosjiho.tistory.com/73)
+- [URLSession 정리](https://iosjiho.tistory.com/73)
 
 </br>
 
