@@ -82,6 +82,8 @@
 		7C9BE79B2B6A68D1009A1CFD /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE79A2B6A68D1009A1CFD /* UIColorHexSwift */; };
 		7C9BE79E2B6A6A0B009A1CFD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE79D2B6A6A0B009A1CFD /* Lottie */; };
 		7C9BE7A12B6A6AD9009A1CFD /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7A02B6A6AD9009A1CFD /* Tabman */; };
+		7C9BE7A42B6A6CA6009A1CFD /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7A32B6A6CA6009A1CFD /* NVActivityIndicatorView */; };
+		7C9BE7A62B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7A52B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended */; };
 		7CB40FB629EE358300DE0710 /* GoogleService-Info (2).plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CB40FB529EE358300DE0710 /* GoogleService-Info (2).plist */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
@@ -172,11 +174,9 @@
 		7CB4108C29FA553800DE0710 /* HolidayApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4108B29FA553800DE0710 /* HolidayApiResponse.swift */; };
 		7CB4108E2A0379F900DE0710 /* HolidayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4108D2A0379F900DE0710 /* HolidayAPI.swift */; };
 		7CB410902A038D5A00DE0710 /* CreateShareCalendarError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4108F2A038D5A00DE0710 /* CreateShareCalendarError.swift */; };
-		9B356CE80E9D6202F980CFF8 /* Pods_ScheduleCalendarProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8EE972DB73C071711E5CEB /* Pods_ScheduleCalendarProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		357E8167228D0ECCD6A5FCF0 /* Pods-ScheduleCalendarProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScheduleCalendarProject.release.xcconfig"; path = "Target Support Files/Pods-ScheduleCalendarProject/Pods-ScheduleCalendarProject.release.xcconfig"; sourceTree = "<group>"; };
 		7C1AFB462912AEC4005F931C /* ScheduleCalendarProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScheduleCalendarProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1AFB492912AEC4005F931C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C1AFB4B2912AEC4005F931C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -313,8 +313,6 @@
 		7CB4108D2A0379F900DE0710 /* HolidayAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayAPI.swift; sourceTree = "<group>"; };
 		7CB4108F2A038D5A00DE0710 /* CreateShareCalendarError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShareCalendarError.swift; sourceTree = "<group>"; };
 		7CDDE9682A1D2ADB00AD4183 /* ScheduleCalendarProjectRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScheduleCalendarProjectRelease.entitlements; sourceTree = "<group>"; };
-		BA8EE972DB73C071711E5CEB /* Pods_ScheduleCalendarProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScheduleCalendarProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECF7C91467F5D01B47BFCC69 /* Pods-ScheduleCalendarProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScheduleCalendarProject.debug.xcconfig"; path = "Target Support Files/Pods-ScheduleCalendarProject/Pods-ScheduleCalendarProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,8 +334,8 @@
 				7C9BE7682B6A66BE009A1CFD /* FirebaseAnalyticsSwift in Frameworks */,
 				7C9BE7962B6A66BE009A1CFD /* FirebaseStorage in Frameworks */,
 				7C9BE7902B6A66BE009A1CFD /* FirebasePerformance in Frameworks */,
+				7C9BE7A62B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended in Frameworks */,
 				7C9BE77C2B6A66BE009A1CFD /* FirebaseFirestore in Frameworks */,
-				9B356CE80E9D6202F980CFF8 /* Pods_ScheduleCalendarProject.framework in Frameworks */,
 				7C9BE7862B6A66BE009A1CFD /* FirebaseInAppMessaging-Beta in Frameworks */,
 				7C9BE75F2B6A613A009A1CFD /* SnapKit in Frameworks */,
 				7C9BE7662B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -354,6 +352,7 @@
 				7C9BE7A12B6A6AD9009A1CFD /* Tabman in Frameworks */,
 				7C9BE76E2B6A66BE009A1CFD /* FirebaseAppDistribution-Beta in Frameworks */,
 				7C9BE77A2B6A66BE009A1CFD /* FirebaseDynamicLinks in Frameworks */,
+				7C9BE7A42B6A6CA6009A1CFD /* NVActivityIndicatorView in Frameworks */,
 				7C9BE7802B6A66BE009A1CFD /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,21 +360,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		324541E0A94723ADE645A79A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BA8EE972DB73C071711E5CEB /* Pods_ScheduleCalendarProject.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7C1AFB3D2912AEC4005F931C = {
 			isa = PBXGroup;
 			children = (
 				7C1AFB482912AEC4005F931C /* ScheduleCalendarProject */,
 				7C1AFB472912AEC4005F931C /* Products */,
-				7D0FE833A0A4EB03151C5C22 /* Pods */,
-				324541E0A94723ADE645A79A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -857,15 +846,6 @@
 			path = DataModelAndService;
 			sourceTree = "<group>";
 		};
-		7D0FE833A0A4EB03151C5C22 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				ECF7C91467F5D01B47BFCC69 /* Pods-ScheduleCalendarProject.debug.xcconfig */,
-				357E8167228D0ECCD6A5FCF0 /* Pods-ScheduleCalendarProject.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -873,11 +853,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C1AFB5A2912AEC5005F931C /* Build configuration list for PBXNativeTarget "ScheduleCalendarProject" */;
 			buildPhases = (
-				6F9A99596937CEFC90C2163B /* [CP] Check Pods Manifest.lock */,
 				7C1AFB422912AEC4005F931C /* Sources */,
 				7C1AFB432912AEC4005F931C /* Frameworks */,
 				7C1AFB442912AEC4005F931C /* Resources */,
-				E97761F4FEFCBAA3FF2A5E24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -917,6 +895,8 @@
 				7C9BE79A2B6A68D1009A1CFD /* UIColorHexSwift */,
 				7C9BE79D2B6A6A0B009A1CFD /* Lottie */,
 				7C9BE7A02B6A6AD9009A1CFD /* Tabman */,
+				7C9BE7A32B6A6CA6009A1CFD /* NVActivityIndicatorView */,
+				7C9BE7A52B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended */,
 			);
 			productName = ScheduleCalendarProject;
 			productReference = 7C1AFB462912AEC4005F931C /* ScheduleCalendarProject.app */;
@@ -952,6 +932,7 @@
 				7C9BE7992B6A68D0009A1CFD /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
 				7C9BE79C2B6A6A0B009A1CFD /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				7C9BE79F2B6A6AD9009A1CFD /* XCRemoteSwiftPackageReference "Tabman" */,
+				7C9BE7A22B6A6CA6009A1CFD /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 7C1AFB472912AEC4005F931C /* Products */;
 			projectDirPath = "";
@@ -979,48 +960,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		6F9A99596937CEFC90C2163B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ScheduleCalendarProject-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E97761F4FEFCBAA3FF2A5E24 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ScheduleCalendarProject/Pods-ScheduleCalendarProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ScheduleCalendarProject/Pods-ScheduleCalendarProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScheduleCalendarProject/Pods-ScheduleCalendarProject-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7C1AFB422912AEC4005F931C /* Sources */ = {
@@ -1293,7 +1232,6 @@
 		};
 		7C1AFB5B2912AEC5005F931C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECF7C91467F5D01B47BFCC69 /* Pods-ScheduleCalendarProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1325,7 +1263,6 @@
 		};
 		7C1AFB5C2912AEC5005F931C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 357E8167228D0ECCD6A5FCF0 /* Pods-ScheduleCalendarProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1418,6 +1355,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.0.2;
+			};
+		};
+		7C9BE7A22B6A6CA6009A1CFD /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1582,6 +1527,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7C9BE79F2B6A6AD9009A1CFD /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
+		};
+		7C9BE7A32B6A6CA6009A1CFD /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C9BE7A22B6A6CA6009A1CFD /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		7C9BE7A52B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C9BE7A22B6A6CA6009A1CFD /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
