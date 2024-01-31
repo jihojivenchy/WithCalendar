@@ -7,7 +7,6 @@ target 'ScheduleCalendarProject' do
 
   # Pods for ScheduleCalendarProject
 
-  pod 'SnapKit', '~> 5.6.0'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'UIColor_Hex_Swift', '~> 5.1.7'

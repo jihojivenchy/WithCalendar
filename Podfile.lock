@@ -773,7 +773,6 @@ PODS:
   - Pageboy (4.0.2)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
-  - SnapKit (5.6.0)
   - Tabman (3.0.2):
     - Pageboy (~> 4.0.2)
   - TextFieldEffects (1.6.0)
@@ -786,7 +785,6 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - lottie-ios
   - NVActivityIndicatorView
-  - SnapKit (~> 5.6.0)
   - Tabman (~> 3.0)
   - TextFieldEffects
   - UIColor_Hex_Swift (~> 5.1.7)
@@ -816,7 +814,6 @@ SPEC REPOS:
     - Pageboy
     - PromisesObjC
     - RecaptchaInterop
-    - SnapKit
     - Tabman
     - TextFieldEffects
     - UIColor_Hex_Swift
@@ -856,11 +853,10 @@ SPEC CHECKSUMS:
   Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   UIColor_Hex_Swift: 20cb4e8d51b63e168a9da6933bc5d39cd8fb4ab5
 
-PODFILE CHECKSUM: a9c33854b69f97e29fcee591e583d8ebcb8cbbdb
+PODFILE CHECKSUM: 55c3e8153b8e4cbf8407fe5099e182963c232695
 
 COCOAPODS: 1.11.3
