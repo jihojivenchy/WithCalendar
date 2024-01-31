@@ -43,7 +43,6 @@ final class StartDatePickerViewController: UIViewController {
         
         startAndEndDatePickerView.doneButton.addTarget(self, action: #selector(doneButtonPressed(_:)), for: .touchUpInside)
         startAndEndDatePickerView.datePicker.addTarget(self, action: #selector(pickerValueChanged(_:)), for: .valueChanged)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

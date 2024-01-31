@@ -21,7 +21,6 @@ extension UIColor {
     class var customRedColor : UIColor? { return UIColor(named: "CustomRedColor") }
     class var customBlueColor : UIColor? { return UIColor(named: "CustomBlueColor") }
  
-    
     //주어진 색상의 밝기를 계산하고, 밝기에 맞게 대조되는 색상을 리턴해주는 작업.
     func customContrastingColor() -> UIColor {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
