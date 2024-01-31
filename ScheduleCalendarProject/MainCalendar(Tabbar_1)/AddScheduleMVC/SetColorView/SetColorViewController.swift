@@ -7,8 +7,7 @@
 
 import UIKit
 import SnapKit
-import UIColor_Hex_Swift
-import ChameleonFramework
+import UIColorHexSwift
 
 final class SetColorViewController: UIViewController {
     //MARK: - Properties

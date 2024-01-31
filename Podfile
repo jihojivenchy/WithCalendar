@@ -8,7 +8,7 @@ target 'ScheduleCalendarProject' do
   # Pods for ScheduleCalendarProject
 
   pod 'NVActivityIndicatorView'
-  pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
+
 end
 
 post_install do |installer|
