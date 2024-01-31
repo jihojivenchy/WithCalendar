@@ -5,20 +5,14 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
-  - Pageboy (4.0.2)
-  - Tabman (3.0.2):
-    - Pageboy (~> 4.0.2)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
   - NVActivityIndicatorView
-  - Tabman (~> 3.0)
 
 SPEC REPOS:
   trunk:
     - NVActivityIndicatorView
-    - Pageboy
-    - Tabman
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -33,9 +27,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
-  Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
-  Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
 
-PODFILE CHECKSUM: 4060d2bd98a4a19531353137939009b4923976ed
+PODFILE CHECKSUM: 955001313a49056524f2ec26817606335eacc020
 
 COCOAPODS: 1.11.3

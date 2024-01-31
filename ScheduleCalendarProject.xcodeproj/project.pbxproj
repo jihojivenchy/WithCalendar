@@ -81,6 +81,7 @@
 		7C9BE7982B6A66BE009A1CFD /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7972B6A66BE009A1CFD /* FirebaseStorageCombine-Community */; };
 		7C9BE79B2B6A68D1009A1CFD /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE79A2B6A68D1009A1CFD /* UIColorHexSwift */; };
 		7C9BE79E2B6A6A0B009A1CFD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE79D2B6A6A0B009A1CFD /* Lottie */; };
+		7C9BE7A12B6A6AD9009A1CFD /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7A02B6A6AD9009A1CFD /* Tabman */; };
 		7CB40FB629EE358300DE0710 /* GoogleService-Info (2).plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CB40FB529EE358300DE0710 /* GoogleService-Info (2).plist */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
@@ -350,6 +351,7 @@
 				7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */,
 				7C9BE7742B6A66BE009A1CFD /* FirebaseCrashlytics in Frameworks */,
 				7C9BE7612B6A613A009A1CFD /* SnapKit-Dynamic in Frameworks */,
+				7C9BE7A12B6A6AD9009A1CFD /* Tabman in Frameworks */,
 				7C9BE76E2B6A66BE009A1CFD /* FirebaseAppDistribution-Beta in Frameworks */,
 				7C9BE77A2B6A66BE009A1CFD /* FirebaseDynamicLinks in Frameworks */,
 				7C9BE7802B6A66BE009A1CFD /* FirebaseFirestoreSwift in Frameworks */,
@@ -914,6 +916,7 @@
 				7C9BE7972B6A66BE009A1CFD /* FirebaseStorageCombine-Community */,
 				7C9BE79A2B6A68D1009A1CFD /* UIColorHexSwift */,
 				7C9BE79D2B6A6A0B009A1CFD /* Lottie */,
+				7C9BE7A02B6A6AD9009A1CFD /* Tabman */,
 			);
 			productName = ScheduleCalendarProject;
 			productReference = 7C1AFB462912AEC4005F931C /* ScheduleCalendarProject.app */;
@@ -948,6 +951,7 @@
 				7C9BE7622B6A66BE009A1CFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7C9BE7992B6A68D0009A1CFD /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
 				7C9BE79C2B6A6A0B009A1CFD /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				7C9BE79F2B6A6AD9009A1CFD /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 7C1AFB472912AEC4005F931C /* Products */;
 			projectDirPath = "";
@@ -1408,6 +1412,14 @@
 				minimumVersion = 4.4.0;
 			};
 		};
+		7C9BE79F2B6A6AD9009A1CFD /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman?tab=readme-ov-file";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1565,6 +1577,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7C9BE79C2B6A6A0B009A1CFD /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		7C9BE7A02B6A6AD9009A1CFD /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C9BE79F2B6A6AD9009A1CFD /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
