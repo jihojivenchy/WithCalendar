@@ -79,6 +79,7 @@
 		7C9BE7942B6A66BE009A1CFD /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7932B6A66BE009A1CFD /* FirebaseRemoteConfigSwift */; };
 		7C9BE7962B6A66BE009A1CFD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7952B6A66BE009A1CFD /* FirebaseStorage */; };
 		7C9BE7982B6A66BE009A1CFD /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7972B6A66BE009A1CFD /* FirebaseStorageCombine-Community */; };
+		7C9BE79B2B6A68D1009A1CFD /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE79A2B6A68D1009A1CFD /* UIColorHexSwift */; };
 		7CB40FB629EE358300DE0710 /* GoogleService-Info (2).plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CB40FB529EE358300DE0710 /* GoogleService-Info (2).plist */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
@@ -323,6 +324,7 @@
 				7C9BE7782B6A66BE009A1CFD /* FirebaseDatabaseSwift in Frameworks */,
 				7C9BE7762B6A66BE009A1CFD /* FirebaseDatabase in Frameworks */,
 				7C9BE78C2B6A66BE009A1CFD /* FirebaseMLModelDownloader in Frameworks */,
+				7C9BE79B2B6A68D1009A1CFD /* UIColorHexSwift in Frameworks */,
 				7C9BE76C2B6A66BE009A1CFD /* FirebaseAppCheck in Frameworks */,
 				7C9BE7842B6A66BE009A1CFD /* FirebaseFunctionsCombine-Community in Frameworks */,
 				7C9BE78A2B6A66BE009A1CFD /* FirebaseInstallations in Frameworks */,
@@ -908,6 +910,7 @@
 				7C9BE7932B6A66BE009A1CFD /* FirebaseRemoteConfigSwift */,
 				7C9BE7952B6A66BE009A1CFD /* FirebaseStorage */,
 				7C9BE7972B6A66BE009A1CFD /* FirebaseStorageCombine-Community */,
+				7C9BE79A2B6A68D1009A1CFD /* UIColorHexSwift */,
 			);
 			productName = ScheduleCalendarProject;
 			productReference = 7C1AFB462912AEC4005F931C /* ScheduleCalendarProject.app */;
@@ -940,6 +943,7 @@
 			packageReferences = (
 				7C9BE75D2B6A613A009A1CFD /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7C9BE7622B6A66BE009A1CFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7C9BE7992B6A68D0009A1CFD /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
 			);
 			productRefGroup = 7C1AFB472912AEC4005F931C /* Products */;
 			projectDirPath = "";
@@ -1384,6 +1388,14 @@
 				minimumVersion = 10.20.0;
 			};
 		};
+		7C9BE7992B6A68D0009A1CFD /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yeahdongcn/UIColor-Hex-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.9;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1531,6 +1543,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7C9BE7622B6A66BE009A1CFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		7C9BE79A2B6A68D1009A1CFD /* UIColorHexSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C9BE7992B6A68D0009A1CFD /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */;
+			productName = UIColorHexSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

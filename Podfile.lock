@@ -10,7 +10,6 @@ PODS:
   - Tabman (3.0.2):
     - Pageboy (~> 4.0.2)
   - TextFieldEffects (1.6.0)
-  - UIColor_Hex_Swift (5.1.9)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
@@ -18,7 +17,6 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - Tabman (~> 3.0)
   - TextFieldEffects
-  - UIColor_Hex_Swift (~> 5.1.7)
 
 SPEC REPOS:
   trunk:
@@ -27,7 +25,6 @@ SPEC REPOS:
     - Pageboy
     - Tabman
     - TextFieldEffects
-    - UIColor_Hex_Swift
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -46,8 +43,7 @@ SPEC CHECKSUMS:
   Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
   Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
-  UIColor_Hex_Swift: 20cb4e8d51b63e168a9da6933bc5d39cd8fb4ab5
 
-PODFILE CHECKSUM: 920bb4a92138e1930556c66b2acca4977d21dfec
+PODFILE CHECKSUM: d41cea869e54c5ed79493b36063c702215464f87
 
 COCOAPODS: 1.11.3

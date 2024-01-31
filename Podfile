@@ -7,7 +7,6 @@ target 'ScheduleCalendarProject' do
 
   # Pods for ScheduleCalendarProject
 
-  pod 'UIColor_Hex_Swift', '~> 5.1.7'
   pod 'TextFieldEffects'
   pod 'Tabman', '~> 3.0'
   pod 'lottie-ios' 
