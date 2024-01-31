@@ -9,14 +9,12 @@ PODS:
   - Pageboy (4.0.2)
   - Tabman (3.0.2):
     - Pageboy (~> 4.0.2)
-  - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
   - lottie-ios
   - NVActivityIndicatorView
   - Tabman (~> 3.0)
-  - TextFieldEffects
 
 SPEC REPOS:
   trunk:
@@ -24,7 +22,6 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - Pageboy
     - Tabman
-    - TextFieldEffects
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -42,8 +39,7 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
   Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
-  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: d41cea869e54c5ed79493b36063c702215464f87
+PODFILE CHECKSUM: b68a94a7e9157f0e14ab5c0fae74d010f9ca38ea
 
 COCOAPODS: 1.11.3

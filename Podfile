@@ -7,7 +7,6 @@ target 'ScheduleCalendarProject' do
 
   # Pods for ScheduleCalendarProject
 
-  pod 'TextFieldEffects'
   pod 'Tabman', '~> 3.0'
   pod 'lottie-ios' 
   pod 'NVActivityIndicatorView'
