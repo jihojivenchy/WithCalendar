@@ -2,7 +2,6 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - lottie-ios (4.4.0)
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
@@ -12,13 +11,11 @@ PODS:
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
-  - lottie-ios
   - NVActivityIndicatorView
   - Tabman (~> 3.0)
 
 SPEC REPOS:
   trunk:
-    - lottie-ios
     - NVActivityIndicatorView
     - Pageboy
     - Tabman
@@ -35,11 +32,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  lottie-ios: ef1be1f90d54255f08e09d767950e43714661178
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   Pageboy: 34ff11e8d1041b81769d5bcde9b19a0cb7218bd9
   Tabman: 6326ec3a792da1c2a6e79c7eddb56af7b591c9d6
 
-PODFILE CHECKSUM: b68a94a7e9157f0e14ab5c0fae74d010f9ca38ea
+PODFILE CHECKSUM: 4060d2bd98a4a19531353137939009b4923976ed
 
 COCOAPODS: 1.11.3

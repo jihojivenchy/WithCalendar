@@ -8,7 +8,6 @@ target 'ScheduleCalendarProject' do
   # Pods for ScheduleCalendarProject
 
   pod 'Tabman', '~> 3.0'
-  pod 'lottie-ios' 
   pod 'NVActivityIndicatorView'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
 end
