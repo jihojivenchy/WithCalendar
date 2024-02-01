@@ -50,6 +50,11 @@
 		7C4C417E2A1A5EF300787C00 /* 함박눈체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C4C417D2A1A5EF200787C00 /* 함박눈체.ttf */; };
 		7C4C41812A1A6E7F00787C00 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4C41802A1A6E7F00787C00 /* APIKeys.swift */; };
 		7C51A20E2A10E506009E2801 /* CalendarDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C51A20D2A10E506009E2801 /* CalendarDataService.swift */; };
+		7C6203242B6BA36D00438E69 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203232B6BA36D00438E69 /* BaseView.swift */; };
+		7C6203262B6BA44300438E69 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203252B6BA44300438E69 /* BaseViewController.swift */; };
+		7C6203292B6BA4B800438E69 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203282B6BA4B800438E69 /* BaseButton.swift */; };
+		7C62032B2B6BA4F100438E69 /* BaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62032A2B6BA4F100438E69 /* BaseCollectionReusableView.swift */; };
+		7C62032D2B6BA51E00438E69 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62032C2B6BA51E00438E69 /* BaseCollectionViewCell.swift */; };
 		7C9BE75F2B6A613A009A1CFD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE75E2B6A613A009A1CFD /* SnapKit */; };
 		7C9BE7612B6A613A009A1CFD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7602B6A613A009A1CFD /* SnapKit-Dynamic */; };
 		7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */; };
@@ -222,6 +227,11 @@
 		7C4C41802A1A6E7F00787C00 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		7C51A20D2A10E506009E2801 /* CalendarDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
 		7C6202ED2B6B490100438E69 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (2).plist"; sourceTree = "<group>"; };
+		7C6203232B6BA36D00438E69 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		7C6203252B6BA44300438E69 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7C6203282B6BA4B800438E69 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		7C62032A2B6BA4F100438E69 /* BaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionReusableView.swift; sourceTree = "<group>"; };
+		7C62032C2B6BA51E00438E69 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -529,6 +539,8 @@
 		7C6202F62B6B4A5400438E69 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7C62032E2B6BA54B00438E69 /* Protocols */,
+				7C6203222B6BA36400438E69 /* Bases */,
 				7C6202FC2B6B4B7000438E69 /* Extensions */,
 			);
 			path = Common;
@@ -587,6 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				7CB4107729EEF43C00DE0710 /* CustomLoadingView */,
+				7C6203212B6BA32100438E69 /* TextField */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -945,6 +958,32 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
+		7C6203212B6BA32100438E69 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		7C6203222B6BA36400438E69 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				7C6203232B6BA36D00438E69 /* BaseView.swift */,
+				7C6203252B6BA44300438E69 /* BaseViewController.swift */,
+				7C6203282B6BA4B800438E69 /* BaseButton.swift */,
+				7C62032C2B6BA51E00438E69 /* BaseCollectionViewCell.swift */,
+				7C62032A2B6BA4F100438E69 /* BaseCollectionReusableView.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		7C62032E2B6BA54B00438E69 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		7CB40FC629EE5AA500DE0710 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
@@ -1212,6 +1251,7 @@
 				7CB4102529EE635B00DE0710 /* MemoViewController.swift in Sources */,
 				7C4C41672A17CBD200787C00 /* LunarAPI.swift in Sources */,
 				7CB4102929EE639A00DE0710 /* MemoTableViewCell.swift in Sources */,
+				7C62032B2B6BA4F100438E69 /* BaseCollectionReusableView.swift in Sources */,
 				7CB4100029EE5F3C00DE0710 /* AddScheduleViewController.swift in Sources */,
 				7CB4108829F95E9D00DE0710 /* ScheduleDataService.swift in Sources */,
 				7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */,
@@ -1254,6 +1294,7 @@
 				7C4006212A1538E000835EC0 /* EditScheduleViewController.swift in Sources */,
 				7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */,
 				7CB4106A29EE670D00DE0710 /* WritePasswordView.swift in Sources */,
+				7C6203292B6BA4B800438E69 /* BaseButton.swift in Sources */,
 				7C2CA3462A0D236C0055676E /* SpecificSetDateDataModel.swift in Sources */,
 				7CB4104229EE650200DE0710 /* MyProfileViewController.swift in Sources */,
 				7C40061C2A11FDFE00835EC0 /* ScheduleManagerDataModel.swift in Sources */,
@@ -1262,12 +1303,14 @@
 				7CB40FDC29EE5C5800DE0710 /* CalendarCategoryTableViewCell.swift in Sources */,
 				7CB4104E29EE659700DE0710 /* NotificationView.swift in Sources */,
 				7CB4102729EE637000DE0710 /* MemoView.swift in Sources */,
+				7C6203262B6BA44300438E69 /* BaseViewController.swift in Sources */,
 				7C2CA33F2A0B84380055676E /* EventEnum.swift in Sources */,
 				7CB40FEE29EE5DE900DE0710 /* CalendarDataModel.swift in Sources */,
 				7C4C416D2A191A2700787C00 /* FontSizeAdjustmentViewController.swift in Sources */,
 				7CB40FFC29EE5EFA00DE0710 /* ScheduleManagerTableViewCell.swift in Sources */,
 				7CB4107B29EFC01E00DE0710 /* FeedBackDataService.swift in Sources */,
 				7CB4108E2A0379F900DE0710 /* HolidayAPI.swift in Sources */,
+				7C62032D2B6BA51E00438E69 /* BaseCollectionViewCell.swift in Sources */,
 				7CB4103129EE640000DE0710 /* AddMemoView.swift in Sources */,
 				7CB4102329EE634300DE0710 /* MemoDataModel.swift in Sources */,
 				7CB4104029EE64E600DE0710 /* MyProfileDataModel.swift in Sources */,
@@ -1279,6 +1322,7 @@
 				7CB4104C29EE658000DE0710 /* NotificationViewController.swift in Sources */,
 				7CB4105C29EE665400DE0710 /* LoginViewController.swift in Sources */,
 				7CB40FE429EE5CD400DE0710 /* ParticipantFooterView.swift in Sources */,
+				7C6203242B6BA36D00438E69 /* BaseView.swift in Sources */,
 				7CB4101229EE60E100DE0710 /* SetNotificationView.swift in Sources */,
 				7CB40FD229EE5B8200DE0710 /* ShareCalendarDataModel.swift in Sources */,
 			);
