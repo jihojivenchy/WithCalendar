@@ -55,6 +55,9 @@
 		7C6203292B6BA4B800438E69 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203282B6BA4B800438E69 /* BaseButton.swift */; };
 		7C62032B2B6BA4F100438E69 /* BaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62032A2B6BA4F100438E69 /* BaseCollectionReusableView.swift */; };
 		7C62032D2B6BA51E00438E69 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62032C2B6BA51E00438E69 /* BaseCollectionViewCell.swift */; };
+		7C6203302B6BA59100438E69 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62032F2B6BA59100438E69 /* Reusable.swift */; };
+		7C6203332B6BA5D300438E69 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203322B6BA5D300438E69 /* UITableView+.swift */; };
+		7C6203352B6BA5EC00438E69 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203342B6BA5EC00438E69 /* UICollectionView+.swift */; };
 		7C9BE75F2B6A613A009A1CFD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE75E2B6A613A009A1CFD /* SnapKit */; };
 		7C9BE7612B6A613A009A1CFD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7602B6A613A009A1CFD /* SnapKit-Dynamic */; };
 		7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */; };
@@ -232,6 +235,9 @@
 		7C6203282B6BA4B800438E69 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		7C62032A2B6BA4F100438E69 /* BaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionReusableView.swift; sourceTree = "<group>"; };
 		7C62032C2B6BA51E00438E69 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C62032F2B6BA59100438E69 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		7C6203322B6BA5D300438E69 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		7C6203342B6BA5EC00438E69 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -607,6 +613,8 @@
 		7C6202FC2B6B4B7000438E69 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7C6203322B6BA5D300438E69 /* UITableView+.swift */,
+				7C6203342B6BA5EC00438E69 /* UICollectionView+.swift */,
 				7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */,
 				7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */,
 				7CB40FC129EE392B00DE0710 /* UITextFieldExtension.swift */,
@@ -980,6 +988,7 @@
 		7C62032E2B6BA54B00438E69 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				7C62032F2B6BA59100438E69 /* Reusable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1200,6 +1209,7 @@
 				7C4C41612A17404A00787C00 /* NotificationManagerViewController.swift in Sources */,
 				7C2CA32A2A08283C0055676E /* CalendarData.swift in Sources */,
 				7CB410902A038D5A00DE0710 /* CreateShareCalendarError.swift in Sources */,
+				7C6203352B6BA5EC00438E69 /* UICollectionView+.swift in Sources */,
 				7C4C41632A17417800787C00 /* NotificationManagerDataModel.swift in Sources */,
 				7CB4106829EE66F600DE0710 /* WritePasswordViewController.swift in Sources */,
 				7CB4101629EE612400DE0710 /* SetColorViewController.swift in Sources */,
@@ -1276,9 +1286,11 @@
 				7CB4102D29EE63CC00DE0710 /* EditMemoView.swift in Sources */,
 				7CB4107029EE675400DE0710 /* FindPasswordViewController.swift in Sources */,
 				7C2CA3342A08DEA70055676E /* MyProfileDataService.swift in Sources */,
+				7C6203332B6BA5D300438E69 /* UITableView+.swift in Sources */,
 				7C4C41652A17CBBD00787C00 /* LunarDate.swift in Sources */,
 				7C1AFB4C2912AEC4005F931C /* SceneDelegate.swift in Sources */,
 				7CB40FDA29EE5C3A00DE0710 /* ShareCalendarViewController.swift in Sources */,
+				7C6203302B6BA59100438E69 /* Reusable.swift in Sources */,
 				7CB40FE229EE5CB700DE0710 /* ParticipantTableViewCell.swift in Sources */,
 				7CB40FEC29EE5DA700DE0710 /* EditCalendarView.swift in Sources */,
 				7C2CA3362A094EFF0055676E /* EditMemoDataService.swift in Sources */,
