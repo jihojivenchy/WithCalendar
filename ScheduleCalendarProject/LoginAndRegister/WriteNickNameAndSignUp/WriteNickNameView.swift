@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import TextFieldEffects
 
 final class WriteNickNameView: UIView {
     //MARK: - Properties

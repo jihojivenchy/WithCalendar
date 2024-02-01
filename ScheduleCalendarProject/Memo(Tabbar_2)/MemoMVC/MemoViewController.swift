@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import UIColor_Hex_Swift
+import UIColorHexSwift
 
 final class MemoViewController: UIViewController {
     //MARK: - Properties

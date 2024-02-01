@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import TextFieldEffects
 
 final class WritePasswordView: UIView {
     //MARK: - Properties

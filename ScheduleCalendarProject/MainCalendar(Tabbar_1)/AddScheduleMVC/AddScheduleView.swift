@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import TextFieldEffects
 
 final class AddScheduleView: UIView {
     //MARK: - Properties
