@@ -222,6 +222,7 @@
 		7C4C417D2A1A5EF200787C00 /* 함박눈체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "함박눈체.ttf"; sourceTree = "<group>"; };
 		7C4C41802A1A6E7F00787C00 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		7C51A20D2A10E506009E2801 /* CalendarDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
+		7C6202ED2B6B490100438E69 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (2).plist"; sourceTree = "<group>"; };
 		7CB40FB529EE358300DE0710 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info (2).plist"; path = "../../../../Downloads/GoogleService-Info (2).plist"; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -363,7 +364,8 @@
 		7C1AFB3D2912AEC4005F931C = {
 			isa = PBXGroup;
 			children = (
-				7C1AFB482912AEC4005F931C /* ScheduleCalendarProject */,
+				7C6202EC2B6B455100438E69 /* Resources */,
+				7C6202EE2B6B494600438E69 /* Sources */,
 				7C1AFB472912AEC4005F931C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -379,7 +381,6 @@
 		7C1AFB482912AEC4005F931C /* ScheduleCalendarProject */ = {
 			isa = PBXGroup;
 			children = (
-				7CDDE9682A1D2ADB00AD4183 /* ScheduleCalendarProjectRelease.entitlements */,
 				7C1AFB492912AEC4005F931C /* AppDelegate.swift */,
 				7C1AFB4B2912AEC4005F931C /* SceneDelegate.swift */,
 				7CB40FB529EE358300DE0710 /* GoogleService-Info (2).plist */,
@@ -391,12 +392,6 @@
 				7CB40FB929EE37FE00DE0710 /* Memo(Tabbar_2) */,
 				7CB40FBA29EE380200DE0710 /* Menu(Tabbar_3) */,
 				7CB40FC529EE5AA000DE0710 /* LoginAndRegister */,
-				7C4C41722A1A518E00787C00 /* CustomFont */,
-				7CB40FC629EE5AA500DE0710 /* Lottie */,
-				7C1AFB4F2912AEC4005F931C /* Main.storyboard */,
-				7C1AFB522912AEC5005F931C /* Assets.xcassets */,
-				7C1AFB542912AEC5005F931C /* LaunchScreen.storyboard */,
-				7C1AFB572912AEC5005F931C /* Info.plist */,
 			);
 			path = ScheduleCalendarProject;
 			sourceTree = "<group>";
@@ -466,6 +461,29 @@
 				7C4C41802A1A6E7F00787C00 /* APIKeys.swift */,
 			);
 			path = APIKeys;
+			sourceTree = "<group>";
+		};
+		7C6202EC2B6B455100438E69 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7C1AFB4F2912AEC4005F931C /* Main.storyboard */,
+				7C1AFB542912AEC5005F931C /* LaunchScreen.storyboard */,
+				7C1AFB522912AEC5005F931C /* Assets.xcassets */,
+				7C4C41722A1A518E00787C00 /* CustomFont */,
+				7CB40FC629EE5AA500DE0710 /* Lottie */,
+				7CDDE9682A1D2ADB00AD4183 /* ScheduleCalendarProjectRelease.entitlements */,
+				7C1AFB572912AEC5005F931C /* Info.plist */,
+				7C6202ED2B6B490100438E69 /* GoogleService-Info (2).plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7C6202EE2B6B494600438E69 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7C1AFB482912AEC4005F931C /* ScheduleCalendarProject */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		7CB40FB729EE37F500DE0710 /* Extension */ = {
