@@ -58,8 +58,9 @@
 		7C6203302B6BA59100438E69 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62032F2B6BA59100438E69 /* Reusable.swift */; };
 		7C6203332B6BA5D300438E69 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203322B6BA5D300438E69 /* UITableView+.swift */; };
 		7C6203352B6BA5EC00438E69 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203342B6BA5EC00438E69 /* UICollectionView+.swift */; };
-		7C9BE75F2B6A613A009A1CFD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE75E2B6A613A009A1CFD /* SnapKit */; };
-		7C9BE7612B6A613A009A1CFD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7602B6A613A009A1CFD /* SnapKit-Dynamic */; };
+		7C6203372B6BA66400438E69 /* WCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203362B6BA66400438E69 /* WCTextField.swift */; };
+		7C6203392B6BA68500438E69 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203382B6BA68500438E69 /* BaseTextField.swift */; };
+		7C62033B2B6BB16900438E69 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62033A2B6BB16900438E69 /* TextFieldEffects.swift */; };
 		7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */; };
 		7C9BE7662B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7652B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion */; };
 		7C9BE7682B6A66BE009A1CFD /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7672B6A66BE009A1CFD /* FirebaseAnalyticsSwift */; };
@@ -92,6 +93,8 @@
 		7C9BE7A12B6A6AD9009A1CFD /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7A02B6A6AD9009A1CFD /* Tabman */; };
 		7C9BE7A42B6A6CA6009A1CFD /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7A32B6A6CA6009A1CFD /* NVActivityIndicatorView */; };
 		7C9BE7A62B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7A52B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended */; };
+		7CB0C2642B98C55600C621EE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7CB0C2632B98C55600C621EE /* SnapKit */; };
+		7CB0C2662B98C80C00C621EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CB0C2652B98C80C00C621EE /* GoogleService-Info.plist */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
 		7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */; };
@@ -229,7 +232,6 @@
 		7C4C417D2A1A5EF200787C00 /* 함박눈체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "함박눈체.ttf"; sourceTree = "<group>"; };
 		7C4C41802A1A6E7F00787C00 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		7C51A20D2A10E506009E2801 /* CalendarDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDataService.swift; sourceTree = "<group>"; };
-		7C6202ED2B6B490100438E69 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (2).plist"; sourceTree = "<group>"; };
 		7C6203232B6BA36D00438E69 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7C6203252B6BA44300438E69 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7C6203282B6BA4B800438E69 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -238,6 +240,10 @@
 		7C62032F2B6BA59100438E69 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		7C6203322B6BA5D300438E69 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		7C6203342B6BA5EC00438E69 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
+		7C6203362B6BA66400438E69 /* WCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTextField.swift; sourceTree = "<group>"; };
+		7C6203382B6BA68500438E69 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		7C62033A2B6BB16900438E69 /* TextFieldEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		7CB0C2652B98C80C00C621EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -352,18 +358,17 @@
 				7C9BE7A62B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended in Frameworks */,
 				7C9BE77C2B6A66BE009A1CFD /* FirebaseFirestore in Frameworks */,
 				7C9BE7862B6A66BE009A1CFD /* FirebaseInAppMessaging-Beta in Frameworks */,
-				7C9BE75F2B6A613A009A1CFD /* SnapKit in Frameworks */,
 				7C9BE7662B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				7C9BE7942B6A66BE009A1CFD /* FirebaseRemoteConfigSwift in Frameworks */,
 				7C9BE7722B6A66BE009A1CFD /* FirebaseAuthCombine-Community in Frameworks */,
 				7C9BE7822B6A66BE009A1CFD /* FirebaseFunctions in Frameworks */,
+				7CB0C2642B98C55600C621EE /* SnapKit in Frameworks */,
 				7C9BE76A2B6A66BE009A1CFD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				7C9BE79E2B6A6A0B009A1CFD /* Lottie in Frameworks */,
 				7C9BE7982B6A66BE009A1CFD /* FirebaseStorageCombine-Community in Frameworks */,
 				7C9BE77E2B6A66BE009A1CFD /* FirebaseFirestoreCombine-Community in Frameworks */,
 				7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */,
 				7C9BE7742B6A66BE009A1CFD /* FirebaseCrashlytics in Frameworks */,
-				7C9BE7612B6A613A009A1CFD /* SnapKit-Dynamic in Frameworks */,
 				7C9BE7A12B6A6AD9009A1CFD /* Tabman in Frameworks */,
 				7C9BE76E2B6A66BE009A1CFD /* FirebaseAppDistribution-Beta in Frameworks */,
 				7C9BE77A2B6A66BE009A1CFD /* FirebaseDynamicLinks in Frameworks */,
@@ -448,7 +453,7 @@
 				7CB40FC629EE5AA500DE0710 /* Lottie */,
 				7CDDE9682A1D2ADB00AD4183 /* ScheduleCalendarProjectRelease.entitlements */,
 				7C1AFB572912AEC5005F931C /* Info.plist */,
-				7C6202ED2B6B490100438E69 /* GoogleService-Info (2).plist */,
+				7CB0C2652B98C80C00C621EE /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -969,6 +974,8 @@
 		7C6203212B6BA32100438E69 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
+				7C62033A2B6BB16900438E69 /* TextFieldEffects.swift */,
+				7C6203362B6BA66400438E69 /* WCTextField.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -981,6 +988,7 @@
 				7C6203282B6BA4B800438E69 /* BaseButton.swift */,
 				7C62032C2B6BA51E00438E69 /* BaseCollectionViewCell.swift */,
 				7C62032A2B6BA4F100438E69 /* BaseCollectionReusableView.swift */,
+				7C6203382B6BA68500438E69 /* BaseTextField.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -1102,8 +1110,6 @@
 			);
 			name = ScheduleCalendarProject;
 			packageProductDependencies = (
-				7C9BE75E2B6A613A009A1CFD /* SnapKit */,
-				7C9BE7602B6A613A009A1CFD /* SnapKit-Dynamic */,
 				7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */,
 				7C9BE7652B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion */,
 				7C9BE7672B6A66BE009A1CFD /* FirebaseAnalyticsSwift */,
@@ -1136,6 +1142,7 @@
 				7C9BE7A02B6A6AD9009A1CFD /* Tabman */,
 				7C9BE7A32B6A6CA6009A1CFD /* NVActivityIndicatorView */,
 				7C9BE7A52B6A6CA6009A1CFD /* NVActivityIndicatorViewExtended */,
+				7CB0C2632B98C55600C621EE /* SnapKit */,
 			);
 			productName = ScheduleCalendarProject;
 			productReference = 7C1AFB462912AEC4005F931C /* ScheduleCalendarProject.app */;
@@ -1166,12 +1173,12 @@
 			);
 			mainGroup = 7C1AFB3D2912AEC4005F931C;
 			packageReferences = (
-				7C9BE75D2B6A613A009A1CFD /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7C9BE7622B6A66BE009A1CFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7C9BE7992B6A68D0009A1CFD /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
 				7C9BE79C2B6A6A0B009A1CFD /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				7C9BE79F2B6A6AD9009A1CFD /* XCRemoteSwiftPackageReference "Tabman" */,
 				7C9BE7A22B6A6CA6009A1CFD /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				7CB0C2622B98C55500C621EE /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 7C1AFB472912AEC4005F931C /* Products */;
 			projectDirPath = "";
@@ -1188,6 +1195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C4C417A2A1A5B1A00787C00 /* 프리텐다드(세미).otf in Resources */,
+				7CB0C2662B98C80C00C621EE /* GoogleService-Info.plist in Resources */,
 				7CB4107429EE678D00DE0710 /* calendar.json in Resources */,
 				7C4C417C2A1A5DF100787C00 /* 무럭무럭체.otf in Resources */,
 				7C4C417E2A1A5EF300787C00 /* 함박눈체.ttf in Resources */,
@@ -1286,6 +1294,7 @@
 				7CB4102D29EE63CC00DE0710 /* EditMemoView.swift in Sources */,
 				7CB4107029EE675400DE0710 /* FindPasswordViewController.swift in Sources */,
 				7C2CA3342A08DEA70055676E /* MyProfileDataService.swift in Sources */,
+				7C62033B2B6BB16900438E69 /* TextFieldEffects.swift in Sources */,
 				7C6203332B6BA5D300438E69 /* UITableView+.swift in Sources */,
 				7C4C41652A17CBBD00787C00 /* LunarDate.swift in Sources */,
 				7C1AFB4C2912AEC4005F931C /* SceneDelegate.swift in Sources */,
@@ -1293,6 +1302,7 @@
 				7C6203302B6BA59100438E69 /* Reusable.swift in Sources */,
 				7CB40FE229EE5CB700DE0710 /* ParticipantTableViewCell.swift in Sources */,
 				7CB40FEC29EE5DA700DE0710 /* EditCalendarView.swift in Sources */,
+				7C6203372B6BA66400438E69 /* WCTextField.swift in Sources */,
 				7C2CA3362A094EFF0055676E /* EditMemoDataService.swift in Sources */,
 				7CB4107629EEC12000DE0710 /* StringExtension.swift in Sources */,
 				7C4C416A2A18164F00787C00 /* DateSelectionViewController.swift in Sources */,
@@ -1305,6 +1315,7 @@
 				7CB4106429EE66C900DE0710 /* WriteEmailViewController.swift in Sources */,
 				7C4006212A1538E000835EC0 /* EditScheduleViewController.swift in Sources */,
 				7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */,
+				7C6203392B6BA68500438E69 /* BaseTextField.swift in Sources */,
 				7CB4106A29EE670D00DE0710 /* WritePasswordView.swift in Sources */,
 				7C6203292B6BA4B800438E69 /* BaseButton.swift in Sources */,
 				7C2CA3462A0D236C0055676E /* SpecificSetDateDataModel.swift in Sources */,
@@ -1412,6 +1423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1466,6 +1478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1485,7 +1498,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MNAZDR4A9U;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScheduleCalendarProject/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "With Calendar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1517,7 +1530,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MNAZDR4A9U;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScheduleCalendarProject/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "With Calendar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1563,14 +1576,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7C9BE75D2B6A613A009A1CFD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.0;
-			};
-		};
 		7C9BE7622B6A66BE009A1CFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1611,19 +1616,17 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		7CB0C2622B98C55500C621EE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7C9BE75E2B6A613A009A1CFD /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7C9BE75D2B6A613A009A1CFD /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		7C9BE7602B6A613A009A1CFD /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7C9BE75D2B6A613A009A1CFD /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7C9BE7622B6A66BE009A1CFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1783,6 +1786,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7C9BE7A22B6A6CA6009A1CFD /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorViewExtended;
+		};
+		7CB0C2632B98C55600C621EE /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CB0C2622B98C55500C621EE /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -15,7 +15,7 @@ final class WriteNickNameView: UIView {
     final let progressBar = UIProgressView()
     final let titleLabel = UILabel()
     
-    final let nickNameTextField = HoshiTextField()
+    final let nickNameTextField = WCTextField()
     
     final let checkBoxButton = UIButton()
     

@@ -10,7 +10,7 @@ import SnapKit
 
 final class EditCalendarView: UIView {
     //MARK: - Properties
-    final let titleTextField = HoshiTextField()
+    final let titleTextField = WCTextField()
     
     final let editTableView = UITableView(frame: .zero, style: .grouped)
     final let editButton = UIButton()

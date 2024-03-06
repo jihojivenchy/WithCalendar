@@ -14,10 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let filePath = Bundle.main.path(forResource: "GoogleService-Info (2)", ofType: "plist")!
-           let options = FirebaseOptions(contentsOfFile: filePath)
-           FirebaseApp.configure(options: options!)
-        
+        FirebaseApp.configure()
         
         requestNotificationAuthorization() //노티피케이션 요청
         UIApplication.shared.applicationIconBadgeNumber = 0

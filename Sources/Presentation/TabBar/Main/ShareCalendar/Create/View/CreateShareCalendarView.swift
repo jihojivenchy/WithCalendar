@@ -10,7 +10,7 @@ import SnapKit
 
 final class CreateShareCalendarView: UIView {
     //MARK: - Properties
-    final let titleTextField = HoshiTextField()
+    final let titleTextField = WCTextField()
     
     final let participantTableView = UITableView(frame: .zero, style: .grouped)
     

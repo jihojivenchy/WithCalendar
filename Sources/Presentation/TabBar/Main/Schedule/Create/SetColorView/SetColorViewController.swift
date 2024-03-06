@@ -58,9 +58,10 @@ final class SetColorViewController: UIViewController {
     //MARK: - ButtonMethod
     
     @objc private func colorWellValueChanged(_ sender : UIColorWell) {
+        // TODO: - HexColor 다뤄야함.
         let selectedColor = sender.selectedColor ?? .clear
-        let selectedColorString = selectedColor.hexValue()
-        self.setColorDelegate?.selectedColor(color: selectedColorString) //delegate로 전달.
+//        let selectedColorString = selectedColor.hexValue()
+        self.setColorDelegate?.selectedColor(color: "selectedColorString") //delegate로 전달.
     }
 }
 

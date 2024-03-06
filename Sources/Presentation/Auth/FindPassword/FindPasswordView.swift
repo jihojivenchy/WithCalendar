@@ -13,7 +13,7 @@ final class FindPasswordView: UIView {
     
     final let titleLabel = UILabel()
     
-    final let emailTextField = HoshiTextField()
+    final let emailTextField = WCTextField()
     
     final let sendButton = UIButton()
 

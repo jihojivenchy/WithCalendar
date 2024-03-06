@@ -14,7 +14,7 @@ final class WriteEmailView: UIView {
     final let progressBar = UIProgressView()
     final let titleLabel = UILabel()
     
-    final let emailTextField = HoshiTextField()
+    final let emailTextField = WCTextField()
     
     final let nextButton = UIButton()
 

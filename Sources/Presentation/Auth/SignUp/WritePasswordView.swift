@@ -14,8 +14,8 @@ final class WritePasswordView: UIView {
     final let progressBar = UIProgressView()
     final let titleLabel = UILabel()
     
-    final let pwTextField = HoshiTextField()
-    final let pwCheckTextField = HoshiTextField()
+    final let pwTextField = WCTextField()
+    final let pwCheckTextField = WCTextField()
     final let checkLabel = UILabel()
     
     final let registerButton = UIButton()

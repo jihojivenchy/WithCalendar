@@ -10,7 +10,7 @@ import SnapKit
 
 final class AddScheduleView: UIView {
     //MARK: - Properties
-    final let titleTextField = HoshiTextField()
+    final let titleTextField = WCTextField()
     
     final let dismissButton = UIButton()
     final let saveButton = UIButton()
