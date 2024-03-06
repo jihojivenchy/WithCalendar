@@ -11,35 +11,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene) //SceneDelegate의 프로퍼티인 window에 넣어준다.
         
-        let calendarNavigationController = UINavigationController(rootViewController: CalendarViewController())
-        let memoNavigationController = UINavigationController(rootViewController: MemoViewController())
-        let menuNavigationController = UINavigationController(rootViewController: MenuViewController())
-        
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([calendarNavigationController, memoNavigationController, menuNavigationController], animated: true)
-        
-        if let items = tabBarController.tabBar.items {
-            items[0].selectedImage = UIImage(systemName: "calendar.badge.plus")
-            items[0].image = UIImage(systemName: "calendar")
-            items[0].title = "달력 메모"
-            
-            items[1].selectedImage = UIImage(systemName: "rectangle.and.pencil.and.ellipsis")
-            items[1].image = UIImage(systemName: "square.and.pencil")
-            items[1].title = "단순 메모"
-            
-            items[2].selectedImage = UIImage(systemName: "menucard.fill")
-            items[2].image = UIImage(systemName: "menucard")
-            items[2].title = "메뉴"
-        }
-        
-        tabBarController.tabBar.tintColor = .blackAndWhiteColor
-        
-        window?.rootViewController = tabBarController
+        window = UIWindow(windowScene: windowScene)  // SceneDelegate의 프로퍼티인 window에 넣어준다.
+        window?.rootViewController = configureTabBarController()
         window?.makeKeyAndVisible()
         
         //유저가 저장해둔 인터페이스 모드로 적용.
@@ -78,3 +54,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    private func configureTabBarController() -> UITabBarController {
+        let calendarViewController = CalendarViewController()
+        let memoViewController = MemoViewController()
+        let menuViewController = MenuViewController()
+
+        // 각 ViewController에 대한 UINavigationController 인스턴스 생성
+        let calendarNavigationController = UINavigationController(rootViewController: calendarViewController)
+        let memoNavigationController = UINavigationController(rootViewController: memoViewController)
+        let menuNavigationController = UINavigationController(rootViewController: menuViewController)
+
+        // 각 탭에 해당하는 TabBarPageType 기반으로 UITabBarItem 설정
+        calendarViewController.tabBarItem = TabBarPageType.main.tabBarItem
+        memoViewController.tabBarItem = TabBarPageType.memo.tabBarItem
+        menuViewController.tabBarItem = TabBarPageType.menu.tabBarItem
+
+        let tabBarController = UITabBarController()
+        tabBarController.setViewControllers([calendarNavigationController, memoNavigationController, menuNavigationController], animated: true)
+
+        // UITabBar의 tintColor 설정
+        tabBarController.tabBar.tintColor = .blackAndWhiteColor
+        configureTabBarAppearance()
+        
+        return tabBarController
+    }
+    
+    private func configureTabBarAppearance() {
+//        let tabBarItemAppearance = UITabBarItemAppearance()
+//        tabBarItemAppearance.normal.iconColor = .blackAndWhiteColor
+//        tabBarItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.blackAndWhiteColor ?? UIColor()]
+//        tabBarItemAppearance.selected.iconColor = .signatureColor
+//        tabBarItemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.blackAndWhiteColor ?? UIColor()]
+//        
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = .clear
+        tabBarAppearance.shadowImage = nil
+        tabBarAppearance.shadowColor = nil
+        
+//        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
+}
