@@ -87,3 +87,15 @@ extension UIViewController {
         return color != "#CC3636FF"
     }
 }
+
+// MARK: - NavigationBarAppearance
+extension UIViewController {
+    func configureNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.tintColor = .blackAndWhiteColor
+    }
+}

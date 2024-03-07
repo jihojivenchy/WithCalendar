@@ -9,68 +9,74 @@ import UIKit
 import SnapKit
 import UIColorHexSwift
 
-final class MemoViewController: UIViewController {
-    //MARK: - Properties
-    final var memoDataModel = MemoDataModel()
-    final let memoDataService = MemoDataService()
-    final let memoView = MemoView() //View
+final class MemoViewController: BaseViewController {
+    // MARK: - UI
+    private lazy var memoListTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(MemoTableViewCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        return tableView
+    }()
     
-    final let editMemoDataService = EditMemoDataService() //삭제 기능 사용하기 위해서.
-    
-    private lazy var addRightButton : UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addButtonPressed(_:)))
-        
+    private lazy var createMemoButton : UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "plus"),
+            style: .done,
+            target: self,
+            action: #selector(addButtonPressed(_:))
+        )
         return button
     }()
     
     private lazy var navigationBackButton : UIBarButtonItem = {
         let button = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
         return button
     }()
     
-    //MARK: - LifeCycle
+    // MARK: - Properties
+    private var memoDataModel = MemoDataModel()
+    private let memoDataService = MemoDataService()
+    private let editMemoDataService = EditMemoDataService() //삭제 기능 사용하기 위해서.
+    
+    // MARK: - LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    // MARK: Configuration
+    override func configureAttributes() {
         handleGetMemoData()
         
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.tabBarController?.tabBar.isHidden = false
+        navigationItem.title = "메모"
+        navigationItem.rightBarButtonItem = createMemoButton
+        configureNavigationBarAppearance()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupSubViews()
-        setupNavigationBar()
-    }
-    
-    //MARK: - ViewMethod
-    private func setupSubViews() {
+    // MARK: - Layouts
+    override func configureLayouts() {
         view.backgroundColor = .customWhiteAndBlackColor
-        
-        view.addSubview(memoView)
-        memoView.snp.makeConstraints { make in
+        view.addSubview(memoListTableView)
+    
+        memoListTableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-        
-        memoView.memoTableview.delegate = self
-        memoView.memoTableview.dataSource = self
     }
     
-    private func setupNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        navigationItem.standardAppearance = appearance
-        navigationItem.scrollEdgeAppearance = appearance
-        
-        navigationItem.title = "메모"
-        navigationItem.rightBarButtonItem = addRightButton
-        navigationItem.backBarButtonItem = navigationBackButton
-        navigationController?.navigationBar.tintColor = .blackAndWhiteColor
-    }
-
     //MARK: - ButtonMethod
     @objc private func addButtonPressed(_ sender : UIBarButtonItem) {
         guard isUserLoggedIn() else{
