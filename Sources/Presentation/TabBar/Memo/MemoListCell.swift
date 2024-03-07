@@ -1,5 +1,5 @@
 //
-//  MemoTableViewCell.swift
+//  MemoListCell.swift
 //  ScheduleCalendarProject
 //
 //  Created by 엄지호 on 2023/04/18.
@@ -8,22 +8,24 @@
 import UIKit
 import SnapKit
 
-final class MemoListCell: UITableViewCell {
-    //MARK: - Properties
-    static let identifier = "MemoTableViewCell"
+final class MemoListCell: BaseTableViewCell {
+    // MARK: - UI
+    private let containerView = UIView()
+    private let titleLabel = UILabel()
+    private let dateLabel = UILabel()
+    private let clipImageView = UIImageView()
     
+    
+    // MARK: - Properties
     private var longPressGestureRecognizer: UILongPressGestureRecognizer!
-    final weak var cellDelegate : MemoCellDelegate?
-    final var indexSection = Int() //롱프레스 제스쳐를 취했을 때, 어느 섹션에 있는 데이터인지 파악하도록.
-    final var indexRow = Int() //섹션과 같은의미
+    weak var cellDelegate : MemoCellDelegate?
     
-    final let containerView = UIView()
-    final let titleLabel = UILabel()
-    final let dateLabel = UILabel()
-    final let clipImageView = UIImageView()
+    var indexSection = Int() // 롱프레스 제스쳐를 취했을 때, 어느 섹션에 있는 데이터인지 파악하도록.
+    var indexRow = Int()     // 섹션과 같은의미
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    // MARK: - Configuration
+    override func configureAttributes() {
         setupSubViews()
         
         longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressHandler(gestureRecognizer:)))
@@ -31,8 +33,9 @@ final class MemoListCell: UITableViewCell {
         addGestureRecognizer(longPressGestureRecognizer)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    // MARK: - Layouts
+    override func configureLayouts() {
+        <#code#>
     }
     
     //MARK: - ViewMethod
@@ -88,6 +91,6 @@ final class MemoListCell: UITableViewCell {
     }
 }
 
-protocol MemoCellDelegate : AnyObject {
+protocol MemoCellDelegate: AnyObject {
     func cellLognPressed(indexSection: Int, indexRow: Int)
 }
