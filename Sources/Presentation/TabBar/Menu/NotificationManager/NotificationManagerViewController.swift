@@ -64,7 +64,7 @@ extension NotificationManagerViewController : UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MemoTableViewCell.identifier, for: indexPath) as! MemoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MemoListCell.identifier, for: indexPath) as! MemoListCell
         
         let request = notiManagerDataModel.pendingRequests[indexPath.row]
         let subTitle = notiManagerDataModel.customSubTitleArray[indexPath.row]

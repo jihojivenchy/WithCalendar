@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class MemoTableViewCell: UITableViewCell {
+final class MemoListCell: UITableViewCell {
     //MARK: - Properties
     static let identifier = "MemoTableViewCell"
     

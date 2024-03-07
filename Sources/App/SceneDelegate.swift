@@ -57,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
     private func configureTabBarController() -> UITabBarController {
         let calendarViewController = CalendarViewController()
-        let memoViewController = MemoViewController()
+        let memoViewController = MemoListViewController()
         let menuViewController = MenuViewController()
 
         // 각 ViewController에 대한 UINavigationController 인스턴스 생성

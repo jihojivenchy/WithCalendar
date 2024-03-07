@@ -139,8 +139,8 @@
 		7CB4101C29EE61B000DE0710 /* SetMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4101B29EE61B000DE0710 /* SetMemoViewController.swift */; };
 		7CB4101E29EE61C300DE0710 /* SetMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4101D29EE61C200DE0710 /* SetMemoView.swift */; };
 		7CB4102329EE634300DE0710 /* MemoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102229EE634300DE0710 /* MemoDataModel.swift */; };
-		7CB4102529EE635B00DE0710 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102429EE635B00DE0710 /* MemoViewController.swift */; };
-		7CB4102929EE639A00DE0710 /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102829EE639A00DE0710 /* MemoTableViewCell.swift */; };
+		7CB4102529EE635B00DE0710 /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102429EE635B00DE0710 /* MemoListViewController.swift */; };
+		7CB4102929EE639A00DE0710 /* MemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102829EE639A00DE0710 /* MemoListCell.swift */; };
 		7CB4102B29EE63B600DE0710 /* EditMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102A29EE63B600DE0710 /* EditMemoViewController.swift */; };
 		7CB4102D29EE63CC00DE0710 /* EditMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102C29EE63CC00DE0710 /* EditMemoView.swift */; };
 		7CB4102F29EE63E500DE0710 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102E29EE63E500DE0710 /* AddMemoViewController.swift */; };
@@ -289,8 +289,8 @@
 		7CB4101B29EE61B000DE0710 /* SetMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMemoViewController.swift; sourceTree = "<group>"; };
 		7CB4101D29EE61C200DE0710 /* SetMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMemoView.swift; sourceTree = "<group>"; };
 		7CB4102229EE634300DE0710 /* MemoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDataModel.swift; sourceTree = "<group>"; };
-		7CB4102429EE635B00DE0710 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
-		7CB4102829EE639A00DE0710 /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
+		7CB4102429EE635B00DE0710 /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
+		7CB4102829EE639A00DE0710 /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		7CB4102A29EE63B600DE0710 /* EditMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoViewController.swift; sourceTree = "<group>"; };
 		7CB4102C29EE63CC00DE0710 /* EditMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoView.swift; sourceTree = "<group>"; };
 		7CB4102E29EE63E500DE0710 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
@@ -576,8 +576,8 @@
 		7C6202F82B6B4AE800438E69 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
-				7CB4102429EE635B00DE0710 /* MemoViewController.swift */,
-				7CB4102829EE639A00DE0710 /* MemoTableViewCell.swift */,
+				7CB4102429EE635B00DE0710 /* MemoListViewController.swift */,
+				7CB4102829EE639A00DE0710 /* MemoListCell.swift */,
 				7C62030A2B6B9BDF00438E69 /* Create */,
 				7C62030B2B6B9C1A00438E69 /* Update */,
 			);
@@ -1271,9 +1271,9 @@
 				7CB4100E29EE609F00DE0710 /* StartAndEndDatePickerView.swift in Sources */,
 				7CB4108129F803BD00DE0710 /* SpecificSettingViewController.swift in Sources */,
 				7C4006232A15396800835EC0 /* EditScheduleDataModel.swift in Sources */,
-				7CB4102529EE635B00DE0710 /* MemoViewController.swift in Sources */,
+				7CB4102529EE635B00DE0710 /* MemoListViewController.swift in Sources */,
 				7C4C41672A17CBD200787C00 /* LunarAPI.swift in Sources */,
-				7CB4102929EE639A00DE0710 /* MemoTableViewCell.swift in Sources */,
+				7CB4102929EE639A00DE0710 /* MemoListCell.swift in Sources */,
 				7C62032B2B6BA4F100438E69 /* BaseCollectionReusableView.swift in Sources */,
 				7CB4100029EE5F3C00DE0710 /* AddScheduleViewController.swift in Sources */,
 				7CB4108829F95E9D00DE0710 /* ScheduleDataService.swift in Sources */,

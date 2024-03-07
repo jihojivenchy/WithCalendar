@@ -1,5 +1,5 @@
 //
-//  MemoViewController.swift
+//  MemoListViewController.swift
 //  ScheduleCalendarProject
 //
 //  Created by 엄지호 on 2023/04/18.
@@ -9,11 +9,11 @@ import UIKit
 import SnapKit
 import UIColorHexSwift
 
-final class MemoViewController: BaseViewController {
+final class MemoListViewController: BaseViewController {
     // MARK: - UI
     private lazy var memoListTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(MemoTableViewCell.self)
+        tableView.register(MemoListCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 80
@@ -86,7 +86,7 @@ final class MemoViewController: BaseViewController {
 }
 
 //MARK: - 테이블뷰 내부 데이터 처리
-extension MemoViewController : UITableViewDataSource, UITableViewDelegate {
+extension MemoListViewController : UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -104,7 +104,7 @@ extension MemoViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MemoTableViewCell.identifier, for: indexPath) as! MemoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MemoListCell.identifier, for: indexPath) as! MemoListCell
         
         if indexPath.section == 0 {
             let fixMemoData = memoDataModel.fixMemodataArray[indexPath.row]
@@ -175,7 +175,7 @@ extension MemoViewController : UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK: - 메모 Cell을 길게 눌렀을 때 삭제 기능을 하는 작업.
-extension MemoViewController : MemoCellDelegate {
+extension MemoListViewController : MemoCellDelegate {
     func cellLognPressed(indexSection: Int, indexRow: Int) {
         
         if indexSection == 0{ //fixData 쪽에서 프레스 제스쳐가 일어남. == 클립설정
@@ -219,7 +219,7 @@ extension MemoViewController : MemoCellDelegate {
 }
 
 // MARK: - 메모 데이터를 가져오는 작업.
-extension MemoViewController {
+extension MemoListViewController {
     private func handleGetMemoData() {
         CustomLoadingView.shared.startLoading(to: 0)
         
