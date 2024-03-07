@@ -122,15 +122,12 @@ extension MemoListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true) //cell을 클릭했을 때 애니메이션 구현
         triggerHapticFeedback() //유저에게 리액션을 주기 위한 미세한 진동음.
         
-        let vc = EditMemoViewController()
-        
-        if indexPath.section == 0 {
-            vc.memoData = memoDataModel.fixMemodataArray[indexPath.row]
-        }else {
-            vc.memoData = memoDataModel.unFixMemoDataArray[indexPath.row]
+        let snapshot = dataSource?.snapshot()
+        if let item = snapshot?.itemIdentifiers[indexPath.row] {
+            let vc = EditMemoViewController()
+            vc.memoData = item
+            present(vc, animated: true)
         }
-        
-        present(vc, animated: true)
     }
 }
 
