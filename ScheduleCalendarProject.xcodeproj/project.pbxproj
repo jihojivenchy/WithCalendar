@@ -140,7 +140,6 @@
 		7CB4101E29EE61C300DE0710 /* SetMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4101D29EE61C200DE0710 /* SetMemoView.swift */; };
 		7CB4102329EE634300DE0710 /* MemoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102229EE634300DE0710 /* MemoDataModel.swift */; };
 		7CB4102529EE635B00DE0710 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102429EE635B00DE0710 /* MemoViewController.swift */; };
-		7CB4102729EE637000DE0710 /* MemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102629EE637000DE0710 /* MemoView.swift */; };
 		7CB4102929EE639A00DE0710 /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102829EE639A00DE0710 /* MemoTableViewCell.swift */; };
 		7CB4102B29EE63B600DE0710 /* EditMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102A29EE63B600DE0710 /* EditMemoViewController.swift */; };
 		7CB4102D29EE63CC00DE0710 /* EditMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102C29EE63CC00DE0710 /* EditMemoView.swift */; };
@@ -291,7 +290,6 @@
 		7CB4101D29EE61C200DE0710 /* SetMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetMemoView.swift; sourceTree = "<group>"; };
 		7CB4102229EE634300DE0710 /* MemoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDataModel.swift; sourceTree = "<group>"; };
 		7CB4102429EE635B00DE0710 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
-		7CB4102629EE637000DE0710 /* MemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoView.swift; sourceTree = "<group>"; };
 		7CB4102829EE639A00DE0710 /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
 		7CB4102A29EE63B600DE0710 /* EditMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoViewController.swift; sourceTree = "<group>"; };
 		7CB4102C29EE63CC00DE0710 /* EditMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoView.swift; sourceTree = "<group>"; };
@@ -579,7 +577,6 @@
 			isa = PBXGroup;
 			children = (
 				7CB4102429EE635B00DE0710 /* MemoViewController.swift */,
-				7CB4102629EE637000DE0710 /* MemoView.swift */,
 				7CB4102829EE639A00DE0710 /* MemoTableViewCell.swift */,
 				7C62030A2B6B9BDF00438E69 /* Create */,
 				7C62030B2B6B9C1A00438E69 /* Update */,
@@ -1333,7 +1330,6 @@
 				7CB4105A29EE663F00DE0710 /* RegisterDataModel.swift in Sources */,
 				7CB40FDC29EE5C5800DE0710 /* CalendarCategoryTableViewCell.swift in Sources */,
 				7CB4104E29EE659700DE0710 /* NotificationView.swift in Sources */,
-				7CB4102729EE637000DE0710 /* MemoView.swift in Sources */,
 				7C6203262B6BA44300438E69 /* BaseViewController.swift in Sources */,
 				7C2CA33F2A0B84380055676E /* EventEnum.swift in Sources */,
 				7CB40FEE29EE5DE900DE0710 /* CalendarDataModel.swift in Sources */,

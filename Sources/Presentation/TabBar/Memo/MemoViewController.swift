@@ -27,7 +27,7 @@ final class MemoViewController: BaseViewController {
             image: UIImage(systemName: "plus"),
             style: .done,
             target: self,
-            action: #selector(addButtonPressed(_:))
+            action: #selector(createMemoButtonTapped(_:))
         )
         return button
     }()
@@ -49,7 +49,6 @@ final class MemoViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
     }
@@ -61,7 +60,6 @@ final class MemoViewController: BaseViewController {
     // MARK: Configuration
     override func configureAttributes() {
         handleGetMemoData()
-        
         navigationItem.title = "메모"
         navigationItem.rightBarButtonItem = createMemoButton
         configureNavigationBarAppearance()
@@ -71,20 +69,19 @@ final class MemoViewController: BaseViewController {
     override func configureLayouts() {
         view.backgroundColor = .customWhiteAndBlackColor
         view.addSubview(memoListTableView)
-    
         memoListTableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
     //MARK: - ButtonMethod
-    @objc private func addButtonPressed(_ sender : UIBarButtonItem) {
+    @objc private func createMemoButtonTapped(_ sender : UIBarButtonItem) {
         guard isUserLoggedIn() else{
             showAlert(title: "로그인", message: "로그인이 필요한 서비스입니다.")
             return
         }
         
-        self.navigationController?.pushViewController(AddMemoViewController(), animated: true)
+        navigationController?.pushViewController(AddMemoViewController(), animated: true)
     }
 }
 
@@ -177,7 +174,7 @@ extension MemoViewController : UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//MARK: - 메모 Cell을 길게 눌렀을 때 삭제 기능을 하는 작업.
+// MARK: - 메모 Cell을 길게 눌렀을 때 삭제 기능을 하는 작업.
 extension MemoViewController : MemoCellDelegate {
     func cellLognPressed(indexSection: Int, indexRow: Int) {
         
@@ -221,7 +218,7 @@ extension MemoViewController : MemoCellDelegate {
     }
 }
 
-//MARK: - 메모 데이터를 가져오는 작업.
+// MARK: - 메모 데이터를 가져오는 작업.
 extension MemoViewController {
     private func handleGetMemoData() {
         CustomLoadingView.shared.startLoading(to: 0)
@@ -235,7 +232,7 @@ extension MemoViewController {
                     
                     self?.memoDataModel.unFixMemoDataArray = unFixDataArray
                     self?.memoDataModel.fixMemodataArray = fixDataArray
-                    self?.memoView.memoTableview.reloadData()
+                    self?.memoListTableView.reloadData()
                     
                 case .failure(let err):
                     CustomLoadingView.shared.stopLoading()
