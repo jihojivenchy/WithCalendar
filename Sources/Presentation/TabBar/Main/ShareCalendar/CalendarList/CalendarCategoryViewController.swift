@@ -15,7 +15,7 @@ final class CalendarCategoryViewController: TabmanViewController {
     private var viewControllers : [UIViewController] = []
     
     private lazy var addRightButton : UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(createMemoButtonTapped(_:)))
+        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addButtonPressed(_:)))
         
         return button
     }()

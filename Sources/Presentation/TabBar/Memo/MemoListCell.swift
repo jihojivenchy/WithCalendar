@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import UIColorHexSwift
 
 final class MemoListCell: BaseTableViewCell {
     // MARK: - UI
@@ -35,17 +36,17 @@ final class MemoListCell: BaseTableViewCell {
     private let clipImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = true
-        imageView.image = UIImage(systemName: "pin")?.resize(to: CGSize(width: 25, height: 25))
+        imageView.image = UIImage(systemName: "pin")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     
     // MARK: - Properties
     private var longPressGestureRecognizer: UILongPressGestureRecognizer!
-    weak var cellDelegate : MemoCellDelegate?
+    weak var delegate : MemoCellDelegate?
     
-    var indexSection = Int()  // 롱프레스 제스쳐를 취했을 때, 어느 섹션에 있는 데이터인지 파악하도록.
-    var indexRow = Int()      // 섹션과 같은의미
+    private var dataDocumentID = String()
     
     // MARK: - Configuration
     override func configureAttributes() {
@@ -89,18 +90,27 @@ final class MemoListCell: BaseTableViewCell {
         }
     }
     
-    //cell을 길게 눌렀을 때
     @objc private func longPressHandler(gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
             let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
             feedbackGenerator.prepare()
             feedbackGenerator.impactOccurred()
             
-            cellDelegate?.longPressed(indexSection: indexSection, indexRow: indexRow)
+            delegate?.longPressed(documentID: dataDocumentID)
         }
     }
 }
 
+extension MemoListCell {
+    func configure(memoData: MemoData) {
+        dataDocumentID = memoData.documentID
+        titleLabel.text = memoData.memo
+        dateLabel.text = memoData.date
+        clipImageView.tintColor = UIColor(memoData.fixColor)
+        clipImageView.isHidden = memoData.fix == 0 ? true : false
+    }
+}
+
 protocol MemoCellDelegate: AnyObject {
-    func longPressed(indexSection: Int, indexRow: Int)
+    func longPressed(documentID: String)
 }

@@ -98,6 +98,7 @@
 		7CB0C2692B98DA9900C621EE /* TabBarPageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2682B98DA9900C621EE /* TabBarPageType.swift */; };
 		7CB0C26B2B98DB0600C621EE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C26A2B98DB0600C621EE /* UIImage+.swift */; };
 		7CB0C26D2B99B84300C621EE /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C26C2B99B84300C621EE /* BaseTableViewCell.swift */; };
+		7CB0C26F2B99CEFB00C621EE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C26E2B99CEFA00C621EE /* NetworkError.swift */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
 		7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */; };
@@ -249,6 +250,7 @@
 		7CB0C2682B98DA9900C621EE /* TabBarPageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPageType.swift; sourceTree = "<group>"; };
 		7CB0C26A2B98DB0600C621EE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		7CB0C26C2B99B84300C621EE /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		7CB0C26E2B99CEFA00C621EE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 		7C6202EF2B6B497900438E69 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
+				7CB0C26E2B99CEFA00C621EE /* NetworkError.swift */,
 				7C6203162B6B9FAF00438E69 /* Calendar */,
 				7C6203172B6B9FC100438E69 /* Schedule */,
 				7C6203132B6B9F2D00438E69 /* ShareCalendar */,
@@ -1310,6 +1313,7 @@
 				7C6203302B6BA59100438E69 /* Reusable.swift in Sources */,
 				7CB40FE229EE5CB700DE0710 /* ParticipantTableViewCell.swift in Sources */,
 				7CB40FEC29EE5DA700DE0710 /* EditCalendarView.swift in Sources */,
+				7CB0C26F2B99CEFB00C621EE /* NetworkError.swift in Sources */,
 				7C6203372B6BA66400438E69 /* WCTextField.swift in Sources */,
 				7C2CA3362A094EFF0055676E /* EditMemoDataService.swift in Sources */,
 				7CB4107629EEC12000DE0710 /* StringExtension.swift in Sources */,

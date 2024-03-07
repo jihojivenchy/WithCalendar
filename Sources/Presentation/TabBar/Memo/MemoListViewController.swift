@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import UIColorHexSwift
+import FirebaseAuth
+import FirebaseFirestore
 
 final class MemoListViewController: BaseViewController {
     // MARK: - UI
@@ -15,7 +17,6 @@ final class MemoListViewController: BaseViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(MemoListCell.self)
         tableView.delegate = self
-        tableView.dataSource = self
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
@@ -42,6 +43,11 @@ final class MemoListViewController: BaseViewController {
     private let memoDataService = MemoDataService()
     private let editMemoDataService = EditMemoDataService() //삭제 기능 사용하기 위해서.
     
+    private typealias DataSource = UITableViewDiffableDataSource<Section, MemoData>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MemoData>
+    private var dataSource: DataSource?
+    
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +57,7 @@ final class MemoListViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
+        handleFetchMemoList()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -59,10 +66,10 @@ final class MemoListViewController: BaseViewController {
     
     // MARK: Configuration
     override func configureAttributes() {
-        handleGetMemoData()
         navigationItem.title = "메모"
         navigationItem.rightBarButtonItem = createMemoButton
         configureNavigationBarAppearance()
+        configureDataSource()
     }
     
     // MARK: - Layouts
@@ -85,63 +92,35 @@ final class MemoListViewController: BaseViewController {
     }
 }
 
-//MARK: - 테이블뷰 내부 데이터 처리
-extension MemoListViewController : UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
+// MARK: - DiffableDataSource
+extension MemoListViewController {
+    private func configureDataSource() {
+        dataSource = DataSource(
+            tableView: memoListTableView
+        ) { [weak self] tableView, indexPath, item in
+            guard let cell = tableView.dequeueReusableCell(MemoListCell.self, for: indexPath) else {
+                return UITableViewCell()
+            }
+            guard let self else { return UITableViewCell() }
             
-        case 0:
-            return memoDataModel.fixMemodataArray.count
-        case 1:
-            return memoDataModel.unFixMemoDataArray.count
-        default:
-            return memoDataModel.unFixMemoDataArray.count
+            cell.configure(memoData: item)
+            cell.delegate = self
+            return cell
         }
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MemoListCell.identifier, for: indexPath) as! MemoListCell
-        
-        if indexPath.section == 0 {
-            let fixMemoData = memoDataModel.fixMemodataArray[indexPath.row]
-            
-            cell.titleLabel.text = fixMemoData.memo
-            cell.dateLabel.text = fixMemoData.date
-            cell.clipImageView.tintColor = UIColor(fixMemoData.fixColor)
-            cell.clipImageView.isHidden = false
-            
-        }else {
-            let unFixMemoData = memoDataModel.unFixMemoDataArray[indexPath.row]
-            
-            cell.titleLabel.text = unFixMemoData.memo
-            cell.dateLabel.text = unFixMemoData.date
-            cell.clipImageView.isHidden = true
-            
-        }
-        
-        cell.indexSection = indexPath.section
-        cell.indexRow = indexPath.row
-        cell.cellDelegate = self
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.whiteAndCustomBlackColor
-        cell.selectedBackgroundView = backgroundView
-        
-        return cell
+   
+    private func applySectionSnapshot(with memoList: [MemoData]) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(memoList)
+        dataSource?.apply(snapshot)
     }
-    
+}
+
+extension MemoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) //cell을 클릭했을 때 애니메이션 구현
         triggerHapticFeedback() //유저에게 리액션을 주기 위한 미세한 진동음.
-        
-        guard isUserLoggedIn() else{
-            showAlert(title: "로그인", message: "로그인이 필요한 서비스입니다.")
-            return
-        }
         
         let vc = EditMemoViewController()
         
@@ -151,48 +130,15 @@ extension MemoListViewController : UITableViewDataSource, UITableViewDelegate {
             vc.memoData = memoDataModel.unFixMemoDataArray[indexPath.row]
         }
         
-        self.present(vc, animated: true)
-    }
-    
-    //섹션의 간격을 없애주기 위해서 헤더뷰, 푸터뷰의 크기를 .zero로 만들고, 헤더와 푸터의 높이를 .zero로 만든다.
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: .zero)
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: .zero)
-        return footerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
+        present(vc, animated: true)
     }
 }
 
-// MARK: - 메모 Cell을 길게 눌렀을 때 삭제 기능을 하는 작업.
+// MARK: - Cell Delegate
 extension MemoListViewController : MemoCellDelegate {
-    func longPressed(indexSection: Int, indexRow: Int) {
-        
-        if indexSection == 0{ //fixData 쪽에서 프레스 제스쳐가 일어남. == 클립설정
-            let memoData = self.memoDataModel.fixMemodataArray[indexRow]
-            deleteDataAlert(memoData: memoData)
-            
-        }else{ //unFixData 쪽에서 프레스 제스쳐가 일어남. == 클립설정 안함
-            let memoData = self.memoDataModel.unFixMemoDataArray[indexRow]
-            deleteDataAlert(memoData: memoData)
-        }
-    }
-    
-    //데이터를 삭제할지 물어보는 Alert
-    private func deleteDataAlert(memoData : MemoData) {
-        
+    func longPressed(documentID: String) {
         let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-            self?.handleDeleteMemoData(documentID: memoData.documentID)
+            self?.handleDeleteMemoData(documentID: documentID)
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
@@ -220,25 +166,87 @@ extension MemoListViewController : MemoCellDelegate {
 
 // MARK: - 메모 데이터를 가져오는 작업.
 extension MemoListViewController {
-    private func handleGetMemoData() {
+    /// 메모 리스트 조회
+    private func fetchMemoList(completion: @escaping (Result<[MemoData], NetworkError>) -> Void) {
+        let db = Firestore.firestore()
+        
+        // 유저 정보 가져오기
+        guard let user = Auth.auth().currentUser else {
+            completion(.failure(.authenticationRequired))
+            return
+        }
+        
+        // 유저의 메모 컬렉션에 접근
+        db.collection("\(user.uid).메모").order(by: "date", descending: true).addSnapshotListener { qs, error in
+            var memoList: [MemoData] = []
+            
+            guard let snapshotDocuments = qs?.documents else {
+                completion(.failure(.unknown(error?.localizedDescription)))
+                return
+            }
+            
+            // 도큐먼트 리스트를 순회하며, 데이터 조회 -> 가공 -> 리스트에 추가
+            snapshotDocuments.forEach { snapshot in
+                let data = snapshot.data()
+                
+                guard let memoData = data["memo"] as? String,
+                      let dateData = data["date"] as? String,
+                      let fixData = data["fix"] as? Int,
+                      let fixColorData = data["fixColor"] as? String else{return}
+                
+                // 리스트에 추가
+                memoList.append(MemoData(
+                    memo: memoData,
+                    date: dateData,
+                    fix: fixData,
+                    fixColor: fixColorData,
+                    documentID: snapshot.documentID
+                ))
+            }
+            
+            // 중요 메모를 앞으로 정렬
+            memoList.sort { (first, second) -> Bool in
+                return first.fix > second.fix
+            }
+            completion(.success(memoList))
+        }
+    }
+    
+    /// 메모 리스트 조회 및 결과 핸들링
+    private func handleFetchMemoList() {
         CustomLoadingView.shared.startLoading(to: 0)
         
-        memoDataService.getUserMemoData { [weak self] result in
-            DispatchQueue.main.async {
+        fetchMemoList { result in
+            DispatchQueue.main.async { [weak self] in
+                CustomLoadingView.shared.stopLoading()
+                guard let self else { return }
+                
                 switch result {
+                case .success(let memoList):
+                    self.applySectionSnapshot(with: memoList)
                     
-                case .success((let unFixDataArray, let fixDataArray)):
-                    CustomLoadingView.shared.stopLoading()
+                case .failure(let error):
+                    self.showErrorAlert(error)
                     
-                    self?.memoDataModel.unFixMemoDataArray = unFixDataArray
-                    self?.memoDataModel.fixMemodataArray = fixDataArray
-                    self?.memoListTableView.reloadData()
-                    
-                case .failure(let err):
-                    CustomLoadingView.shared.stopLoading()
-                    self?.showAlert(title: "데이터 가져오기 실패", message: err.localizedDescription)
                 }
             }
         }
+    }
+    
+    /// 에러 종류에 따라 달리 보여주는 Alert
+    private func showErrorAlert(_ error: NetworkError) {
+        switch error {
+        case .authenticationRequired:
+            showAlert(title: "로그인 오류", message: "로그인이 필요합니다.")
+            
+        case .unknown(let description):
+            showAlert(title: "오류", message: description ?? "알 수 없는 오류가 발생했습니다.")
+        }
+    }
+}
+
+extension MemoListViewController {
+    enum Section: CaseIterable {
+        case main
     }
 }

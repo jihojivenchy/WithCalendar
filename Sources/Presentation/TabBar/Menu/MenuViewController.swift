@@ -92,8 +92,8 @@ final class MenuViewController: UIViewController {
     }
     
     private func notiManagerCellCliked() {
-        let vc = NotificationManagerViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = NotificationManagerViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func fontSizeAdjustCellCliked() {

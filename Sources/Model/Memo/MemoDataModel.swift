@@ -22,3 +22,5 @@ struct MemoDataModel {
     
     var fixColor = "" //유저가 클립을 사용했는지. 클립을 사용했다면 선택한 색이 들어옴.
 }
+
+extension MemoData: Hashable { }
