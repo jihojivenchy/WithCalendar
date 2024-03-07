@@ -45,7 +45,7 @@ final class FontSizeAdjustmentView: UIView {
         
         addSubview(sliderValueLabel)
         sliderValueLabel.lineBreakMode = .byCharWrapping
-        sliderValueLabel.customize(textColor: .blackAndWhiteColor!, backgroundColor: .clear, fontSize: 13, alignment: .center)
+        sliderValueLabel.configure(textColor: .blackAndWhiteColor!, backgroundColor: .clear, fontSize: 13, alignment: .center)
         sliderValueLabel.snp.makeConstraints { make in
             make.top.equalTo(testLabel.snp_bottomMargin).offset(30)
             make.centerX.equalToSuperview()

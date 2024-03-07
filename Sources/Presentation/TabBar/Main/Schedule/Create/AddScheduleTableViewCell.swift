@@ -39,7 +39,7 @@ final class AddScheduleTableViewCell: UITableViewCell {
         }
         
         addSubview(titleLabel)
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 14, alignment: .left)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 14, alignment: .left)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(actionImageView)
@@ -47,7 +47,7 @@ final class AddScheduleTableViewCell: UITableViewCell {
         }
         
         addSubview(subTitleLabel)
-        subTitleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 12, alignment: .left)
+        subTitleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 12, alignment: .left)
         subTitleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(actionImageView)
             make.left.equalTo(titleLabel.snp_rightMargin).offset(70)

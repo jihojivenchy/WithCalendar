@@ -42,7 +42,7 @@ final class LoginView: UIView {
         
         addSubview(titleLabel)
         titleLabel.text = "With Calendar"
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 32, alignment: .center)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 32, alignment: .center)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(5)
             make.left.right.equalToSuperview().inset(30)
@@ -105,7 +105,7 @@ final class LoginView: UIView {
         }
         
         addSubview(registerLabel)
-        registerLabel.customize(textColor: .darkGray, backgroundColor: .clear, fontSize: 15, alignment: .center)
+        registerLabel.configure(textColor: .darkGray, backgroundColor: .clear, fontSize: 15, alignment: .center)
         registerLabel.text = "아직 계정이 없으신가요?"
         registerLabel.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp_bottomMargin).offset(80)

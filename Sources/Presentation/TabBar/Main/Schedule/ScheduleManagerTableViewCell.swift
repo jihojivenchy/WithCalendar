@@ -59,7 +59,7 @@ final class ScheduleManagerTableViewCell: UITableViewCell {
         }
         
         addSubview(titleLabel)
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
         titleLabel.snp.makeConstraints { make in
             make.left.equalTo(titleColorView.snp_rightMargin).offset(15)
             make.right.equalToSuperview().inset(20)
@@ -70,7 +70,7 @@ final class ScheduleManagerTableViewCell: UITableViewCell {
         }
         
         addSubview(subTitleLabel)
-        subTitleLabel.customize(textColor: .darkGray, backgroundColor: .clear, fontSize: 11, alignment: .left)
+        subTitleLabel.configure(textColor: .darkGray, backgroundColor: .clear, fontSize: 11, alignment: .left)
         subTitleLabel.snp.makeConstraints { make in
             make.left.equalTo(titleColorView.snp_rightMargin).offset(15)
             make.right.equalToSuperview().inset(20)

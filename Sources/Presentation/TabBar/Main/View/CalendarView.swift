@@ -54,7 +54,7 @@ final class CalendarView: UIView {
         self.clipsToBounds = true
         
         addSubview(titleLabel)
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 18, alignment: .center)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 18, alignment: .center)
         titleLabel.sizeToFit()
         titleLabel.isUserInteractionEnabled = true
         titleLabel.snp.makeConstraints { make in
@@ -100,7 +100,7 @@ final class CalendarView: UIView {
         for i in weekArray {
             let label = UILabel()
             label.text = i
-            label.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 11, alignment: .center)
+            label.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 11, alignment: .center)
             
             if i == "일" {
                 label.textColor = .customRedColor

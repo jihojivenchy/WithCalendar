@@ -37,7 +37,7 @@ final class SetNotificationView: UIView {
         self.layer.shadowOpacity = 0.5
         
         addSubview(titleLabel)
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)

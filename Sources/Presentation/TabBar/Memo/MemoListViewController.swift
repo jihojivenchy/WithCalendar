@@ -176,7 +176,7 @@ extension MemoListViewController : UITableViewDataSource, UITableViewDelegate {
 
 // MARK: - 메모 Cell을 길게 눌렀을 때 삭제 기능을 하는 작업.
 extension MemoListViewController : MemoCellDelegate {
-    func cellLognPressed(indexSection: Int, indexRow: Int) {
+    func longPressed(indexSection: Int, indexRow: Int) {
         
         if indexSection == 0{ //fixData 쪽에서 프레스 제스쳐가 일어남. == 클립설정
             let memoData = self.memoDataModel.fixMemodataArray[indexRow]

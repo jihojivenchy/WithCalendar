@@ -38,7 +38,7 @@ final class StartAndEndDatePickerView: UIView {
         self.layer.shadowOpacity = 0.5
         
         addSubview(dateTitleLabel)
-        dateTitleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
+        dateTitleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
         dateTitleLabel.sizeToFit()
         dateTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)

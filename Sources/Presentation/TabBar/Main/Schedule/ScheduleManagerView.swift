@@ -35,7 +35,7 @@ final class ScheduleManagerView: UIView {
         self.clipsToBounds = true
         
         addSubview(dateLabel)
-        dateLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
+        dateLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
         dateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)
             make.left.right.equalToSuperview().inset(20)

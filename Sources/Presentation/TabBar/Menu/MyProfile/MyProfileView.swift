@@ -80,7 +80,7 @@ final class MyProfileView: UIView {
         }
         
         codeContainerView.addSubview(codeLabel)
-        codeLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
+        codeLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
         codeLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(10)

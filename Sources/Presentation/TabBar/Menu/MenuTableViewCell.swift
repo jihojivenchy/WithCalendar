@@ -48,7 +48,7 @@ final class MenuTableViewCell: UITableViewCell {
         }
         
         containerView.addSubview(titleLabel)
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(actionImageView)

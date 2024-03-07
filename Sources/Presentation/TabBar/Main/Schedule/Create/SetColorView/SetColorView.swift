@@ -50,7 +50,7 @@ final class SetColorView: UIView {
        
         addSubview(titleLabel)
         titleLabel.text = "Color"
-        titleLabel.customize(textColor: UIColor.signatureColor!, backgroundColor: .clear, fontSize: 18, alignment: .center)
+        titleLabel.configure(textColor: UIColor.signatureColor!, backgroundColor: .clear, fontSize: 18, alignment: .center)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)

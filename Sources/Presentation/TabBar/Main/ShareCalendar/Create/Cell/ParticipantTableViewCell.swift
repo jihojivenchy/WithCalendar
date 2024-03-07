@@ -49,7 +49,7 @@ final class ParticipantTableViewCell: UITableViewCell {
         }
         
         containerView.addSubview(nameLabel)
-        nameLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 15, alignment: .left)
+        nameLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 15, alignment: .left)
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(personImageView)
             make.left.equalTo(personImageView.snp_rightMargin).offset(15)

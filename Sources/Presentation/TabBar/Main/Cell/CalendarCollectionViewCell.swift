@@ -40,7 +40,7 @@ final class CalendarCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 10
         
         addSubview(dayLabel)
-        dayLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 11, alignment: .center)
+        dayLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 11, alignment: .center)
         dayLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(2)
             make.left.right.equalToSuperview()

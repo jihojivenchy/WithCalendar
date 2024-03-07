@@ -92,7 +92,7 @@ final class WritePasswordView: UIView {
         }
         
         addSubview(checkLabel)
-        checkLabel.customize(textColor: UIColor.customRedColor!, backgroundColor: .clear, fontSize: 12, alignment: .left)
+        checkLabel.configure(textColor: UIColor.customRedColor!, backgroundColor: .clear, fontSize: 12, alignment: .left)
         checkLabel.snp.makeConstraints { make in
             make.top.equalTo(pwCheckTextField.snp_bottomMargin).offset(20)
             make.left.right.equalToSuperview().inset(15)

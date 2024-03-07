@@ -33,7 +33,7 @@ final class SetMemoView: UIView {
         
         addSubview(titleLabel)
         titleLabel.text = "메모"
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 18, alignment: .center)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 18, alignment: .center)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)

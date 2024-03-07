@@ -45,7 +45,7 @@ final class ParticipantFooterView: UIView {
         
         addSubview(inviteLabel)
         inviteLabel.text = "눌러서 초대하기"
-        inviteLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
+        inviteLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
         inviteLabel.snp.makeConstraints { make in
             make.centerY.equalTo(addImageView)
             make.left.equalTo(addImageView.snp_rightMargin).offset(15)

@@ -114,7 +114,7 @@ extension SearchUserViewController : UITableViewDataSource, UITableViewDelegate 
 
         let footerLabel = UILabel()
         footerLabel.numberOfLines = 0
-        footerLabel.customize(textColor: .darkGray, backgroundColor: .clear, fontSize: 12, alignment: .left)
+        footerLabel.configure(textColor: .darkGray, backgroundColor: .clear, fontSize: 12, alignment: .left)
         footerLabel.text = "*공유달력 사용방법* \n\n1. 회원가입과 동시에 회원코드가 부여됩니다.\n(메뉴 -> 프로필 설정에서 확인가능) \n\n2. 검색 바에서 초대하고 싶은 유저의 코드를 입력합니다. \n\n3. 초대 후 뒤로 돌아가서 체크 버튼을 눌러 공유달력을 생성합니다. \n\n4. 달력을 편집하고 싶다면 카테고리 창에서 달력을 꾹 눌러주세요."
 
         footerView.addSubview(footerLabel)

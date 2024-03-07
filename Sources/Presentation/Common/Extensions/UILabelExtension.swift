@@ -8,11 +8,10 @@
 import UIKit
 
 extension UILabel {
-    func customize(textColor: UIColor, backgroundColor: UIColor, fontSize: CGFloat, alignment: NSTextAlignment) {
+    func configure(textColor: UIColor, backgroundColor: UIColor, fontSize: CGFloat, alignment: NSTextAlignment) {
         self.textColor = textColor
         self.backgroundColor = backgroundColor
         self.font = .boldSystemFont(ofSize: fontSize)
         self.textAlignment = alignment
     }
-    
 }

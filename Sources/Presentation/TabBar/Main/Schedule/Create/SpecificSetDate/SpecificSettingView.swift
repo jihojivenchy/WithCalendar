@@ -31,7 +31,7 @@ final class SpecificSetDateView: UIView {
         self.backgroundColor = .customWhiteAndCustomBlackColor
         
         addSubview(introductionLabel)
-        introductionLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
+        introductionLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
         introductionLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(30)
             make.left.right.equalToSuperview().inset(15)
@@ -39,7 +39,7 @@ final class SpecificSetDateView: UIView {
         }
         
         addSubview(dateTitleLabel)
-        dateTitleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
+        dateTitleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 17, alignment: .center)
         dateTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(introductionLabel.snp_bottomMargin).offset(30)
             make.left.right.equalToSuperview().inset(15)

@@ -39,7 +39,7 @@ final class OptionTableViewCell: UITableViewCell {
         }
         
         containerView.addSubview(titleLabel)
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 14, alignment: .left)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 14, alignment: .left)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()

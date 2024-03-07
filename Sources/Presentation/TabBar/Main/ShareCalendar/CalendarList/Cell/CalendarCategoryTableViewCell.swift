@@ -57,7 +57,7 @@ final class CalendarCategoryTableViewCell: UITableViewCell {
         }
         
         containerView.addSubview(titleLabel)
-        titleLabel.customize(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
+        titleLabel.configure(textColor: UIColor.blackAndWhiteColor!, backgroundColor: .clear, fontSize: 16, alignment: .left)
         titleLabel.sizeToFit()
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(calendarImageView)
@@ -75,7 +75,7 @@ final class CalendarCategoryTableViewCell: UITableViewCell {
         }
         
         containerView.addSubview(personCountLabel)
-        personCountLabel.customize(textColor: .darkGray, backgroundColor: .clear, fontSize: 13, alignment: .left)
+        personCountLabel.configure(textColor: .darkGray, backgroundColor: .clear, fontSize: 13, alignment: .left)
         personCountLabel.isHidden = true
         personCountLabel.sizeToFit()
         personCountLabel.snp.makeConstraints { make in
