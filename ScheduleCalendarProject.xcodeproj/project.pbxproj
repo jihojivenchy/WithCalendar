@@ -25,7 +25,6 @@
 		7C2CA3342A08DEA70055676E /* MyProfileDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CA3332A08DEA70055676E /* MyProfileDataService.swift */; };
 		7C2CA3362A094EFF0055676E /* EditMemoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CA3352A094EFF0055676E /* EditMemoDataService.swift */; };
 		7C2CA3382A0950440055676E /* AddMemoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CA3372A0950440055676E /* AddMemoDataService.swift */; };
-		7C2CA33A2A09509A0055676E /* MemoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CA3392A09509A0055676E /* MemoDataService.swift */; };
 		7C2CA33F2A0B84380055676E /* EventEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CA33E2A0B84380055676E /* EventEnum.swift */; };
 		7C2CA3412A0CBE9E0055676E /* EndDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CA3402A0CBE9E0055676E /* EndDatePickerViewController.swift */; };
 		7C2CA3432A0CE5650055676E /* SetNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2CA3422A0CE5650055676E /* SetNotificationDataModel.swift */; };
@@ -212,7 +211,6 @@
 		7C2CA3332A08DEA70055676E /* MyProfileDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileDataService.swift; sourceTree = "<group>"; };
 		7C2CA3352A094EFF0055676E /* EditMemoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoDataService.swift; sourceTree = "<group>"; };
 		7C2CA3372A0950440055676E /* AddMemoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoDataService.swift; sourceTree = "<group>"; };
-		7C2CA3392A09509A0055676E /* MemoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDataService.swift; sourceTree = "<group>"; };
 		7C2CA33E2A0B84380055676E /* EventEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEnum.swift; sourceTree = "<group>"; };
 		7C2CA3402A0CBE9E0055676E /* EndDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDatePickerViewController.swift; sourceTree = "<group>"; };
 		7C2CA3422A0CE5650055676E /* SetNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNotificationDataModel.swift; sourceTree = "<group>"; };
@@ -904,7 +902,6 @@
 		7C6203182B6B9FD300438E69 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
-				7C2CA3392A09509A0055676E /* MemoDataService.swift */,
 				7C2CA3372A0950440055676E /* AddMemoDataService.swift */,
 				7C2CA3352A094EFF0055676E /* EditMemoDataService.swift */,
 			);
@@ -1257,7 +1254,6 @@
 				7C2CA3302A08DDC40055676E /* FindPassWordService.swift in Sources */,
 				7CB40FE029EE5C9900DE0710 /* CreateShareCalendarView.swift in Sources */,
 				7CB4101C29EE61B000DE0710 /* SetMemoViewController.swift in Sources */,
-				7C2CA33A2A09509A0055676E /* MemoDataService.swift in Sources */,
 				7C2CA31E2A068CBA0055676E /* CreateShareCalendarDataService.swift in Sources */,
 				7CB4102B29EE63B600DE0710 /* EditMemoViewController.swift in Sources */,
 				7CB40FF829EE5E9D00DE0710 /* ScheduleManagerViewController.swift in Sources */,
