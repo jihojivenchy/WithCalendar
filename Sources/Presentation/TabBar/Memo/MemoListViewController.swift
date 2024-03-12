@@ -40,7 +40,6 @@ final class MemoListViewController: BaseViewController {
     
     // MARK: - Properties
     private let memoService = MemoService()
-    private let editMemoDataService = EditMemoDataService() //삭제 기능 사용하기 위해서.
     
     private typealias DataSource = UITableViewDiffableDataSource<Section, MemoData>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MemoData>
@@ -134,28 +133,36 @@ extension MemoListViewController: UITableViewDelegate {
 extension MemoListViewController : MemoCellDelegate {
     func longPressed(documentID: String) {
         let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-            self?.handleDeleteMemoData(documentID: documentID)
+            self?.deleteMemo(documentID: documentID)
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        
         showAlert(title: "삭제", message: "메모를 삭제하시겠습니까?", actions: [action, cancelAction])
     }
     
-    //데이터를 삭제할 때 성공과 에러에 대한 후처리
-    private func handleDeleteMemoData(documentID: String) {
-        editMemoDataService.deleteMemoData(documentID: documentID) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                    
-                case .success(_):
-                    self?.dismiss(animated: true)
-                    
-                case .failure(let err):
-                    print("Error 메모 데이터 삭제 실패 : \(err.localizedDescription)")
-                    self?.showAlert(title: "삭제 실패", message: "네트워크 상태를 확인해주세요.")
-                }
+    /// 메모 삭제
+    private func deleteMemo(documentID: String) {
+        Task {
+            do {
+                try await memoService.deleteMemo(documentID: documentID)
+                deleteMemoItem(documentID: documentID)
+            } catch {
+                showErrorAlert(error)
             }
+        }
+    }
+    
+    /// 현재 메모 리스트에서 삭제된 데이터를 제거 및 업데이트
+    private func deleteMemoItem(documentID: String) {
+        guard let currentSnapshot = dataSource?.snapshot() else { return }
+        
+        if let deletedItem = currentSnapshot
+            .itemIdentifiers(inSection: .main)
+            .first(where: { $0.documentID == documentID })
+        {
+            var updatedSnapshot = currentSnapshot
+            updatedSnapshot.deleteItems([deletedItem])
+            dataSource?.apply(updatedSnapshot)
         }
     }
 }

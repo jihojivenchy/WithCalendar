@@ -13,6 +13,7 @@ import FirebaseAuth
 struct MemoService {
     private let db = Firestore.firestore()
     
+    /// 메모 리스트 조회
     func fetchMemoList() async throws -> [MemoData] {
         // 유저 정보 가져오기
         guard let user = Auth.auth().currentUser else {
@@ -44,5 +45,16 @@ struct MemoService {
         // 중요 메모를 앞으로 정렬
         memoList.sort { $0.fix > $1.fix }
         return memoList
+    }
+    
+    // 메모 삭제
+    func deleteMemo(documentID : String) async throws {
+        // 유저 정보 가져오기
+        guard let user = Auth.auth().currentUser else {
+            throw NetworkError.authenticationRequired
+        }
+        
+        let documentReference = db.collection("\(user.uid).메모").document(documentID)
+        try await documentReference.delete()
     }
 }
