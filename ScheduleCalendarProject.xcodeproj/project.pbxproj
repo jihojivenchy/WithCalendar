@@ -99,6 +99,8 @@
 		7CB0C26B2B98DB0600C621EE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C26A2B98DB0600C621EE /* UIImage+.swift */; };
 		7CB0C26D2B99B84300C621EE /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C26C2B99B84300C621EE /* BaseTableViewCell.swift */; };
 		7CB0C26F2B99CEFB00C621EE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C26E2B99CEFA00C621EE /* NetworkError.swift */; };
+		7CB0C2712B9F2B2900C621EE /* FirestoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2702B9F2B2900C621EE /* FirestoreRequest.swift */; };
+		7CB0C2742B9F2F5A00C621EE /* MemoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2732B9F2F5A00C621EE /* MemoService.swift */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
 		7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */; };
@@ -251,6 +253,8 @@
 		7CB0C26A2B98DB0600C621EE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		7CB0C26C2B99B84300C621EE /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		7CB0C26E2B99CEFA00C621EE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		7CB0C2702B9F2B2900C621EE /* FirestoreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRequest.swift; sourceTree = "<group>"; };
+		7CB0C2732B9F2F5A00C621EE /* MemoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoService.swift; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -479,6 +483,7 @@
 		7C6202EF2B6B497900438E69 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
+				7CB0C2722B9F2B2E00C621EE /* FirestoreRequest */,
 				7CB0C26E2B99CEFA00C621EE /* NetworkError.swift */,
 				7C6203162B6B9FAF00438E69 /* Calendar */,
 				7C6203172B6B9FC100438E69 /* Schedule */,
@@ -1010,6 +1015,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		7CB0C2722B9F2B2E00C621EE /* FirestoreRequest */ = {
+			isa = PBXGroup;
+			children = (
+				7CB0C2702B9F2B2900C621EE /* FirestoreRequest.swift */,
+				7CB0C2732B9F2F5A00C621EE /* MemoService.swift */,
+			);
+			path = FirestoreRequest;
+			sourceTree = "<group>";
+		};
 		7CB40FC629EE5AA500DE0710 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
@@ -1296,6 +1310,7 @@
 				7CB4106C29EE672500DE0710 /* WelcomeViewController.swift in Sources */,
 				7CB40FC429EE394000DE0710 /* UILabelExtension.swift in Sources */,
 				7CB4104629EE653200DE0710 /* DisplayModeDataModel.swift in Sources */,
+				7CB0C2742B9F2F5A00C621EE /* MemoService.swift in Sources */,
 				7C4C416F2A191A5700787C00 /* FontSizeAdjustmentView.swift in Sources */,
 				7CB40FF629EE5E6E00DE0710 /* ScheduleTableViewCell.swift in Sources */,
 				7CB40FF429EE5E4100DE0710 /* CalendarCollectionViewCell.swift in Sources */,
@@ -1322,6 +1337,7 @@
 				7CB4100629EE5FC500DE0710 /* DateTimeModeSelectionTableViewCell.swift in Sources */,
 				7CB4104429EE651A00DE0710 /* MyProfileView.swift in Sources */,
 				7C2CA3242A07F8840055676E /* EditCalendarDataService.swift in Sources */,
+				7CB0C2712B9F2B2900C621EE /* FirestoreRequest.swift in Sources */,
 				7CB4103C29EE649900DE0710 /* MenuView.swift in Sources */,
 				7CB4102F29EE63E500DE0710 /* AddMemoViewController.swift in Sources */,
 				7CB4106429EE66C900DE0710 /* WriteEmailViewController.swift in Sources */,

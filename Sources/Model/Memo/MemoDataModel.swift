@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MemoData {
+struct MemoData: Codable {
     var memo : String
     var date : String
     var fix : Int

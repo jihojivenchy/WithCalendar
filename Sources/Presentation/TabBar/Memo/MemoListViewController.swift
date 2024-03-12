@@ -39,8 +39,7 @@ final class MemoListViewController: BaseViewController {
     }()
     
     // MARK: - Properties
-    private var memoDataModel = MemoDataModel()
-    private let memoDataService = MemoDataService()
+    private let memoService = MemoService()
     private let editMemoDataService = EditMemoDataService() //삭제 기능 사용하기 위해서.
     
     private typealias DataSource = UITableViewDiffableDataSource<Section, MemoData>
@@ -57,7 +56,7 @@ final class MemoListViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
-        handleFetchMemoList()
+        fetchMemoList()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -164,75 +163,29 @@ extension MemoListViewController : MemoCellDelegate {
 // MARK: - 메모 데이터를 가져오는 작업.
 extension MemoListViewController {
     /// 메모 리스트 조회
-    private func fetchMemoList(completion: @escaping (Result<[MemoData], NetworkError>) -> Void) {
-        let db = Firestore.firestore()
-        
-        // 유저 정보 가져오기
-        guard let user = Auth.auth().currentUser else {
-            completion(.failure(.authenticationRequired))
-            return
-        }
-        
-        // 유저의 메모 컬렉션에 접근
-        db.collection("\(user.uid).메모").order(by: "date", descending: true).addSnapshotListener { qs, error in
-            var memoList: [MemoData] = []
-            
-            guard let snapshotDocuments = qs?.documents else {
-                completion(.failure(.unknown(error?.localizedDescription)))
-                return
-            }
-            
-            // 도큐먼트 리스트를 순회하며, 데이터 조회 -> 가공 -> 리스트에 추가
-            snapshotDocuments.forEach { snapshot in
-                let data = snapshot.data()
-                
-                guard let memoData = data["memo"] as? String,
-                      let dateData = data["date"] as? String,
-                      let fixData = data["fix"] as? Int,
-                      let fixColorData = data["fixColor"] as? String else{return}
-                
-                // 리스트에 추가
-                memoList.append(MemoData(
-                    memo: memoData,
-                    date: dateData,
-                    fix: fixData,
-                    fixColor: fixColorData,
-                    documentID: snapshot.documentID
-                ))
-            }
-            
-            // 중요 메모를 앞으로 정렬
-            memoList.sort { (first, second) -> Bool in
-                return first.fix > second.fix
-            }
-            completion(.success(memoList))
-        }
-    }
-    
-    /// 메모 리스트 조회 및 결과 핸들링
-    private func handleFetchMemoList() {
+    private func fetchMemoList() {
         CustomLoadingView.shared.startLoading(to: 0)
         
-        fetchMemoList { result in
-            DispatchQueue.main.async { [weak self] in
-                CustomLoadingView.shared.stopLoading()
-                guard let self else { return }
+        Task {
+            do {
+                let memoList = try await memoService.fetchMemoList()
+                applySectionSnapshot(with: memoList)
                 
-                switch result {
-                case .success(let memoList):
-                    self.applySectionSnapshot(with: memoList)
-                    
-                case .failure(let error):
-                    self.showErrorAlert(error)
-                    
-                }
+            } catch {
+                showErrorAlert(error)
             }
+            CustomLoadingView.shared.stopLoading()
         }
     }
     
     /// 에러 종류에 따라 달리 보여주는 Alert
-    private func showErrorAlert(_ error: NetworkError) {
-        switch error {
+    private func showErrorAlert(_ error: Error) {
+        guard let networkError = error as? NetworkError else {
+            showAlert(title: "오류", message: error.localizedDescription)
+            return
+        }
+        
+        switch networkError {
         case .authenticationRequired:
             showAlert(title: "로그인 오류", message: "로그인이 필요합니다.")
             
