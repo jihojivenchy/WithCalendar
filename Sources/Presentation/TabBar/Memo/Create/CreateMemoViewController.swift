@@ -46,7 +46,14 @@ final class CreateMemoViewController: BaseViewController {
     }()
     
     // MARK: - Properties
-    final var memoDataModel = MemoDataModel()
+    private var memoData = MemoData(
+        memo: "",
+        date: "",
+        fix: 0,
+        fixColor: "",
+        documentID: ""
+    )
+    
     final let addMemoDataService = AddMemoDataService()
     
     // MARK: - LifeCycle
@@ -56,11 +63,6 @@ final class CreateMemoViewController: BaseViewController {
         addKeyboardNotifications()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupSubViews()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
         removeKeyboardNotifications()
@@ -68,6 +70,7 @@ final class CreateMemoViewController: BaseViewController {
     
     // MARK: Configuration
     override func configureAttributes() {
+        view.backgroundColor = .customWhiteAndBlackColor
         navigationItem.title = "메모 작성"
         navigationItem.rightBarButtonItems = [completeButton, pinButton]
         enableKeyboardHiding()
@@ -75,11 +78,6 @@ final class CreateMemoViewController: BaseViewController {
     
     // MARK: - Layouts
     override func configureLayouts() {
-        
-    }
-    private func setupSubViews() {
-        view.backgroundColor = .customWhiteAndBlackColor
-        
         view.addSubview(textView)
         textView.snp.makeConstraints { make in
             make.top.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
@@ -87,7 +85,7 @@ final class CreateMemoViewController: BaseViewController {
         }
     }
     
-    //color를 선택하는 뷰를 보여줌.
+    // color를 선택하는 뷰를 보여줌.
     private func setClipColor() {
         let vc = SetColorViewController()
         vc.modalPresentationStyle = .custom
@@ -97,53 +95,62 @@ final class CreateMemoViewController: BaseViewController {
     
     // MARK: - ButtonMethod
     @objc private func pinButtonTapped(_ sender : UIBarButtonItem) {
-        //1. fixColor가 "" 라면 유저가 아직 클립을 선정하지 않았고, 이제 클립 설정을 원한다는 것을 의미. 클립의 컬러를 설정해주는 뷰를 올려줌.
-        //2. fixColor가 ""가 아니라면 컬러 데이터가 있는 것으로 유저가 클립을 취소했음을 의미. 다시 원상복귀해줌.
-        if memoDataModel.fixColor == "" {
-            setClipColor() //컬러를 선택하는 뷰를 보여줌.
+        // fixColor가 비어있을 경우, 아직 고정핀 설정을 하지 않았음. 고정핀 컬러 설정 뷰 보여주기
+        if memoData.fixColor.isEmpty {
+            setClipColor()
+            memoData.fixColor = "#00925BFF"
             pinButton.image = UIImage(systemName: "pin") //클립 이미지 변경.
             pinButton.tintColor = .signatureColor
-            memoDataModel.fixColor = "#00925BFF"
             
-        }else{ //원래대로 돌려주는 로직, 클립취소.
-            memoDataModel.fixColor = ""
+        } else {  // 원상복구
+            memoData.fixColor = ""
             pinButton.image = UIImage(systemName: "pin.slash")
             pinButton.tintColor = .blackAndWhiteColor
         }
     }
     
     @objc private func completeButtonTapped(_ sender : UIBarButtonItem) {
-        guard let text = textView.text else{ return }
-        
-        let fixColorString = memoDataModel.fixColor
-        let dateString = Date().convertDateToString(format: "yyyy년 MM월 dd일 HH시 mm분")  //현재 시간을 포맷해서 String으로 저장.
-        
-        if text == "" {
-            showAlert(title: "내용작성", message: "내용을 작성해주세요.")
-        }else{
-            
-            //fixColorString이 ""라면 유저가 클립설정을 하지 않은 메모로 클립 설정을 하지 않은 데이터로 저장. fix = 0
-            //반대로 유저가 클립설정을 했다면 fix = 1과 클립의 컬러를 저장.
-            if fixColorString == "" {
-                let memoData = MemoData(memo: text, date: dateString, fix: 0, fixColor: "", documentID: "")
-                handleSetMemoData(memoData: memoData)
-                
-            }else{
-                let memoData = MemoData(memo: text, date: dateString, fix: 1, fixColor: fixColorString, documentID: "")
-                handleSetMemoData(memoData: memoData)
-            }
-            
+        guard let text = textView.text, !text.isEmpty else {
+            showAlert(title: "내용을 작성해주세요.")
+            return
         }
+        
+        memoData.date = Date().convertDateToString(format: "yyyy년 MM월 dd일 HH시 mm분")
+        memoData.memo = text
+        memoData.fix = memoData.fixColor.isEmpty ? 0 : 1
+        handleSetMemoData(memoData: memoData)
     }
-    
-   
 }
 
-// MARK: - 컬러를 선택했을 때, 클립의 색깔을 변경해주는 작업.
-extension CreateMemoViewController : SetColorDelegate {
+// MARK: - 컬러를 선택에 대한 Delegate
+extension CreateMemoViewController: SetColorDelegate {
     func selectedColor(color: String) {
-        memoDataModel.fixColor = color
+        memoData.fixColor = color
         pinButton.tintColor = UIColor(color)
+    }
+}
+
+//MARK: - 메모 데이터를 저장하는 작업.
+extension CreateMemoViewController {
+    
+    private func handleSetMemoData(memoData: MemoData) {
+        CustomLoadingView.shared.startLoading(to: 0)
+        
+        addMemoDataService.setMemoData(data: memoData) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .success(_):
+                    CustomLoadingView.shared.stopLoading()
+                    self?.navigationController?.popViewController(animated: true)
+                    
+                case .failure(let err):
+                    print("Error 메모 데이터 저장 실패 : \(err.localizedDescription)")
+                    self?.showAlert(title: "저장 실패", message: "네트워크 상태를 확인해주세요.")
+                    CustomLoadingView.shared.stopLoading()
+                }
+            }
+        }
     }
 }
 
@@ -176,29 +183,5 @@ extension CreateMemoViewController {
     private func removeKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-}
-
-//MARK: - 메모 데이터를 저장하는 작업.
-extension CreateMemoViewController {
-    
-    private func handleSetMemoData(memoData: MemoData) {
-        CustomLoadingView.shared.startLoading(to: 0)
-        
-        addMemoDataService.setMemoData(data: memoData) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                    
-                case .success(_):
-                    CustomLoadingView.shared.stopLoading()
-                    self?.navigationController?.popViewController(animated: true)
-                    
-                case .failure(let err):
-                    print("Error 메모 데이터 저장 실패 : \(err.localizedDescription)")
-                    self?.showAlert(title: "저장 실패", message: "네트워크 상태를 확인해주세요.")
-                    CustomLoadingView.shared.stopLoading()
-                }
-            }
-        }
     }
 }

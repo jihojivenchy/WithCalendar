@@ -15,7 +15,7 @@ extension UIViewController {
         feedbackGenerator.impactOccurred()
     }
     
-    func showAlert(title : String, message: String, actions: [UIAlertAction]? = nil) {
+    func showAlert(title : String, message: String? = nil, actions: [UIAlertAction]? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if let alertActions = actions {
