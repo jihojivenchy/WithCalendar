@@ -57,4 +57,17 @@ struct MemoService {
         let documentReference = db.collection("\(user.uid).메모").document(documentID)
         try await documentReference.delete()
     }
+    
+    func createMemo(_ memoData: MemoData) async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        let collectionReference = db.collection("\(user.uid).메모")
+        
+        try await collectionReference.addDocument(data: [
+            "memo" : memoData.memo,
+            "date" : memoData.date,
+            "fix" : memoData.fix,
+            "fixColor" : memoData.fixColor
+        ])
+    }
 }

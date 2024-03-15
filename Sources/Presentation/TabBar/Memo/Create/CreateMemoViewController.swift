@@ -46,6 +46,7 @@ final class CreateMemoViewController: BaseViewController {
     }()
     
     // MARK: - Properties
+    private let memoService = MemoService()
     private var memoData = MemoData(
         memo: "",
         date: "",
@@ -53,8 +54,6 @@ final class CreateMemoViewController: BaseViewController {
         fixColor: "",
         documentID: ""
     )
-    
-    final let addMemoDataService = AddMemoDataService()
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -118,7 +117,7 @@ final class CreateMemoViewController: BaseViewController {
         memoData.date = Date().convertDateToString(format: "yyyy년 MM월 dd일 HH시 mm분")
         memoData.memo = text
         memoData.fix = memoData.fixColor.isEmpty ? 0 : 1
-        handleSetMemoData(memoData: memoData)
+        createMemo()
     }
 }
 
@@ -130,26 +129,20 @@ extension CreateMemoViewController: SetColorDelegate {
     }
 }
 
-//MARK: - 메모 데이터를 저장하는 작업.
+// MARK: - 작성한 메모 생성
 extension CreateMemoViewController {
-    
-    private func handleSetMemoData(memoData: MemoData) {
+    private func createMemo() {
         CustomLoadingView.shared.startLoading(to: 0)
         
-        addMemoDataService.setMemoData(data: memoData) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                    
-                case .success(_):
-                    CustomLoadingView.shared.stopLoading()
-                    self?.navigationController?.popViewController(animated: true)
-                    
-                case .failure(let err):
-                    print("Error 메모 데이터 저장 실패 : \(err.localizedDescription)")
-                    self?.showAlert(title: "저장 실패", message: "네트워크 상태를 확인해주세요.")
-                    CustomLoadingView.shared.stopLoading()
-                }
+        Task {
+            do {
+                try await memoService.createMemo(memoData)
+                navigationController?.popViewController(animated: true)
+                
+            } catch {
+                showAlert(title: "오류", message: error.localizedDescription)
             }
+            CustomLoadingView.shared.stopLoading()
         }
     }
 }
