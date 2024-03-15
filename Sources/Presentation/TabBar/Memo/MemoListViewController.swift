@@ -54,12 +54,7 @@ final class MemoListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
-        tabBarController?.tabBar.isHidden = false
         fetchMemoList()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     // MARK: Configuration
@@ -86,7 +81,7 @@ final class MemoListViewController: BaseViewController {
             return
         }
         
-        navigationController?.pushViewController(AddMemoViewController(), animated: true)
+        navigationController?.pushViewController(CreateMemoViewController(), animated: true)
     }
 }
 

@@ -146,7 +146,7 @@
 		7CB4102929EE639A00DE0710 /* MemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102829EE639A00DE0710 /* MemoListCell.swift */; };
 		7CB4102B29EE63B600DE0710 /* EditMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102A29EE63B600DE0710 /* EditMemoViewController.swift */; };
 		7CB4102D29EE63CC00DE0710 /* EditMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102C29EE63CC00DE0710 /* EditMemoView.swift */; };
-		7CB4102F29EE63E500DE0710 /* AddMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102E29EE63E500DE0710 /* AddMemoViewController.swift */; };
+		7CB4102F29EE63E500DE0710 /* CreateMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102E29EE63E500DE0710 /* CreateMemoViewController.swift */; };
 		7CB4103129EE640000DE0710 /* AddMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103029EE640000DE0710 /* AddMemoView.swift */; };
 		7CB4103829EE647B00DE0710 /* MenuDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103729EE647B00DE0710 /* MenuDataModel.swift */; };
 		7CB4103A29EE648D00DE0710 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103929EE648D00DE0710 /* MenuViewController.swift */; };
@@ -299,7 +299,7 @@
 		7CB4102829EE639A00DE0710 /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		7CB4102A29EE63B600DE0710 /* EditMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoViewController.swift; sourceTree = "<group>"; };
 		7CB4102C29EE63CC00DE0710 /* EditMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoView.swift; sourceTree = "<group>"; };
-		7CB4102E29EE63E500DE0710 /* AddMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoViewController.swift; sourceTree = "<group>"; };
+		7CB4102E29EE63E500DE0710 /* CreateMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoViewController.swift; sourceTree = "<group>"; };
 		7CB4103029EE640000DE0710 /* AddMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoView.swift; sourceTree = "<group>"; };
 		7CB4103729EE647B00DE0710 /* MenuDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataModel.swift; sourceTree = "<group>"; };
 		7CB4103929EE648D00DE0710 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -774,7 +774,7 @@
 		7C62030A2B6B9BDF00438E69 /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				7CB4102E29EE63E500DE0710 /* AddMemoViewController.swift */,
+				7CB4102E29EE63E500DE0710 /* CreateMemoViewController.swift */,
 				7CB4103029EE640000DE0710 /* AddMemoView.swift */,
 			);
 			path = Create;
@@ -1335,7 +1335,7 @@
 				7C2CA3242A07F8840055676E /* EditCalendarDataService.swift in Sources */,
 				7CB0C2712B9F2B2900C621EE /* FirestoreRequest.swift in Sources */,
 				7CB4103C29EE649900DE0710 /* MenuView.swift in Sources */,
-				7CB4102F29EE63E500DE0710 /* AddMemoViewController.swift in Sources */,
+				7CB4102F29EE63E500DE0710 /* CreateMemoViewController.swift in Sources */,
 				7CB4106429EE66C900DE0710 /* WriteEmailViewController.swift in Sources */,
 				7C4006212A1538E000835EC0 /* EditScheduleViewController.swift in Sources */,
 				7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */,

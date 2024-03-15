@@ -16,7 +16,7 @@ final class EditCalendarViewController: UIViewController {
     final let editCalendarView = EditCalendarView() //View
     
     private lazy var saveButton : UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "checkmark"), style: .done, target: self, action: #selector(saveButtonPressed(_:)))
+        let button = UIBarButtonItem(image: UIImage(systemName: "checkmark"), style: .done, target: self, action: #selector(completeButtonTapped(_:)))
         button.tintColor = .signatureColor
         
         return button

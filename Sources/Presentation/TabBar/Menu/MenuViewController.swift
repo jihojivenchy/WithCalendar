@@ -67,7 +67,7 @@ final class MenuViewController: UIViewController {
 
     //MARK: - ButtonMethod
     @objc private func addButtonPressed(_ sender : UIBarButtonItem) {
-        self.navigationController?.pushViewController(AddMemoViewController(), animated: true)
+        self.navigationController?.pushViewController(CreateMemoViewController(), animated: true)
     }
     
     //MARK: - CellClickedMethod
