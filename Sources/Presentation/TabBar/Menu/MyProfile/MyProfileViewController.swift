@@ -15,7 +15,7 @@ final class MyProfileViewController: UIViewController {
     final let myProfileView = MyProfileView() //View
     
     private lazy var saveButton : UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(completeButtonTapped(_:)))
+        let button = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
         
         return button
     }()

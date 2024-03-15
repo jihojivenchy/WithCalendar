@@ -41,7 +41,7 @@ final class EditScheduleViewController: UIViewController {
         
         addScheduleView.titleTextField.delegate = self
         addScheduleView.dismissButton.addTarget(self, action: #selector(dismissButtonPressed(_:)), for: .touchUpInside)
-        addScheduleView.saveButton.addTarget(self, action: #selector(completeButtonTapped(_:)), for: .touchUpInside)
+        addScheduleView.saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
         addScheduleView.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(_:)), for: .touchUpInside)
     }
     

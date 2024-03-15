@@ -42,7 +42,7 @@ final class AddScheduleViewController: UIViewController {
         
         addScheduleView.titleTextField.delegate = self
         addScheduleView.dismissButton.addTarget(self, action: #selector(dismissButtonPressed(_:)), for: .touchUpInside)
-        addScheduleView.saveButton.addTarget(self, action: #selector(completeButtonTapped(_:)), for: .touchUpInside)
+        addScheduleView.saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
     }
     
     //MARK: - ButtonMethod

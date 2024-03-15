@@ -22,16 +22,32 @@ final class CreateMemoViewController: BaseViewController {
     }()
     
     private lazy var pinButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "pin.slash"), style: .done, target: self, action: #selector(pinButtonTapped(_:)))
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "pin.slash"),
+            style: .done,
+            target: self,
+            action: #selector(pinButtonTapped(_:))
+        )
          
         return button
     }()
     
+    private let textView: UITextView = {
+        let textView = UITextView()
+        textView.returnKeyType = .next
+        textView.font = .systemFont(ofSize: 18)
+        textView.textColor = .blackAndWhiteColor
+        textView.tintColor = .blackAndWhiteColor
+        textView.backgroundColor = .whiteAndCustomBlackColor
+        textView.clipsToBounds = true
+        textView.layer.cornerRadius = 7
+        textView.textContainerInset = UIEdgeInsets(top: 16, left: 10, bottom: 0, right: 10)
+        return textView
+    }()
+    
     // MARK: - Properties
     final var memoDataModel = MemoDataModel()
-    
     final let addMemoDataService = AddMemoDataService()
-    final let addMemoView = AddMemoView() //View
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -64,9 +80,10 @@ final class CreateMemoViewController: BaseViewController {
     private func setupSubViews() {
         view.backgroundColor = .customWhiteAndBlackColor
         
-        view.addSubview(addMemoView)
-        addMemoView.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
+        view.addSubview(textView)
+        textView.snp.makeConstraints { make in
+            make.top.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.left.right.equalTo(view.safeAreaLayoutGuide).inset(15)
         }
     }
     
@@ -96,22 +113,23 @@ final class CreateMemoViewController: BaseViewController {
     }
     
     @objc private func completeButtonTapped(_ sender : UIBarButtonItem) {
-        guard let memoText = addMemoView.memoTextView.text else{return}
+        guard let text = textView.text else{ return }
+        
         let fixColorString = memoDataModel.fixColor
         let dateString = Date().convertDateToString(format: "yyyy년 MM월 dd일 HH시 mm분")  //현재 시간을 포맷해서 String으로 저장.
         
-        if memoText == "" {
+        if text == "" {
             showAlert(title: "내용작성", message: "내용을 작성해주세요.")
         }else{
             
             //fixColorString이 ""라면 유저가 클립설정을 하지 않은 메모로 클립 설정을 하지 않은 데이터로 저장. fix = 0
             //반대로 유저가 클립설정을 했다면 fix = 1과 클립의 컬러를 저장.
             if fixColorString == "" {
-                let memoData = MemoData(memo: memoText, date: dateString, fix: 0, fixColor: "", documentID: "")
+                let memoData = MemoData(memo: text, date: dateString, fix: 0, fixColor: "", documentID: "")
                 handleSetMemoData(memoData: memoData)
                 
             }else{
-                let memoData = MemoData(memo: memoText, date: dateString, fix: 1, fixColor: fixColorString, documentID: "")
+                let memoData = MemoData(memo: text, date: dateString, fix: 1, fixColor: fixColorString, documentID: "")
                 handleSetMemoData(memoData: memoData)
             }
             
@@ -142,17 +160,15 @@ extension CreateMemoViewController {
         let keyboardFrame = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardHeight = keyboardFrame?.cgRectValue.height ?? 291
         
-        addMemoView.memoTextView.snp.remakeConstraints { make in
-            make.top.equalToSuperview().inset(10)
-            make.left.right.equalToSuperview().inset(15)
-            make.bottom.equalToSuperview().inset(keyboardHeight + 10)
+        textView.snp.updateConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(keyboardHeight)
         }
     }
     
     /// 키보드가 내려갈 경우
     @objc private func keyboardWillHide(_ noti: NSNotification){
-        addMemoView.memoTextView.snp.remakeConstraints { make in
-            make.edges.equalToSuperview().inset(15)
+        textView.snp.updateConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
     }
     
