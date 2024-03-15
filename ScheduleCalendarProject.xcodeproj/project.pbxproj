@@ -178,7 +178,6 @@
 		7CB4107229EE677400DE0710 /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4107129EE677400DE0710 /* FindPasswordView.swift */; };
 		7CB4107429EE678D00DE0710 /* calendar.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CB4107329EE678D00DE0710 /* calendar.json */; };
 		7CB4107629EEC12000DE0710 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4107529EEC12000DE0710 /* StringExtension.swift */; };
-		7CB4107929EEF45100DE0710 /* CustomLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4107829EEF45100DE0710 /* CustomLoadingView.swift */; };
 		7CB4107B29EFC01E00DE0710 /* FeedBackDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4107A29EFC01E00DE0710 /* FeedBackDataService.swift */; };
 		7CB4107F29F044AC00DE0710 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4107E29F044AC00DE0710 /* DateExtension.swift */; };
 		7CB4108129F803BD00DE0710 /* SpecificSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4108029F803BD00DE0710 /* SpecificSettingViewController.swift */; };
@@ -332,7 +331,6 @@
 		7CB4107129EE677400DE0710 /* FindPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordView.swift; sourceTree = "<group>"; };
 		7CB4107329EE678D00DE0710 /* calendar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar.json; sourceTree = "<group>"; };
 		7CB4107529EEC12000DE0710 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		7CB4107829EEF45100DE0710 /* CustomLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoadingView.swift; sourceTree = "<group>"; };
 		7CB4107A29EFC01E00DE0710 /* FeedBackDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackDataService.swift; sourceTree = "<group>"; };
 		7CB4107E29F044AC00DE0710 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		7CB4108029F803BD00DE0710 /* SpecificSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificSettingViewController.swift; sourceTree = "<group>"; };
@@ -621,7 +619,7 @@
 		7C6202FB2B6B4B4400438E69 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				7CB4107729EEF43C00DE0710 /* CustomLoadingView */,
+				7CB4107729EEF43C00DE0710 /* LoadingView */,
 				7C6203212B6BA32100438E69 /* TextField */,
 			);
 			path = Component;
@@ -1106,14 +1104,13 @@
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
-		7CB4107729EEF43C00DE0710 /* CustomLoadingView */ = {
+		7CB4107729EEF43C00DE0710 /* LoadingView */ = {
 			isa = PBXGroup;
 			children = (
-				7CB4107829EEF45100DE0710 /* CustomLoadingView.swift */,
 				7CB0C2792BA4742800C621EE /* WCLoadingView.swift */,
 				7CB0C2772BA46F0600C621EE /* UIWindow+.swift */,
 			);
-			path = CustomLoadingView;
+			path = LoadingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1279,7 +1276,6 @@
 				7CB4106629EE66DE00DE0710 /* WriteEmailView.swift in Sources */,
 				7CB4108329F806F600DE0710 /* SpecificSettingView.swift in Sources */,
 				7CB40FEA29EE5D9800DE0710 /* EditCalendarViewController.swift in Sources */,
-				7CB4107929EEF45100DE0710 /* CustomLoadingView.swift in Sources */,
 				7C2CA32C2A08CD940055676E /* RegisterCustomError.swift in Sources */,
 				7CB4105029EE65B000DE0710 /* FeedBackViewController.swift in Sources */,
 				7CB40FE829EE5D6B00DE0710 /* SearchUserView.swift in Sources */,
