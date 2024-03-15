@@ -60,6 +60,7 @@ final class CreateMemoViewController: BaseViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
         addKeyboardNotifications()
+        textView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -89,7 +90,7 @@ final class CreateMemoViewController: BaseViewController {
         let vc = SetColorViewController()
         vc.modalPresentationStyle = .custom
         vc.setColorDelegate = self
-        self.present(vc, animated: true)
+        present(vc, animated: true)
     }
     
     // MARK: - ButtonMethod
@@ -150,25 +151,31 @@ extension CreateMemoViewController {
 // MARK: - Notification
 extension CreateMemoViewController {
     /// 노티피케이션 추가
-    private func addKeyboardNotifications(){
+    private func addKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     /// 키보드가 올라올 경우
-    @objc private func keyboardWillShow(_ noti: NSNotification){
+    @objc private func keyboardWillShow(_ noti: NSNotification) {
         let keyboardFrame = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardHeight = keyboardFrame?.cgRectValue.height ?? 291
         
-        textView.snp.updateConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(keyboardHeight)
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self else { return }
+            textView.snp.updateConstraints { make in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(keyboardHeight)
+            }
         }
     }
     
     /// 키보드가 내려갈 경우
-    @objc private func keyboardWillHide(_ noti: NSNotification){
-        textView.snp.updateConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+    @objc private func keyboardWillHide(_ noti: NSNotification) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let self else { return }
+            textView.snp.updateConstraints { make in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(10)
+            }
         }
     }
     
