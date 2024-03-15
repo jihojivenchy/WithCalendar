@@ -10,6 +10,17 @@ import SnapKit
 
 final class CreateMemoViewController: BaseViewController {
     // MARK: - UI
+    private lazy var pinButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "pin.slash"),
+            style: .done,
+            target: self,
+            action: #selector(pinButtonTapped(_:))
+        )
+    
+        return button
+    }()
+    
     private lazy var completeButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
             image: UIImage(systemName: "checkmark"),
@@ -18,17 +29,6 @@ final class CreateMemoViewController: BaseViewController {
             action: #selector(completeButtonTapped(_:))
         )
         
-        return button
-    }()
-    
-    private lazy var pinButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(
-            image: UIImage(systemName: "pin.slash"),
-            style: .done,
-            target: self,
-            action: #selector(pinButtonTapped(_:))
-        )
-         
         return button
     }()
     

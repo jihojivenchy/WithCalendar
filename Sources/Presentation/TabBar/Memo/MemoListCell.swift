@@ -23,6 +23,7 @@ final class MemoListCell: BaseTableViewCell {
         let label = UILabel()
         label.textColor = .blackAndWhiteColor
         label.font = .boldSystemFont(ofSize: 18)
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     
