@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate : UNUserNotificationCenterDelegate {
-    //delegate와는 상관없고, 유저가 앱을 시작할 때 알림을 받을 것인지 허가요청.
+    // 알림 허가 요청
     func requestNotificationAuthorization() {
         let center = UNUserNotificationCenter.current()
         center.delegate = self //delegate 설정.
@@ -66,7 +66,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func showRequestList() {
         let center = UNUserNotificationCenter.current()
         
-        //알림 요청 리스트를 보기 위함.
+        // 알림 요청 리스트를 보기 위함.
         center.getPendingNotificationRequests { requests in
             for i in requests {
                 print("Notification Request \(i.identifier)")
@@ -88,7 +88,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
 }
 
-//MARK: App이 처음시작될 때 초기값을 설정해주는 작업.
+// MARK: - App이 처음시작될 때 초기값을 설정해주는 작업.
 extension AppDelegate {
     private func setDefaultsFontSize(){
         if UserDefaults.standard.object(forKey: "fontSize") == nil {

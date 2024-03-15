@@ -23,7 +23,7 @@ extension TabBarPageType {
             
         case .memo:
             return UITabBarItem(
-                title: "단순 메모",
+                title: "메모",
                 image: UIImage(systemName: "doc.text")?.resize(to: CGSize(width: 24, height: 24)),
                 selectedImage: UIImage(systemName: "doc.text.fill")?
                     .resize(to: CGSize(width: 24, height: 24))

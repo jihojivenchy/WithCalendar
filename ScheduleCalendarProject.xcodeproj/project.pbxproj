@@ -487,7 +487,7 @@
 				7C6203172B6B9FC100438E69 /* Schedule */,
 				7C6203132B6B9F2D00438E69 /* ShareCalendar */,
 				7C6203112B6B9EB500438E69 /* Notification */,
-				7C6203182B6B9FD300438E69 /* Memo */,
+				7C6203182B6B9FD300438E69 /* MemoService */,
 				7C6203192B6B9FE400438E69 /* Menu */,
 				7C62031A2B6BA02D00438E69 /* LunarDate */,
 				7C62031B2B6BA04700438E69 /* Holiday */,
@@ -899,13 +899,14 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
-		7C6203182B6B9FD300438E69 /* Memo */ = {
+		7C6203182B6B9FD300438E69 /* MemoService */ = {
 			isa = PBXGroup;
 			children = (
+				7CB0C2732B9F2F5A00C621EE /* MemoService.swift */,
 				7C2CA3372A0950440055676E /* AddMemoDataService.swift */,
 				7C2CA3352A094EFF0055676E /* EditMemoDataService.swift */,
 			);
-			path = Memo;
+			path = MemoService;
 			sourceTree = "<group>";
 		};
 		7C6203192B6B9FE400438E69 /* Menu */ = {
@@ -1016,7 +1017,6 @@
 			isa = PBXGroup;
 			children = (
 				7CB0C2702B9F2B2900C621EE /* FirestoreRequest.swift */,
-				7CB0C2732B9F2F5A00C621EE /* MemoService.swift */,
 			);
 			path = FirestoreRequest;
 			sourceTree = "<group>";
