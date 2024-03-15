@@ -38,6 +38,8 @@ final class MemoListViewController: BaseViewController {
         return button
     }()
     
+    private let loadingView = WCLoadingView()
+    
     // MARK: - Properties
     private let memoService = MemoService()
     
@@ -166,7 +168,7 @@ extension MemoListViewController : MemoCellDelegate {
 extension MemoListViewController {
     /// 메모 리스트 조회
     private func fetchMemoList() {
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         Task {
             do {
@@ -176,7 +178,7 @@ extension MemoListViewController {
             } catch {
                 showErrorAlert(error)
             }
-            CustomLoadingView.shared.stopLoading()
+            loadingView.stopLoading()
         }
     }
     

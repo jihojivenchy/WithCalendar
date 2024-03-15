@@ -31,3 +31,8 @@ extension UIColor {
         return brightness > 0.7 ? UIColor.darkGray : UIColor.white
     }
 }
+
+enum WCColor {
+    /// 알림창 나올 때의 배경색
+    static let backgroundBlur = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+}
