@@ -14,6 +14,7 @@ final class FeedBackViewController: UIViewController {
     final let feedBackView = FeedBackView() //View
     
     private let textViewHolder = "더 나은 서비스를 위한 글을 자유롭게 작성해주세요."
+    private let loadingView = WCLoadingView()
     
     //MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -117,14 +118,14 @@ extension FeedBackViewController {
                 switch result {
                     
                 case .success(_):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.showAlert(title: "제출완료", message: "감사합니다.")
                     self?.feedBackView.feedBackTextView.text = self?.textViewHolder
                     self?.feedBackView.feedBackTextView.textColor = .lightGray
                     
                 case .failure(let err):
                     print("Error 피드백 전송 실패   : \(err.localizedDescription)")
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.showAlert(title: "전송 실패", message: "")
                     
                 }

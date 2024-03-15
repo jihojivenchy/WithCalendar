@@ -45,6 +45,8 @@ final class CreateMemoViewController: BaseViewController {
         return textView
     }()
     
+    private let loadingView = WCLoadingView()
+    
     // MARK: - Properties
     private let memoService = MemoService()
     private var memoData = MemoData(
@@ -133,7 +135,7 @@ extension CreateMemoViewController: SetColorDelegate {
 // MARK: - 작성한 메모 생성
 extension CreateMemoViewController {
     private func createMemo() {
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         Task {
             do {
@@ -143,7 +145,7 @@ extension CreateMemoViewController {
             } catch {
                 showAlert(title: "오류", message: error.localizedDescription)
             }
-            CustomLoadingView.shared.stopLoading()
+            loadingView.stopLoading()
         }
     }
 }

@@ -13,6 +13,7 @@ final class SearchUserViewController: UIViewController {
     final var shareCalendarDataModel = ShareCalendarDataModel()
     final let searchUserDataService = SearchUserDataService()
     final let searchUserView = SearchUserView() //View
+    private let loadingView = WCLoadingView()
     
     final weak var searchUserDelegate : SearchUserDelegate?
     
@@ -148,20 +149,20 @@ extension SearchUserViewController: UISearchBarDelegate {
 extension SearchUserViewController {
     //코드와 일치하는 유저정보를 찾고 성공과 에러에 대한 후처리.
     private func handleFindUserData(code: String) {
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         searchUserDataService.findUserWithMatchingCode(code: code) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
 
                 case .success(let data):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.shareCalendarDataModel.userDataArray = data
                     self?.searchUserView.userTableView.reloadData()
 
                 case .failure(let err):
                     print("Error 코드와 일치하는 유저정보 찾기 실패 : \(err.localizedDescription)")
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                 }
             }
         }

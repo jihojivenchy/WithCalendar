@@ -27,6 +27,8 @@ final class CreateShareCalendarViewController: UIViewController {
         return button
     }()
     
+    private let loadingView = WCLoadingView()
+    
     //MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -203,20 +205,20 @@ extension CreateShareCalendarViewController : SearchUserDelegate {
 extension CreateShareCalendarViewController {
     //본인 데이터 가져와서 리스트에 추가.
     private func handleFetchUserData() {
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         createShareCalendarDataService.fetchUserDataFromFirestore { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
 
                 case .success(let data):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.shareCalendarDataModel.userDataArray.append(data)
                     self?.createShareCalendarView.participantTableView.reloadData()
 
                 case .failure(let err):
                     print("Error 유저 정보 찾기 실패. : \(err.localizedDescription)")
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                 }
             }
         }
@@ -224,13 +226,13 @@ extension CreateShareCalendarViewController {
     
     //공유캘린더 생성.
     private func handleCreateShareCalendar(calendarTitle: String) {
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         let userData = shareCalendarDataModel.userDataArray
         
         createShareCalendarDataService.createShareCalendar(userDataArray: userData, calendarTitle: calendarTitle) { [weak self] result in
             
             guard let self = self else{return}
-            CustomLoadingView.shared.stopLoading()
+            loadingView.stopLoading()
             
             switch result {
                 

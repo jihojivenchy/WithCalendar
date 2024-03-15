@@ -13,6 +13,7 @@ final class WritePasswordViewController: UIViewController {
     final var registerDataModel = RegisterDataModel()
     final let registerDataService = RegisterDataService()
     final let writePasswordView = WritePasswordView() //View
+    private let loadingView = WCLoadingView()
     
     private lazy var navigationBackButton : UIBarButtonItem = {
         let button = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
@@ -136,7 +137,7 @@ extension WritePasswordViewController : UITextFieldDelegate {
 extension WritePasswordViewController {
     //회원가입의 성공과 에러에 대한 후처리
     private func handleRegister(data: RegisterUserData) {
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         
         registerDataService.firebaseRegister(data: data) { [weak self] result in
            
@@ -144,7 +145,7 @@ extension WritePasswordViewController {
                 
                 switch result {
                 case .success(let uid):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     
                     self?.saveDataPathInUserDefaults(userUID: uid)
                     
@@ -153,7 +154,7 @@ extension WritePasswordViewController {
                     self?.navigationController?.pushViewController(vc, animated: true)
                     
                 case .failure(let err):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     
                     switch err {
                         

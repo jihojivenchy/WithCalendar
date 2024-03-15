@@ -14,6 +14,7 @@ final class ScheduleManagerViewController: UIViewController {
     final var scheduleManagerDataModel = ScheduleManagerDataModel()
     final let scheduleManagerDataService = ScheduleManagerDataService()
     final let scheduleManagerView = ScheduleManagerView() //View
+    private let loadingView = WCLoadingView()
     
     final var cellFrame: CGRect? //내가 누른 cell의 위치와 크기를 나타냄.
     
@@ -152,18 +153,18 @@ extension ScheduleManagerViewController : ScheduleManagerCellDelegate{
     private func handleDeleteCalendarData(at indexRow: Int) {
         let documentID = scheduleManagerDataModel.customCalendarDataArray[indexRow].documentID
         
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         scheduleManagerDataService.deleteCalendarData(dataDocumentID: documentID){ [weak self] result in
             switch result {
                 
             case .success(_):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.deleteNotification(at: indexRow)
                 self?.reloadDataAndTableview(at: indexRow)
                 
             case .failure(let err):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "삭제 실패", message: err.localizedDescription)
             }
         }
@@ -187,13 +188,13 @@ extension ScheduleManagerViewController {
         guard let text = scheduleManagerView.dateLabel.text else{return}
         let (year, month, day) = text.splitDateComponents()
         
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         let api = LunarAPI()
 
         api.fetchLunarData(year: year, month: month, day: day) { [weak self] result in
             guard let self = self else{return}
-            CustomLoadingView.shared.stopLoading()
+            loadingView.stopLoading()
             
             DispatchQueue.main.async {
                 

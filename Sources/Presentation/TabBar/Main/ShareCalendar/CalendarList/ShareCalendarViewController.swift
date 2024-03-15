@@ -13,6 +13,7 @@ final class ShareCalendarViewController: UIViewController {
     final var shareCalendarDataModel = ShareCalendarDataModel()
     final let calendarCategoryDataService = CalendarCategoryDataService()
     private let shareCalendarTableview = UITableView(frame: .zero, style: .insetGrouped)
+    private let loadingView = WCLoadingView()
     
     //MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -100,19 +101,19 @@ extension ShareCalendarViewController : UITableViewDataSource, UITableViewDelega
 
 extension ShareCalendarViewController {
     private func handleGetShareCalendarDataForCategory() {
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         calendarCategoryDataService.getShareCalendarDataForCategory { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
 
                 case .success(let data):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.shareCalendarDataModel.shareCalendarCategoryArray = data
                     self?.shareCalendarTableview.reloadData()
 
                 case .failure(let err):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.showAlert(title: "데이터 찾기 실패", message: err.localizedDescription)
                 }
             }

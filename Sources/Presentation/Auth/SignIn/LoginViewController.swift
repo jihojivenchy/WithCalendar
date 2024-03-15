@@ -13,7 +13,7 @@ final class LoginViewController: UIViewController {
     final var registerDataModel = RegisterDataModel()
     final let loginService = LoginService()
     final let loginView = LoginView() //View
-    
+    private let loadingView = WCLoadingView()
     private lazy var navigationBackButton : UIBarButtonItem = {
         let button = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
@@ -79,7 +79,7 @@ final class LoginViewController: UIViewController {
             
         }else{
             //로그인 시작.
-            CustomLoadingView.shared.startLoading(to: 0.5)
+            loadingView.startLoading()
             handleLogin(userEmail: email, userPW: password)
         }
     }
@@ -113,7 +113,7 @@ extension LoginViewController {
                 
                 switch result {
                 case .success(let uid):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     
                     self?.saveDataPathInUserDefaults(userUID: uid) //해당 유저의 캘린더 데이터 경로를 저장.
                     self?.navigationController?.popViewController(animated: true)
@@ -132,7 +132,7 @@ extension LoginViewController {
                         self?.showAlert(title: "로그인 실패", message: "다시 한번 확인해주세요.")
                     }
                     
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                 }
             }
         }

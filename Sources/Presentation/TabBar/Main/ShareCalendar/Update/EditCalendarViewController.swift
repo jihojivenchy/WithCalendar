@@ -14,6 +14,7 @@ final class EditCalendarViewController: UIViewController {
     final var editCalendarData : ShareCalendarCategoryData?
     final let editCalendarDataService = EditCalendarDataService()
     final let editCalendarView = EditCalendarView() //View
+    private let loadingView = WCLoadingView()
     
     private lazy var saveButton : UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(systemName: "checkmark"), style: .done, target: self, action: #selector(saveButtonPressed(_:)))
@@ -269,17 +270,17 @@ extension EditCalendarViewController {
     //캘린더 수정작업에 대한 후처리.
     private func handleSaveEditCalendarData() {
         guard let editCalendarData = editCalendarData else{return}
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         
         editCalendarDataService.saveEditCalendarData(data: editCalendarData) { [weak self] result in
             switch result {
                 
             case .success(_):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.navigationController?.popViewController(animated: true)
                 
             case .failure(let err):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "수정실패", message: err.localizedDescription)
             }
         }
@@ -288,17 +289,17 @@ extension EditCalendarViewController {
     //명단에서 제외한 유저가 있을경우의 캘린더 수정작업에 대한 후처리.
     private func handleSaveEditCalendarDataWithRemoveUser() {
         guard let editCalendarData = editCalendarData else{return}
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         
         editCalendarDataService.saveEditCalendarDataWithRemoveUserData(data: editCalendarData, removeUserList: shareCalendarDataModel.removeUserList){ [weak self] result in
             switch result {
                 
             case .success(_):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.navigationController?.popViewController(animated: true)
                 
             case .failure(let err):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "수정실패", message: err.localizedDescription)
             }
         }
@@ -324,18 +325,18 @@ extension EditCalendarViewController {
     //캘린더 삭제작업에 대한 후처리.
     private func handleDeleteShareCalendarData() {
         guard let editCalendarData = editCalendarData else{return}
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         
         editCalendarDataService.deleteAllShareCalendarDataAndContent(data: editCalendarData) { [weak self] result in
             switch result {
                 
             case .success(let uid):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.saveDataPathInUserDefaults(userUID: uid) //유저의 기본 캘린더로 데이터 경로를 수정해줌.
                 self?.navigationController?.popViewController(animated: true)
                 
             case .failure(let err):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "삭제실패", message: err.localizedDescription)
             }
         }
@@ -355,18 +356,18 @@ extension EditCalendarViewController {
     //캘린더 나가기작업에 대한 후처리.
     private func handleLeaveShareCalendar() {
         guard let editCalendarData = editCalendarData else{return}
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         
         editCalendarDataService.leaveShareCalendar(data: editCalendarData) { [weak self] result in
             switch result {
                 
             case .success(let uid):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.saveDataPathInUserDefaults(userUID: uid) //유저의 기본 캘린더로 데이터 경로를 수정해줌.
                 self?.navigationController?.popViewController(animated: true)
                 
             case .failure(let err):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "Error 나가기 실패", message: err.localizedDescription)
             }
         }

@@ -101,6 +101,7 @@
 		7CB0C2712B9F2B2900C621EE /* FirestoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2702B9F2B2900C621EE /* FirestoreRequest.swift */; };
 		7CB0C2742B9F2F5A00C621EE /* MemoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2732B9F2F5A00C621EE /* MemoService.swift */; };
 		7CB0C2782BA46F0700C621EE /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2772BA46F0600C621EE /* UIWindow+.swift */; };
+		7CB0C27A2BA4742800C621EE /* WCLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2792BA4742800C621EE /* WCLoadingView.swift */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
 		7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */; };
@@ -254,6 +255,7 @@
 		7CB0C2702B9F2B2900C621EE /* FirestoreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRequest.swift; sourceTree = "<group>"; };
 		7CB0C2732B9F2F5A00C621EE /* MemoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoService.swift; sourceTree = "<group>"; };
 		7CB0C2772BA46F0600C621EE /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
+		7CB0C2792BA4742800C621EE /* WCLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCLoadingView.swift; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -1108,6 +1110,7 @@
 			isa = PBXGroup;
 			children = (
 				7CB4107829EEF45100DE0710 /* CustomLoadingView.swift */,
+				7CB0C2792BA4742800C621EE /* WCLoadingView.swift */,
 				7CB0C2772BA46F0600C621EE /* UIWindow+.swift */,
 			);
 			path = CustomLoadingView;
@@ -1247,6 +1250,7 @@
 				7C2CA3322A08DDEC0055676E /* RegisterDataService.swift in Sources */,
 				7CB40FE629EE5D3F00DE0710 /* SearchUserViewController.swift in Sources */,
 				7C40061E2A13A7E700835EC0 /* ScheduleManagerDataService.swift in Sources */,
+				7CB0C27A2BA4742800C621EE /* WCLoadingView.swift in Sources */,
 				7CB4106E29EE673B00DE0710 /* WelcomeView.swift in Sources */,
 				7CB4101829EE614200DE0710 /* SetColorView.swift in Sources */,
 				7C2CA3282A07FA830055676E /* SearchUserDataService.swift in Sources */,

@@ -13,6 +13,7 @@ final class MyProfileViewController: UIViewController {
     final var myProfileDataModel = MyProfileDataModel(userName: "", userEmail: "", userCode: "", userUID: "")
     final let myProfileDataService = MyProfileDataService()
     final let myProfileView = MyProfileView() //View
+    private let loadingView = WCLoadingView()
     
     private lazy var saveButton : UIBarButtonItem = {
         let button = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
@@ -97,7 +98,7 @@ final class MyProfileViewController: UIViewController {
 extension MyProfileViewController {
     //유저데이터를 가져올 때, 성공과 에러에 대한 후처리
     private func handleGetUserData() {
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         myProfileDataService.fetchMyProfile { [weak self] result in
             DispatchQueue.main.async {
@@ -109,10 +110,10 @@ extension MyProfileViewController {
                     self?.myProfileView.idTextField.text = data.userEmail
                     self?.myProfileView.codeLabel.text = "Code: \(data.userCode)"
                     
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     
                 case .failure(let err):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     print("Error 유저 데이터 찾기 실패 : \(err.localizedDescription)")
                 }
             }
@@ -121,17 +122,17 @@ extension MyProfileViewController {
     
     //유저가 프로필을 수정했을 때, 성공과 에러에대한 후처리
     private func handleUpdateData(name: String, code: String) {
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         
         myProfileDataService.updateMyprofile(userName: name, userCode: code) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.navigationController?.popViewController(animated: true)
                     
                 case .failure(let err):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     print("Error 유저 데이터 찾기 실패 : \(err.localizedDescription)")
                     self?.showAlert(title: "수정 실패", message: "데이터를 찾을 수 없음")
                 }
@@ -153,18 +154,18 @@ extension MyProfileViewController {
     
     //계정삭제를 진행했을 때, 성공과 에러에 대한 후처리
     private func handleDeleteAccount() {
-        CustomLoadingView.shared.startLoading(to: 0.5)
+        loadingView.startLoading()
         
         myProfileDataService.deleteAccount { [weak self] result in
             switch result {
                 
             case .success(_):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.navigationController?.popViewController(animated: true)
                 print("성공")
                 
             case .failure(let err):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "삭제 실패", message: err.localizedDescription)
             }
         }

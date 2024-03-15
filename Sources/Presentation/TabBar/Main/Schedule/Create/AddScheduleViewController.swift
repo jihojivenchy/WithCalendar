@@ -17,6 +17,8 @@ final class AddScheduleViewController: UIViewController {
     final let addScheduleDataService = ScheduleDataService()
     final let notificationService = NotificationService()
     
+    private let loadingView = WCLoadingView()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +59,7 @@ final class AddScheduleViewController: UIViewController {
         if title == "" {
             showAlert(title: "제목작성", message: "제목을 작성해주세요.")
         }else{
-            CustomLoadingView.shared.startLoading(to: 0)
+            loadingView.startLoading()
             
             setNotification() //notification 설정
             handleSaveCalendarDataToFireStore() //데이터 저장.
@@ -299,11 +301,11 @@ extension AddScheduleViewController {
                 switch result {
 
                 case .success(_):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.presentingViewController?.presentingViewController?.dismiss(animated: true)
                     
                 case .failure(let err):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.showAlert(title: "저장실패", message: err.localizedDescription)
                 }
             }

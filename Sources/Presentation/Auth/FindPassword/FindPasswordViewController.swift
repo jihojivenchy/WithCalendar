@@ -13,6 +13,7 @@ final class FindPasswordViewController: UIViewController {
     final var registerDataModel = RegisterDataModel()
     final let findPassWordService = FindPassWordService()
     final let findPasswordView = FindPasswordView() //View
+    private let loadingView = WCLoadingView()
     
     //MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +71,7 @@ final class FindPasswordViewController: UIViewController {
             showAlert(title: "전송 실패", message: "이메일을 작성해주세요.")
             
         }else{
-            CustomLoadingView.shared.startLoading(to: 0.5)
+            loadingView.startLoading()
             handleFindPW(userID: email)
         }
     }
@@ -94,7 +95,7 @@ extension FindPasswordViewController {
             switch result {
                 
             case .success(_):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "전송 완료", message: "메일을 확인해주세요.")
                 
             case .failure(let err):
@@ -110,7 +111,7 @@ extension FindPasswordViewController {
                     self?.showAlert(title: "전송 실패", message: "")
                 }
                 
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
             }
         }
     }

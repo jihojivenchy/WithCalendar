@@ -19,6 +19,8 @@ final class EditScheduleViewController: UIViewController {
     final let addScheduleDataService = ScheduleDataService()
     final let notificationService = NotificationService()
     
+    private let loadingView = WCLoadingView()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +96,7 @@ final class EditScheduleViewController: UIViewController {
         if title == "" {
             showAlert(title: "제목작성", message: "제목을 작성해주세요.")
         }else{
-            CustomLoadingView.shared.startLoading(to: 0)
+            loadingView.startLoading()
             
             setNotification() //notification 설정
             handleUpdateCalendarDataToFireStore() //데이터 저장.
@@ -346,12 +348,12 @@ extension EditScheduleViewController {
                 switch result {
                     
                 case .success(_):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.presentingViewController?.presentingViewController?.dismiss(animated: true)
                     
                     
                 case .failure(let err):
-                    CustomLoadingView.shared.stopLoading()
+                    self?.loadingView.stopLoading()
                     self?.showAlert(title: "수정실패", message: err.localizedDescription)
                 }
             }
@@ -374,17 +376,17 @@ extension EditScheduleViewController {
     private func handelDeleteCalendarData() {
         guard let documentID = editScheduleDataModel.customCalendarData?.documentID else{return}
         
-        CustomLoadingView.shared.startLoading(to: 0)
+        loadingView.startLoading()
         
         addScheduleDataService.deleteCalendarData(dataDocumentID: documentID){ [weak self] result in
             switch result {
                 
             case .success(_):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.presentingViewController?.presentingViewController?.dismiss(animated: true)
                 
             case .failure(let err):
-                CustomLoadingView.shared.stopLoading()
+                self?.loadingView.stopLoading()
                 self?.showAlert(title: "삭제 실패", message: err.localizedDescription)
             }
         }
