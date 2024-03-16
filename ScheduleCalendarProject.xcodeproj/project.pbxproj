@@ -103,6 +103,7 @@
 		7CB0C2782BA46F0700C621EE /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2772BA46F0600C621EE /* UIWindow+.swift */; };
 		7CB0C27A2BA4742800C621EE /* WCLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2792BA4742800C621EE /* WCLoadingView.swift */; };
 		7CB0C27D2BA53E8F00C621EE /* WCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C27C2BA53E8F00C621EE /* WCButton.swift */; };
+		7CB0C2802BA54F2100C621EE /* BasePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
 		7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */; };
@@ -257,6 +258,7 @@
 		7CB0C2772BA46F0600C621EE /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
 		7CB0C2792BA4742800C621EE /* WCLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCLoadingView.swift; sourceTree = "<group>"; };
 		7CB0C27C2BA53E8F00C621EE /* WCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCButton.swift; sourceTree = "<group>"; };
+		7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopUpView.swift; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -621,6 +623,7 @@
 		7C6202FB2B6B4B4400438E69 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7CB0C27E2BA54F0C00C621EE /* PopUp */,
 				7CB0C27B2BA53E5900C621EE /* Buttons */,
 				7CB4107729EEF43C00DE0710 /* LoadingView */,
 				7C6203212B6BA32100438E69 /* TextField */,
@@ -1031,6 +1034,14 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		7CB0C27E2BA54F0C00C621EE /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
 		7CB40FC629EE5AA500DE0710 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
@@ -1339,6 +1350,7 @@
 				7C6203372B6BA66400438E69 /* WCTextField.swift in Sources */,
 				7C2CA3362A094EFF0055676E /* EditMemoDataService.swift in Sources */,
 				7CB4107629EEC12000DE0710 /* StringExtension.swift in Sources */,
+				7CB0C2802BA54F2100C621EE /* BasePopUpView.swift in Sources */,
 				7C4C416A2A18164F00787C00 /* DateSelectionViewController.swift in Sources */,
 				7CB4101029EE60C500DE0710 /* SetNotificationViewController.swift in Sources */,
 				7CB4100629EE5FC500DE0710 /* DateTimeModeSelectionTableViewCell.swift in Sources */,
