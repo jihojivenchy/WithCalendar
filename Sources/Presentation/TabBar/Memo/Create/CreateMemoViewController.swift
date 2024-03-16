@@ -41,6 +41,7 @@ final class CreateMemoViewController: BaseViewController {
     }()
     
     private let loadingView = WCLoadingView()
+    private let colorPickerPopUpView = ColorPickerPopUpView()
     
     // MARK: - Properties
     private let memoService = MemoService()
@@ -101,18 +102,20 @@ final class CreateMemoViewController: BaseViewController {
     
     // MARK: - ButtonMethod
     @objc private func pinButtonTapped(_ sender : UIBarButtonItem) {
-        // fixColor가 비어있을 경우, 아직 고정핀 설정을 하지 않았음. 고정핀 컬러 설정 뷰 보여주기
-        if memoData.fixColor.isEmpty {
-            setClipColor()
-            memoData.fixColor = "#00925BFF"
-            pinButton.image = UIImage(systemName: "pin") //클립 이미지 변경.
-            pinButton.tintColor = .signatureColor
-            
-        } else {  // 원상복구
-            memoData.fixColor = ""
-            pinButton.image = UIImage(systemName: "pin.slash")
-            pinButton.tintColor = .blackAndWhiteColor
-        }
+        textView.endEditing(true)
+        colorPickerPopUpView.show()
+//        // fixColor가 비어있을 경우, 아직 고정핀 설정을 하지 않았음. 고정핀 컬러 설정 뷰 보여주기
+//        if memoData.fixColor.isEmpty {
+//            setClipColor()
+//            memoData.fixColor = "#00925BFF"
+//            pinButton.image = UIImage(systemName: "pin") //클립 이미지 변경.
+//            pinButton.tintColor = .signatureColor
+//            
+//        } else {  // 원상복구
+//            memoData.fixColor = ""
+//            pinButton.image = UIImage(systemName: "pin.slash")
+//            pinButton.tintColor = .blackAndWhiteColor
+//        }
     }
     
     @objc private func completeButtonTapped(_ sender : UIButton) {

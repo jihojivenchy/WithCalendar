@@ -22,7 +22,6 @@ class BasePopUpView: BaseView {
     
     let dragHandleBar: UIView = {
         let view = UIView()
-//        view.flex.width(25).height(5)
         view.backgroundColor = WCColor.gray08
         view.clipsToBounds = true
         view.layer.cornerRadius = 2.5
@@ -36,6 +35,12 @@ class BasePopUpView: BaseView {
         label.textColor = .black
         
         return label
+    }()
+    
+    let dividerView: UIView = {
+        let divider = UIView()
+        divider.backgroundColor = WCColor.gray08
+        return divider
     }()
     
     let completeButton = WCButton(title: "완료")
@@ -58,15 +63,10 @@ class BasePopUpView: BaseView {
     // MARK: - Layout
     override func configureLayouts() {
         addSubview(container)
-        addSubview(dragHandleBar)
-        addSubview(titleLabel)
-        addSubview(completeButton)
-        
-        container.snp.makeConstraints { make in
-            make.top.equalTo(self.snp_bottomMargin)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(containerHeight)
-        }
+        container.addSubview(dragHandleBar)
+        container.addSubview(titleLabel)
+        container.addSubview(dividerView)
+        container.addSubview(completeButton)
     }
     
     // MARK: - HandleGesture
