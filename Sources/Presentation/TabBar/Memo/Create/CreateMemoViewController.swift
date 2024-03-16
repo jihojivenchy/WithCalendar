@@ -21,17 +21,6 @@ final class CreateMemoViewController: BaseViewController {
         return button
     }()
     
-    private lazy var completeButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(
-            image: UIImage(systemName: "checkmark"),
-            style: .done,
-            target: self,
-            action: #selector(completeButtonTapped(_:))
-        )
-        
-        return button
-    }()
-    
     private let textView: UITextView = {
         let textView = UITextView()
         textView.returnKeyType = .next
@@ -43,6 +32,12 @@ final class CreateMemoViewController: BaseViewController {
         textView.layer.cornerRadius = 7
         textView.textContainerInset = UIEdgeInsets(top: 16, left: 10, bottom: 0, right: 10)
         return textView
+    }()
+    
+    private lazy var completeButton: WCButton = {
+        let button = WCButton(title: "완료")
+        button.addTarget(self, action: #selector(completeButtonTapped(_:)), for: .touchUpInside)
+        return button
     }()
     
     private let loadingView = WCLoadingView()
@@ -74,16 +69,25 @@ final class CreateMemoViewController: BaseViewController {
     override func configureAttributes() {
         view.backgroundColor = .customWhiteAndBlackColor
         navigationItem.title = "메모 작성"
-        navigationItem.rightBarButtonItems = [completeButton, pinButton]
+        navigationItem.rightBarButtonItem = pinButton
         enableKeyboardHiding()
     }
     
     // MARK: - Layouts
     override func configureLayouts() {
         view.addSubview(textView)
+        view.addSubview(completeButton)
+        
         textView.snp.makeConstraints { make in
-            make.top.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.left.right.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(95)
+            make.left.right.equalToSuperview().inset(15)
+        }
+        
+        completeButton.snp.makeConstraints { make in
+            make.top.equalTo(textView.snp_bottomMargin).offset(30)
+            make.left.right.equalToSuperview().inset(15)
+            make.height.equalTo(55)
         }
     }
     
@@ -111,7 +115,7 @@ final class CreateMemoViewController: BaseViewController {
         }
     }
     
-    @objc private func completeButtonTapped(_ sender : UIBarButtonItem) {
+    @objc private func completeButtonTapped(_ sender : UIButton) {
         guard let text = textView.text, !text.isEmpty else {
             showAlert(title: "내용을 작성해주세요.")
             return
@@ -166,17 +170,17 @@ extension CreateMemoViewController {
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
             textView.snp.updateConstraints { make in
-                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(keyboardHeight)
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(80 + keyboardHeight)
             }
         }
     }
-    
+
     /// 키보드가 내려갈 경우
     @objc private func keyboardWillHide(_ noti: NSNotification) {
         UIView.animate(withDuration: 0.2) { [weak self] in
             guard let self else { return }
             textView.snp.updateConstraints { make in
-                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(10)
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(95)
             }
         }
     }
