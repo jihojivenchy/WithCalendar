@@ -137,8 +137,10 @@ class BasePopUpView: BaseView {
 }
 
 extension BasePopUpView {
-    func addTapGestureForHide() {
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapped)))
+    func addTapGestureForHide(shouldCancelTouchesInView: Bool = true) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        tapGestureRecognizer.cancelsTouchesInView = shouldCancelTouchesInView
+        addGestureRecognizer(tapGestureRecognizer)
     }
     
     @objc private func backgroundTapped(_ sender: UITapGestureRecognizer) {

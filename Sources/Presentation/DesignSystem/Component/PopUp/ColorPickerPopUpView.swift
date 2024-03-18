@@ -14,7 +14,7 @@ final class ColorPickerPopUpView: BasePopUpView {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureLayout())
         collectionView.backgroundColor = .clear
-        collectionView.register(SetColorCollectionViewCell.self)
+        collectionView.register(ColorPickerCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
@@ -24,13 +24,16 @@ final class ColorPickerPopUpView: BasePopUpView {
     override var containerHeight: CGFloat { 420 }
     override var dismissYPosition: CGFloat { 220 }
     
+    weak var delegate: ColorPickerDelegate?
+    var selectedColor = String()
+    
     // MARK: - Configuration
     override func configureAttributes() {
         super.configureAttributes()
-        addTapGestureForHide()
+        addTapGestureForHide(shouldCancelTouchesInView: false)
     }
     
-    // MARK: - Layout
+    // MARK: - Layouts
     override func configureLayouts() {
         super.configureLayouts()
         container.addSubview(collectionView)
@@ -91,21 +94,46 @@ extension ColorPickerPopUpView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(SetColorCollectionViewCell.self, for: indexPath) else {
+        guard let cell = collectionView.dequeueReusableCell(ColorPickerCell.self, for: indexPath) else {
             return UICollectionViewCell()
         }
         
-        cell.colorImageView.backgroundColor = UIColor(ColorCollection.hexValues[indexPath.row])
+        cell.configure(hexColorString: ColorCollection.hexValues[indexPath.row])
         
-//        
-//        if setColorDataModel.selectedColor == color {
-//            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-//        }
+        if selectedColor == ColorCollection.hexValues[indexPath.row] {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+        } else {
+            collectionView.deselectItem(at: indexPath, animated: false)
+        }
         
         return cell
     }
 }
 
+// MARK: - Delegate
 extension ColorPickerPopUpView: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        triggerHapticFeedback()
+        selectedColor = ColorCollection.hexValues[indexPath.row]
+        
+        // delegate에게 전달
+        if selectedColor == "ColorWell" {
+            delegate?.showColorPickerController()
+        }
+    }
+}
+
+extension ColorPickerPopUpView {
+    /// 유저에게 리액션을 주기 위한 미세한 진동음
+    func triggerHapticFeedback() {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        feedbackGenerator.prepare()
+        feedbackGenerator.impactOccurred()
+    }
+}
+
+/// ColorPickerPopupView에 대한 델리게이트
+protocol ColorPickerDelegate: AnyObject {
+    func showColorPickerController()
+    func completedButtonTapped(_ selectedColorHexString: String)
 }

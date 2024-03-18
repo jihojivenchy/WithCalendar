@@ -105,6 +105,7 @@
 		7CB0C27D2BA53E8F00C621EE /* WCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C27C2BA53E8F00C621EE /* WCButton.swift */; };
 		7CB0C2802BA54F2100C621EE /* BasePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */; };
 		7CB0C2822BA55C0900C621EE /* ColorPickerPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2812BA55C0900C621EE /* ColorPickerPopUpView.swift */; };
+		7CB0C2842BA5A34B00C621EE /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2832BA5A34B00C621EE /* ColorPickerCell.swift */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
 		7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */; };
@@ -261,6 +262,7 @@
 		7CB0C27C2BA53E8F00C621EE /* WCButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCButton.swift; sourceTree = "<group>"; };
 		7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopUpView.swift; sourceTree = "<group>"; };
 		7CB0C2812BA55C0900C621EE /* ColorPickerPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerPopUpView.swift; sourceTree = "<group>"; };
+		7CB0C2832BA5A34B00C621EE /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -1041,6 +1043,7 @@
 			children = (
 				7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */,
 				7CB0C2812BA55C0900C621EE /* ColorPickerPopUpView.swift */,
+				7CB0C2832BA5A34B00C621EE /* ColorPickerCell.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -1394,6 +1397,7 @@
 				7CB4101A29EE615C00DE0710 /* SetColorCollectionViewCell.swift in Sources */,
 				7C51A20E2A10E506009E2801 /* CalendarDataService.swift in Sources */,
 				7CB4108A29FA2CF800DE0710 /* UserData.swift in Sources */,
+				7CB0C2842BA5A34B00C621EE /* ColorPickerCell.swift in Sources */,
 				7CB4104C29EE658000DE0710 /* NotificationViewController.swift in Sources */,
 				7CB4105C29EE665400DE0710 /* LoginViewController.swift in Sources */,
 				7CB40FE429EE5CD400DE0710 /* ParticipantFooterView.swift in Sources */,

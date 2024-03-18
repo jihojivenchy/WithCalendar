@@ -22,6 +22,6 @@ enum ColorCollection {
         "#00925BFF", "#66C28DFF", "#50A196FF", "#52925AFF", "#6ECCAFFF",
         "#FDD3D2FF", "#FCDAE8FF", "#EAA1C0FF", "#FD8687FF", "#C9485BFF",
         "#ABD9FFFF", "#A7B3E2FF", "#92D9E5FF", "#5E9DF6FF", "#277BC0FF",
-        "#FAEFE5FF", "#D9C1AFFF", "#90806BFF", "#9E7677FF", "#6F4C5BFF"
+        "#FAEFE5FF", "#D9C1AFFF", "#90806BFF", "#9E7677FF", "ColorWell"
     ]
 }

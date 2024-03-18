@@ -131,11 +131,15 @@ final class CreateMemoViewController: BaseViewController {
     }
 }
 
-// MARK: - 컬러를 선택에 대한 Delegate
-extension CreateMemoViewController: SetColorDelegate {
-    func selectedColor(color: String) {
-        memoData.fixColor = color
-        pinButton.tintColor = UIColor(color)
+// MARK: - 컬러 팝업뷰의 Delegate
+extension CreateMemoViewController: ColorPickerDelegate {
+    func showColorPickerController() {
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+    }
+    
+    func completedButtonTapped(_ selectedColorHexString: String) {
+        <#code#>
     }
 }
 
@@ -161,7 +165,12 @@ extension CreateMemoViewController {
 extension CreateMemoViewController {
     /// 노티피케이션 추가
     private func addKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification ,
+            object: nil
+        )
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
