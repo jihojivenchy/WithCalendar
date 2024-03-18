@@ -106,6 +106,7 @@
 		7CB0C2802BA54F2100C621EE /* BasePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */; };
 		7CB0C2822BA55C0900C621EE /* ColorPickerPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2812BA55C0900C621EE /* ColorPickerPopUpView.swift */; };
 		7CB0C2842BA5A34B00C621EE /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2832BA5A34B00C621EE /* ColorPickerCell.swift */; };
+		7CB0C2862BA89D5A00C621EE /* UIColor+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB0C2852BA89D5A00C621EE /* UIColor+HexString.swift */; };
 		7CB40FBC29EE38B500DE0710 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */; };
 		7CB40FBE29EE38D300DE0710 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */; };
 		7CB40FC029EE390500DE0710 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */; };
@@ -263,6 +264,7 @@
 		7CB0C27F2BA54F2100C621EE /* BasePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePopUpView.swift; sourceTree = "<group>"; };
 		7CB0C2812BA55C0900C621EE /* ColorPickerPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerPopUpView.swift; sourceTree = "<group>"; };
 		7CB0C2832BA5A34B00C621EE /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
+		7CB0C2852BA89D5A00C621EE /* UIColor+HexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexString.swift"; sourceTree = "<group>"; };
 		7CB40FBB29EE38B500DE0710 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7CB40FBD29EE38D300DE0710 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		7CB40FBF29EE390500DE0710 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 				7CB4107E29F044AC00DE0710 /* DateExtension.swift */,
 				7C2CA3212A07CD2E0055676E /* ArrayExtension.swift */,
 				7CB0C26A2B98DB0600C621EE /* UIImage+.swift */,
+				7CB0C2852BA89D5A00C621EE /* UIColor+HexString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1338,6 +1341,7 @@
 				7CB0C2742B9F2F5A00C621EE /* MemoService.swift in Sources */,
 				7C4C416F2A191A5700787C00 /* FontSizeAdjustmentView.swift in Sources */,
 				7CB40FF629EE5E6E00DE0710 /* ScheduleTableViewCell.swift in Sources */,
+				7CB0C2862BA89D5A00C621EE /* UIColor+HexString.swift in Sources */,
 				7CB40FF429EE5E4100DE0710 /* CalendarCollectionViewCell.swift in Sources */,
 				7CB40FFE29EE5F1F00DE0710 /* AddScheduleDataModel.swift in Sources */,
 				7CB4106229EE66B100DE0710 /* WriteNickNameView.swift in Sources */,

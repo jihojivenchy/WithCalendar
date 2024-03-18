@@ -132,8 +132,10 @@ extension ColorPickerPopUpView {
     }
 }
 
-/// ColorPickerPopupView에 대한 델리게이트
+/// ColorPickerPopupView에 대한 델리게이트 프로토콜
 protocol ColorPickerDelegate: AnyObject {
+    /// ColorPickerPopUpView -> UIColorWell이 들어있는 Cell 클릭 -> Controller에서 ColorPickerVC를 보여주기
     func showColorPickerController()
     func completedButtonTapped(_ selectedColorHexString: String)
 }
+

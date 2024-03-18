@@ -41,7 +41,11 @@ final class CreateMemoViewController: BaseViewController {
     }()
     
     private let loadingView = WCLoadingView()
-    private let colorPickerPopUpView = ColorPickerPopUpView()
+    private lazy var colorPickerPopUpView: ColorPickerPopUpView = {
+        let view = ColorPickerPopUpView()
+        view.delegate = self
+        return view
+    }()
     
     // MARK: - Properties
     private let memoService = MemoService()
@@ -92,14 +96,6 @@ final class CreateMemoViewController: BaseViewController {
         }
     }
     
-    // color를 선택하는 뷰를 보여줌.
-    private func setClipColor() {
-        let vc = SetColorViewController()
-        vc.modalPresentationStyle = .custom
-        vc.setColorDelegate = self
-        present(vc, animated: true)
-    }
-    
     // MARK: - ButtonMethod
     @objc private func pinButtonTapped(_ sender : UIBarButtonItem) {
         textView.endEditing(true)
@@ -134,12 +130,22 @@ final class CreateMemoViewController: BaseViewController {
 // MARK: - 컬러 팝업뷰의 Delegate
 extension CreateMemoViewController: ColorPickerDelegate {
     func showColorPickerController() {
-        let colorPicker = UIColorPickerViewController()
-        colorPicker.delegate = self
+        let colorPickerVC = UIColorPickerViewController()
+        colorPickerVC.delegate = self
+        present(colorPickerVC, animated: true)
     }
     
     func completedButtonTapped(_ selectedColorHexString: String) {
-        <#code#>
+        print("")
+    }
+}
+
+// MARK: - UIColorPickerViewControllerDelegate
+extension CreateMemoViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
+        
+        print(color.hexValue())
+        pinButton.tintColor = UIColor(color.hexValue())
     }
 }
 

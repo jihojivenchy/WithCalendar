@@ -20,14 +20,14 @@ final class ColorPickerCell: BaseCollectionViewCell {
     
     private lazy var colorWell: UIColorWell = {
         let colorWell = UIColorWell()
-        
+        colorWell.isUserInteractionEnabled = false
         return colorWell
     }()
     
     // MARK: - Layouts
     override func configureLayouts() {
-        contentView.addSubview(colorPreviewImageView)
-        contentView.addSubview(colorWell)
+        addSubview(colorPreviewImageView)
+        addSubview(colorWell)
         
         colorPreviewImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
