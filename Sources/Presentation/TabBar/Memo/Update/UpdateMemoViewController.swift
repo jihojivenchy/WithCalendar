@@ -1,14 +1,14 @@
 //
-//  CreateMemoViewController.swift
+//  UpdateMemoViewController.swift
 //  ScheduleCalendarProject
 //
-//  Created by 엄지호 on 2023/04/18.
+//  Created by 엄지호 on 3/19/24.
 //
 
 import UIKit
 import SnapKit
 
-final class CreateMemoViewController: BaseViewController {
+final class UpdateMemoViewController: BaseViewController {
     // MARK: - UI
     private lazy var pinButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
@@ -48,7 +48,7 @@ final class CreateMemoViewController: BaseViewController {
     
     // MARK: - Properties
     private let memoService = MemoService()
-    private var memoData = MemoData(
+    var memoData = MemoData(
         memo: "",
         date: "",
         fix: 0,
@@ -61,7 +61,6 @@ final class CreateMemoViewController: BaseViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
         addKeyboardNotifications()
-        textView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,9 +71,13 @@ final class CreateMemoViewController: BaseViewController {
     // MARK: Configuration
     override func configureAttributes() {
         view.backgroundColor = .customWhiteAndBlackColor
-        navigationItem.title = "메모 작성"
+        navigationItem.title = "메모 수정"
         navigationItem.rightBarButtonItem = pinButton
         enableKeyboardHiding()
+        
+        pinButton.image = memoData.fixColor.isEmpty ? UIImage(systemName: "pin.slash") : UIImage(systemName: "pin")
+        pinButton.tintColor = memoData.fixColor.isEmpty ? .blackAndWhiteColor : UIColor(memoData.fixColor)
+        textView.text = memoData.memo
     }
     
     // MARK: - Layouts
@@ -97,7 +100,7 @@ final class CreateMemoViewController: BaseViewController {
 }
 
 // MARK: - Methods
-extension CreateMemoViewController {
+extension UpdateMemoViewController {
     @objc private func pinButtonTapped(_ sender : UIBarButtonItem) {
         // fixColor가 비어있을 경우, 아직 고정핀 설정을 하지 않았음. 고정핀 컬러 설정 뷰 보여주기
         if memoData.fixColor.isEmpty {
@@ -126,7 +129,7 @@ extension CreateMemoViewController {
 
 
 // MARK: - 컬러 팝업뷰의 Delegate
-extension CreateMemoViewController: ColorPickerDelegate {
+extension UpdateMemoViewController: ColorPickerDelegate {
     func showColorPickerController() {
         let colorPickerVC = UIColorPickerViewController()
         colorPickerVC.delegate = self
@@ -141,14 +144,14 @@ extension CreateMemoViewController: ColorPickerDelegate {
 }
 
 // MARK: - UIColorPickerViewControllerDelegate
-extension CreateMemoViewController: UIColorPickerViewControllerDelegate {
+extension UpdateMemoViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
         colorPickerPopUpView.updateColorCollection(color.hexValue())
     }
 }
 
 // MARK: - 작성한 메모 생성
-extension CreateMemoViewController {
+extension UpdateMemoViewController {
     private func createMemo() {
         loadingView.startLoading()
         
@@ -166,7 +169,7 @@ extension CreateMemoViewController {
 }
 
 // MARK: - Notification
-extension CreateMemoViewController {
+extension UpdateMemoViewController {
     /// 노티피케이션 추가
     private func addKeyboardNotifications() {
         NotificationCenter.default.addObserver(

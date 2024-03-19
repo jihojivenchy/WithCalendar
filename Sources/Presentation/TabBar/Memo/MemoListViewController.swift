@@ -119,9 +119,9 @@ extension MemoListViewController: UITableViewDelegate {
         
         let snapshot = dataSource?.snapshot()
         if let item = snapshot?.itemIdentifiers[indexPath.row] {
-            let vc = EditMemoViewController()
-            vc.memoData = item
-            present(vc, animated: true)
+            let updateMemoVC = UpdateMemoViewController()
+            updateMemoVC.memoData = item
+            navigationController?.pushViewController(updateMemoVC, animated: true)
         }
     }
 }
