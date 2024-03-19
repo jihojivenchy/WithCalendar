@@ -17,7 +17,6 @@ final class CreateMemoViewController: BaseViewController {
             target: self,
             action: #selector(pinButtonTapped(_:))
         )
-    
         return button
     }()
     
@@ -100,10 +99,9 @@ final class CreateMemoViewController: BaseViewController {
 // MARK: - Methods
 extension CreateMemoViewController {
     @objc private func pinButtonTapped(_ sender : UIBarButtonItem) {
-        textView.endEditing(true)
-        
         // fixColor가 비어있을 경우, 아직 고정핀 설정을 하지 않았음. 고정핀 컬러 설정 뷰 보여주기
         if memoData.fixColor.isEmpty {
+            textView.endEditing(true)
             colorPickerPopUpView.show()
             
         } else {  // 원상복구

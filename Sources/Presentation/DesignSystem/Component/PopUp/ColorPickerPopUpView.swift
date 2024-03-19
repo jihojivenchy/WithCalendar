@@ -36,6 +36,7 @@ final class ColorPickerPopUpView: BasePopUpView {
     // MARK: - Configuration
     override func configureAttributes() {
         super.configureAttributes()
+        container.backgroundColor = .whiteAndCustomBlackColor
         addTapGestureForHide(shouldCancelTouchesInView: false)
         completeButton.addTarget(self, action: #selector(completeButtonTapped(_:)), for: .touchUpInside)
     }
