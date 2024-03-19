@@ -61,6 +61,10 @@ extension ColorPickerCell {
         colorPreviewImageView.backgroundColor = UIColor(hexColorString)
         colorPreviewImageView.isHidden = isLastIndex ? true : false
         colorWell.isHidden = isLastIndex ? false : true
-        colorWell.selectedColor = isLastIndex ? UIColor(hexColorString) : nil
+        
+        // Color가 정해졌을 경우에만 설정
+        if hexColorString.isNotEmpty {
+            colorWell.selectedColor = UIColor(hexColorString)
+        }
     }
 }
