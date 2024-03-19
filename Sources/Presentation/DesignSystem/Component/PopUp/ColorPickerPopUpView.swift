@@ -14,6 +14,7 @@ final class ColorPickerPopUpView: BasePopUpView {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureLayout())
         collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = false
         collectionView.register(ColorPickerCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -30,12 +31,13 @@ final class ColorPickerPopUpView: BasePopUpView {
     private var colorCollection = ColorCollection()
     
     /// 선택된 컬러
-    var selectedColor = String()
+    var selectedColorHexString = String()
     
     // MARK: - Configuration
     override func configureAttributes() {
         super.configureAttributes()
         addTapGestureForHide(shouldCancelTouchesInView: false)
+        completeButton.addTarget(self, action: #selector(completeButtonTapped(_:)), for: .touchUpInside)
     }
     
     // MARK: - Layouts
@@ -108,7 +110,7 @@ extension ColorPickerPopUpView: UICollectionViewDataSource {
             isLastIndex: indexPath.row == 19
         )
         
-        if selectedColor == colorCollection.hexValues[indexPath.row] {
+        if selectedColorHexString == colorCollection.hexValues[indexPath.row] {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
         } else {
             collectionView.deselectItem(at: indexPath, animated: false)
@@ -122,7 +124,7 @@ extension ColorPickerPopUpView: UICollectionViewDataSource {
 extension ColorPickerPopUpView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         triggerHapticFeedback()
-        selectedColor = colorCollection.hexValues[indexPath.row]
+        selectedColorHexString = colorCollection.hexValues[indexPath.row]
         
         // 마지막 인덱스일 경우, delegate를 통해 ColorPicker를 보여줌.
         if indexPath.row == 19 {
@@ -131,12 +133,26 @@ extension ColorPickerPopUpView: UICollectionViewDelegate {
     }
 }
 
+// MARK: - Methods
 extension ColorPickerPopUpView {
+    /// ColorPickerVC에 의해 선택된 컬러로 업데이트
+    func updateColorCollection(_ colorHexString: String) {
+        selectedColorHexString = colorHexString
+        colorCollection.hexValues.removeLast()
+        colorCollection.hexValues.append(colorHexString)
+        collectionView.reloadData()
+    }
+    
     /// 유저에게 리액션을 주기 위한 미세한 진동음
     private func triggerHapticFeedback() {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
         feedbackGenerator.prepare()
         feedbackGenerator.impactOccurred()
+    }
+    
+    @objc private func completeButtonTapped(_ sender : UIButton) {
+        delegate?.completedButtonTapped(selectedColorHexString)
+        hide()
     }
 }
 
@@ -145,14 +161,4 @@ protocol ColorPickerDelegate: AnyObject {
     /// ColorPickerPopUpView -> UIColorWell이 들어있는 Cell 클릭 -> Controller에서 ColorPickerVC를 보여주기
     func showColorPickerController()
     func completedButtonTapped(_ selectedColorHexString: String)
-}
-
-extension ColorPickerPopUpView {
-    /// ColorPickerVC에 의해 선택된 컬러로 업데이트
-    func updateColorCollection(_ colorHexString: String) {
-        selectedColor = colorHexString
-        colorCollection.hexValues.removeLast()
-        colorCollection.hexValues.append(colorHexString)
-        collectionView.reloadData()
-    }
 }

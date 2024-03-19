@@ -95,23 +95,22 @@ final class CreateMemoViewController: BaseViewController {
             make.height.equalTo(55)
         }
     }
-    
-    // MARK: - ButtonMethod
+}
+
+// MARK: - Methods
+extension CreateMemoViewController {
     @objc private func pinButtonTapped(_ sender : UIBarButtonItem) {
         textView.endEditing(true)
-        colorPickerPopUpView.show()
-//        // fixColor가 비어있을 경우, 아직 고정핀 설정을 하지 않았음. 고정핀 컬러 설정 뷰 보여주기
-//        if memoData.fixColor.isEmpty {
-//            setClipColor()
-//            memoData.fixColor = "#00925BFF"
-//            pinButton.image = UIImage(systemName: "pin") //클립 이미지 변경.
-//            pinButton.tintColor = .signatureColor
-//            
-//        } else {  // 원상복구
-//            memoData.fixColor = ""
-//            pinButton.image = UIImage(systemName: "pin.slash")
-//            pinButton.tintColor = .blackAndWhiteColor
-//        }
+        
+        // fixColor가 비어있을 경우, 아직 고정핀 설정을 하지 않았음. 고정핀 컬러 설정 뷰 보여주기
+        if memoData.fixColor.isEmpty {
+            colorPickerPopUpView.show()
+            
+        } else {  // 원상복구
+            memoData.fixColor = ""
+            pinButton.image = UIImage(systemName: "pin.slash")
+            pinButton.tintColor = .blackAndWhiteColor
+        }
     }
     
     @objc private func completeButtonTapped(_ sender : UIButton) {
@@ -127,6 +126,7 @@ final class CreateMemoViewController: BaseViewController {
     }
 }
 
+
 // MARK: - 컬러 팝업뷰의 Delegate
 extension CreateMemoViewController: ColorPickerDelegate {
     func showColorPickerController() {
@@ -136,7 +136,9 @@ extension CreateMemoViewController: ColorPickerDelegate {
     }
     
     func completedButtonTapped(_ selectedColorHexString: String) {
-        print("")
+        memoData.fixColor = selectedColorHexString
+        pinButton.image = UIImage(systemName: "pin") //클립 이미지 변경.
+        pinButton.tintColor = UIColor(selectedColorHexString)
     }
 }
 
