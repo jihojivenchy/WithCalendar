@@ -143,9 +143,7 @@ extension CreateMemoViewController: ColorPickerDelegate {
 // MARK: - UIColorPickerViewControllerDelegate
 extension CreateMemoViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
-        
-        print(color.hexValue())
-        pinButton.tintColor = UIColor(color.hexValue())
+        colorPickerPopUpView.updateColorCollection(color.hexValue())
     }
 }
 

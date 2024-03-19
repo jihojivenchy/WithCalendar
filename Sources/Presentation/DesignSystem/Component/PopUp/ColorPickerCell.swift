@@ -57,9 +57,10 @@ final class ColorPickerCell: BaseCollectionViewCell {
 
 // MARK: - Configure
 extension ColorPickerCell {
-    func configure(hexColorString: String) {
+    func configure(hexColorString: String, isLastIndex: Bool) {
         colorPreviewImageView.backgroundColor = UIColor(hexColorString)
-        colorPreviewImageView.isHidden = hexColorString == "ColorWell" ? true : false
-        colorWell.isHidden = hexColorString == "ColorWell" ? false : true
+        colorPreviewImageView.isHidden = isLastIndex ? true : false
+        colorWell.isHidden = isLastIndex ? false : true
+        colorWell.selectedColor = isLastIndex ? UIColor(hexColorString) : nil
     }
 }
