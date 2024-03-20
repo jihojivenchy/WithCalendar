@@ -59,6 +59,7 @@ final class CreateMemoViewController: BaseViewController {
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureNavigationBarAppearance()
         tabBarController?.tabBar.isHidden = true
         addKeyboardNotifications()
         textView.becomeFirstResponder()

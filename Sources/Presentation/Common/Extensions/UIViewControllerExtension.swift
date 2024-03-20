@@ -95,6 +95,7 @@ extension UIViewController {
         appearance.configureWithTransparentBackground()
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.tintColor = .blackAndWhiteColor
     }
