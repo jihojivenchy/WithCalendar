@@ -1,0 +1,68 @@
+//
+//  MenuCell.swift
+//  ScheduleCalendarProject
+//
+//  Created by 엄지호 on 3/21/24.
+//
+
+import UIKit
+import SnapKit
+
+final class MenuCell: BaseTableViewCell {
+    // MARK: - UI
+    private let backgroundContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .whiteAndCustomBlackColor
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    private let menuImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.tintColor = .blackAndWhiteColor
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .blackAndWhiteColor
+        label.font = .boldSystemFont(ofSize: 16)
+        label.lineBreakMode = .byTruncatingTail
+        return label
+    }()
+    
+    // MARK: - Layouts
+    override func configureLayouts() {
+        addSubview(backgroundContainer)
+        backgroundContainer.addSubview(menuImageView)
+        backgroundContainer.addSubview(titleLabel)
+        
+        // 컨테이너
+        backgroundContainer.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(5)
+            make.left.right.equalToSuperview().inset(10)
+        }
+        
+        menuImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().inset(15)
+            make.width.height.equalTo(22)
+        }
+    
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(menuImageView.snp.right).offset(20)
+            make.right.equalToSuperview()
+        }
+    }
+}
+
+// MARK: - Configuration
+extension MenuCell {
+    func configure(menuItem: MenuItem) {
+        titleLabel.text = menuItem.title
+        menuImageView.image = UIImage(systemName: menuItem.imageName)
+    }
+}

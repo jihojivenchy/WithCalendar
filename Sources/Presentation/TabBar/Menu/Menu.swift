@@ -26,7 +26,7 @@ enum Menu: String {
         case .notificationList: return "list.bullet.rectangle.portrait"
         case .font: return "pencil"
         case .feedback: return "bubble.right"
-        case .signIn: return "rectangle.portrait.and.arrow.right"
+        case .signIn: return "iphone.and.arrow.forward"
         case .signOut: return "rectangle.portrait.and.arrow.right"
         }
     }

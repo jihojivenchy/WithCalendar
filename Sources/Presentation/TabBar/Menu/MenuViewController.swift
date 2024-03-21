@@ -14,6 +14,7 @@ final class MenuViewController: BaseViewController {
     private lazy var menuTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(MenuTableViewCell.self)
+        tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 70
         tableView.separatorStyle = .none
@@ -31,10 +32,8 @@ final class MenuViewController: BaseViewController {
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-//        checkUserLoggedInForMenuOption()
-//        
+        checkLoginStatus()
+   
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
     }
@@ -54,14 +53,10 @@ final class MenuViewController: BaseViewController {
         }
     }
     
-//    private func checkUserLoggedInForMenuOption() {
-//        menuDataModel.configureMenuForStatus()
-//        menuView.menuTableview.reloadData()
-//    } //유저가 로그인을 했는지에 따라 메뉴옵션을 변경.
-
-    
+    /// 유저의 로그인 상태 체크 및 테이블 뷰 업데이트
     private func checkLoginStatus() {
         isLoggedIn = Auth.auth().currentUser != nil
+        menuTableView.reloadData()
     }
     
     //MARK: - CellClickedMethod
@@ -121,15 +116,10 @@ extension MenuViewController : UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        let menuItem = menuDataModel.sections[indexPath.section].items[indexPath.row]
-        cell.titleLabel.text = menuItem.title
-        cell.actionImageView.image = UIImage(systemName: menuItem.imageName)
+        let menuItems = isLoggedIn ? Menu.signedInMenuItems : Menu.signedOutMenuItems
         
-    
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.whiteAndCustomBlackColor
-        cell.selectedBackgroundView = backgroundView
-        
+        cell.titleLabel.text = menuItems[indexPath.row].rawValue
+        cell.actionImageView.image = UIImage(systemName: menuItems[indexPath.row].imageName)
         cell.accessoryType = .disclosureIndicator
         
         return cell
@@ -141,64 +131,28 @@ extension MenuViewController : UITableViewDataSource, UITableViewDelegate {
         
         triggerHapticFeedback() //유저에게 리액션을 주기 위한 미세한 진동음.
         
-        if indexPath.section == 0, indexPath.row == 0{ //프로필 설정
-            myProfileCellCliked()
-            
-        }else if indexPath.section == 0, indexPath.row == 1 { //화면 설정
-            displaymodeCellCliked()
-            
-        }else if indexPath.section == 1, indexPath.row == 0 { //알림 설정
-            notificationCellCliked()
-            
-        }else if indexPath.section == 1, indexPath.row == 1 { //알림 리스트.
-            notiManagerCellCliked()
-            
-        }else if indexPath.section == 1, indexPath.row == 2{ //폰트 설정.
-            fontSizeAdjustCellCliked()
-            
-        }else if indexPath.section == 2, indexPath.row == 0 { //피드백
-            feedBackCellCliked()
-            
-        }else{ //로그아웃
-            logInOrOutCellCliked()
-        }
-        
-    }
-    
-    //각 헤더에 텍스트 넣기
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = configureHeaderView(at: section)
-        return headerView
-    }
-    
-    //각 헤더의 높이.
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        switch section {
-        case 0:
-            return 0 // Change to the desired height
-        
-        default:
-            return 40 // Change to the desired height
-        }
-    }
-    
-    private func configureHeaderView(at section: Int) -> UIView {
-        let headerView = UIView()
-        headerView.backgroundColor = .clear
-
-        let headerLabel = UILabel()
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 19)
-        headerLabel.textColor = .blackAndWhiteColor
-        headerLabel.text = menuDataModel.sections[section].title
-        
-        headerView.addSubview(headerLabel)
-        headerLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalToSuperview().inset(10)
-        }
-
-        return headerView
+//        if indexPath.section == 0, indexPath.row == 0{ //프로필 설정
+//            myProfileCellCliked()
+//            
+//        }else if indexPath.section == 0, indexPath.row == 1 { //화면 설정
+//            displaymodeCellCliked()
+//            
+//        }else if indexPath.section == 1, indexPath.row == 0 { //알림 설정
+//            notificationCellCliked()
+//            
+//        }else if indexPath.section == 1, indexPath.row == 1 { //알림 리스트.
+//            notiManagerCellCliked()
+//            
+//        }else if indexPath.section == 1, indexPath.row == 2{ //폰트 설정.
+//            fontSizeAdjustCellCliked()
+//            
+//        }else if indexPath.section == 2, indexPath.row == 0 { //피드백
+//            feedBackCellCliked()
+//            
+//        }else{ //로그아웃
+//            logInOrOutCellCliked()
+//        }
+//        
     }
 }
 
