@@ -60,6 +60,7 @@
 		7C6203372B6BA66400438E69 /* WCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203362B6BA66400438E69 /* WCTextField.swift */; };
 		7C6203392B6BA68500438E69 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6203382B6BA68500438E69 /* BaseTextField.swift */; };
 		7C62033B2B6BB16900438E69 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C62033A2B6BB16900438E69 /* TextFieldEffects.swift */; };
+		7C7EE61F2BAC5A2500F4FCE5 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE61E2BAC5A2500F4FCE5 /* Menu.swift */; };
 		7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */; };
 		7C9BE7662B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7652B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion */; };
 		7C9BE7682B6A66BE009A1CFD /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7672B6A66BE009A1CFD /* FirebaseAnalyticsSwift */; };
@@ -250,6 +251,7 @@
 		7C6203362B6BA66400438E69 /* WCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTextField.swift; sourceTree = "<group>"; };
 		7C6203382B6BA68500438E69 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		7C62033A2B6BB16900438E69 /* TextFieldEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		7C7EE61E2BAC5A2500F4FCE5 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		7CB0C2652B98C80C00C621EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CB0C2682B98DA9900C621EE /* TabBarPageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPageType.swift; sourceTree = "<group>"; };
 		7CB0C26A2B98DB0600C621EE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 		7C6202F92B6B4AF300438E69 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				7C7EE61E2BAC5A2500F4FCE5 /* Menu.swift */,
 				7CB4103929EE648D00DE0710 /* MenuViewController.swift */,
 				7CB4103B29EE649900DE0710 /* MenuView.swift */,
 				7CB4103D29EE64A300DE0710 /* MenuTableViewCell.swift */,
@@ -1394,6 +1397,7 @@
 				7CB4104029EE64E600DE0710 /* MyProfileDataModel.swift in Sources */,
 				7CB4105229EE65CC00DE0710 /* FeedBackView.swift in Sources */,
 				7CB4103A29EE648D00DE0710 /* MenuViewController.swift in Sources */,
+				7C7EE61F2BAC5A2500F4FCE5 /* Menu.swift in Sources */,
 				7CB4101A29EE615C00DE0710 /* SetColorCollectionViewCell.swift in Sources */,
 				7C51A20E2A10E506009E2801 /* CalendarDataService.swift in Sources */,
 				7CB4108A29FA2CF800DE0710 /* UserData.swift in Sources */,

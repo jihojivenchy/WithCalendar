@@ -8,11 +8,6 @@
 import Foundation
 import FirebaseAuth
 
-struct MenuItem {
-    let title: String
-    let imageName: String
-}
-
 struct MenuSection {
     let title: String
     var items: [MenuItem]

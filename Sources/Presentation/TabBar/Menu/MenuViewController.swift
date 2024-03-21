@@ -20,9 +20,8 @@ final class MenuViewController: BaseViewController {
         return tableView
     }()
     
-    
     // MARK: - Properties
-    final var menuDataModel = MenuDataModel()
+//    final var menuDataModel = MenuDataModel()
     final let menuDataService = MenuDataService()
     
     
@@ -30,8 +29,8 @@ final class MenuViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        checkUserLoggedInForMenuOption()
-        
+//        checkUserLoggedInForMenuOption()
+//        
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
     }
@@ -51,15 +50,11 @@ final class MenuViewController: BaseViewController {
         }
     }
     
-    private func checkUserLoggedInForMenuOption() {
-        menuDataModel.configureMenuForStatus()
-        menuView.menuTableview.reloadData()
-    } //유저가 로그인을 했는지에 따라 메뉴옵션을 변경.
+//    private func checkUserLoggedInForMenuOption() {
+//        menuDataModel.configureMenuForStatus()
+//        menuView.menuTableview.reloadData()
+//    } //유저가 로그인을 했는지에 따라 메뉴옵션을 변경.
 
-    //MARK: - ButtonMethod
-    @objc private func addButtonPressed(_ sender : UIBarButtonItem) {
-        self.navigationController?.pushViewController(CreateMemoViewController(), animated: true)
-    }
     
     //MARK: - CellClickedMethod
     private func myProfileCellCliked() {
@@ -93,13 +88,13 @@ final class MenuViewController: BaseViewController {
     }
     
     private func feedBackCellCliked() {
-        guard menuDataModel.isUserLoggedIn() else {
-            showAlert(title: "로그인", message: "로그인이 필요한 서비스입니다.")
-            return
-        }
-        
-        let vc = FeedBackViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        guard menuDataModel.isUserLoggedIn() else {
+//            showAlert(title: "로그인", message: "로그인이 필요한 서비스입니다.")
+//            return
+//        }
+//        
+//        let vc = FeedBackViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func logInOrOutCellCliked() {
@@ -109,12 +104,8 @@ final class MenuViewController: BaseViewController {
 
 //MARK: - Extension
 extension MenuViewController : UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return menuDataModel.sections.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuDataModel.sections[section].items.count
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
