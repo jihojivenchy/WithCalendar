@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 
 final class MenuViewController: BaseViewController {
     // MARK: - UI
@@ -21,13 +22,16 @@ final class MenuViewController: BaseViewController {
     }()
     
     // MARK: - Properties
-//    final var menuDataModel = MenuDataModel()
+    /// 유저 로그인 상태 체크
+    private var isLoggedIn = false
+    final var menuDataModel = MenuDataModel()
     final let menuDataService = MenuDataService()
     
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         
 //        checkUserLoggedInForMenuOption()
 //        
@@ -55,6 +59,10 @@ final class MenuViewController: BaseViewController {
 //        menuView.menuTableview.reloadData()
 //    } //유저가 로그인을 했는지에 따라 메뉴옵션을 변경.
 
+    
+    private func checkLoginStatus() {
+        isLoggedIn = Auth.auth().currentUser != nil
+    }
     
     //MARK: - CellClickedMethod
     private func myProfileCellCliked() {
@@ -109,7 +117,9 @@ extension MenuViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.identifier, for: indexPath) as! MenuTableViewCell
+        guard let cell = tableView.dequeueReusableCell(MenuTableViewCell.self, for: indexPath) else {
+            return UITableViewCell()
+        }
         
         let menuItem = menuDataModel.sections[indexPath.section].items[indexPath.row]
         cell.titleLabel.text = menuItem.title
