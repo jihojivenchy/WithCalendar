@@ -126,7 +126,6 @@ extension MemoListViewController {
 // MARK: - Delegate
 extension MemoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)  // cell을 클릭했을 때 애니메이션 구현
         triggerHapticFeedback() //유저에게 리액션을 주기 위한 미세한 진동음.
         
         let snapshot = dataSource?.snapshot()

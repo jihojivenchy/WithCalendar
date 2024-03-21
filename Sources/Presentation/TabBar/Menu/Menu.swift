@@ -34,14 +34,14 @@ enum Menu: String {
     /// 로그인 되었을 때, 메뉴 리스트
     static var signedInMenuItems: [Menu] {
         return [
-            .profile, .displayMode, .notification, .notificationList, .font, .signOut
+            .profile, .displayMode, .notification, .notificationList, .font, .feedback, .signOut
         ]
     }
     
     /// 로그아웃 상태일 때, 메뉴 리스트
     static var signedOutMenuItems: [Menu] {
         return [
-            .profile, .displayMode, .notification, .notificationList, .font, .signIn
+            .displayMode, .notification, .notificationList, .font, .signIn
         ]
     }
 }

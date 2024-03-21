@@ -50,7 +50,7 @@ final class MenuCell: BaseTableViewCell {
         
         // 컨테이너
         backgroundContainer.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(7)
+            make.top.bottom.equalToSuperview().inset(6)
             make.left.right.equalToSuperview().inset(10)
         }
         

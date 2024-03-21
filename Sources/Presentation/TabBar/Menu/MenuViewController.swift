@@ -60,56 +60,16 @@ final class MenuViewController: BaseViewController {
         menuTableView.reloadData()
     }
     
-    //MARK: - CellClickedMethod
-    private func myProfileCellCliked() {
-        guard isUserLoggedIn() else {
-            showAlert(title: "로그인", message: "로그인이 필요한 서비스입니다.")
-            return
-        }
-        
-        let vc = MyProfileViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func displaymodeCellCliked() {
-        let vc = DisplayModeViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func notificationCellCliked() {
-        let vc = NotificationViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func notiManagerCellCliked() {
-//        let vc = NotificationManagerViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func fontSizeAdjustCellCliked() {
-        let vc = FontSizeAdjustmentViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func feedBackCellCliked() {
-//        guard menuDataModel.isUserLoggedIn() else {
-//            showAlert(title: "로그인", message: "로그인이 필요한 서비스입니다.")
-//            return
-//        }
-//        
-//        let vc = FeedBackViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func logInOrOutCellCliked() {
-        loginAlert()
+    /// 로그인 여부에 따라 메뉴 리스트 조회
+    private func getCurrentMenuItems() -> [Menu] {
+        return isLoggedIn ? Menu.signedInMenuItems : Menu.signedOutMenuItems
     }
 }
 
 // MARK: - Data Source
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return getCurrentMenuItems().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,7 +77,7 @@ extension MenuViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let menuItems = isLoggedIn ? Menu.signedInMenuItems : Menu.signedOutMenuItems
+        let menuItems = getCurrentMenuItems()
         
         cell.configure(menuItem: MenuItem(
             title: menuItems[indexPath.row].rawValue,
@@ -128,37 +88,87 @@ extension MenuViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - Delegate
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)  // cell을 클릭했을 때 애니메이션 구현
         triggerHapticFeedback()  // 유저에게 리액션을 주기 위한 미세한 진동음.
         
-        
-        
-//        if indexPath.section == 0, indexPath.row == 0{ //프로필 설정
-//            myProfileCellCliked()
-//
-//        }else if indexPath.section == 0, indexPath.row == 1 { //화면 설정
-//            displaymodeCellCliked()
-//
-//        }else if indexPath.section == 1, indexPath.row == 0 { //알림 설정
-//            notificationCellCliked()
-//
-//        }else if indexPath.section == 1, indexPath.row == 1 { //알림 리스트.
-//            notiManagerCellCliked()
-//
-//        }else if indexPath.section == 1, indexPath.row == 2{ //폰트 설정.
-//            fontSizeAdjustCellCliked()
-//
-//        }else if indexPath.section == 2, indexPath.row == 0 { //피드백
-//            feedBackCellCliked()
-//
-//        }else{ //로그아웃
-//            logInOrOutCellCliked()
-//        }
-//
+        let menuItems = getCurrentMenuItems()
+        let selectedItem = menuItems[indexPath.row]
+
+        switch selectedItem {
+        case .profile:
+            goToProfile()           // 프로필 이동
+            
+        case .displayMode:
+            goToSetDisplayMode()    // 디스플레이 모드
+            
+        case .notification:
+            goToSetNotification()   // 알림 설정
+            
+        case .notificationList:
+            goToNotificationList()  // 알림 리스트
+            
+        case .font:
+            goToSetFont()           // 폰트 설정
+            
+        case .feedback:
+            goToFeedBack()          // 피드백
+            
+        case .signIn:
+            signIn()                // 로그인
+            
+        case .signOut:
+            signOut()               // 로그아웃
+        }
     }
 }
+
+// MARK: - Menu 아이템 클릭
+extension MenuViewController {
+    private func goToProfile() {
+        let vc = MyProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func goToSetDisplayMode() {
+        let vc = DisplayModeViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func goToSetNotification() {
+        let vc = NotificationViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func goToNotificationList() {
+//        let vc = NotificationManagerViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func goToSetFont() {
+        let vc = FontSizeAdjustmentViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func goToFeedBack() {
+        let vc = FeedBackViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func signIn() {
+        
+    }
+    
+    private func signOut() {
+        
+    }
+    
+    private func logInOrOutCellCliked() {
+        loginAlert()
+    }
+}
+
 
 //MARK: - 로그인과 로그아웃에 관한 작업.
 extension MenuViewController {
