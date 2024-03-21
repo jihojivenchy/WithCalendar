@@ -71,6 +71,7 @@ final class MemoListViewController: BaseViewController {
     
     // MARK: Configuration
     override func configureAttributes() {
+        view.backgroundColor = .customWhiteAndBlackColor
         navigationItem.title = "메모"
         navigationItem.rightBarButtonItem = createMemoButton
         configureNavigationBarAppearance()
@@ -79,7 +80,7 @@ final class MemoListViewController: BaseViewController {
     
     // MARK: - Layouts
     override func configureLayouts() {
-        view.backgroundColor = .customWhiteAndBlackColor
+        
         view.addSubview(memoListTableView)
         memoListTableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)

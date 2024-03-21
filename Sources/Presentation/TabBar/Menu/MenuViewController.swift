@@ -8,56 +8,47 @@
 import UIKit
 import SnapKit
 
-final class MenuViewController: UIViewController {
-    //MARK: - Properties
-    final var menuDataModel = MenuDataModel()
-    final let menuDataService = MenuDataService()
-    final let menuView = MenuView() //View
-    
-    private lazy var navigationBackButton : UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
-        return button
+final class MenuViewController: BaseViewController {
+    // MARK: - UI
+    private lazy var menuTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(MenuTableViewCell.self)
+        tableView.delegate = self
+        tableView.rowHeight = 70
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        return tableView
     }()
     
-    //MARK: - LifeCycle
+    
+    // MARK: - Properties
+    final var menuDataModel = MenuDataModel()
+    final let menuDataService = MenuDataService()
+    
+    
+    // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         checkUserLoggedInForMenuOption()
         
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupSubViews()
-        setupNavigationBar()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        tabBarController?.tabBar.isHidden = false
     }
     
-    //MARK: - ViewMethod
-    private func setupSubViews() {
+    // MARK: - Configuration
+    override func configureAttributes() {
         view.backgroundColor = .customWhiteAndBlackColor
-        
-        view.addSubview(menuView)
-        menuView.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        menuView.menuTableview.delegate = self
-        menuView.menuTableview.dataSource = self
+        configureNavigationBarAppearance()
+        navigationItem.title = "메뉴"
     }
     
-    private func setupNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        navigationItem.standardAppearance = appearance
-        navigationItem.scrollEdgeAppearance = appearance
-        
-        navigationItem.title = "메뉴"
-        navigationItem.backBarButtonItem = navigationBackButton
-        navigationController?.navigationBar.tintColor = .blackAndWhiteColor
+    // MARK: - Layouts
+    override func configureLayouts() {
+        view.addSubview(menuTableView)
+        menuTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     private func checkUserLoggedInForMenuOption() {
