@@ -47,6 +47,8 @@ final class MemoListViewController: BaseViewController {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MemoData>
     private var dataSource: DataSource?
     
+    // MARK: - Task
+    private var fetchMemoListTask: Task<Void, Never>?
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -57,6 +59,14 @@ final class MemoListViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         fetchMemoList()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // 뷰가 사라질 때, 수행하고 있는 작업이 없도록 작업 캔슬
+        fetchMemoListTask?.cancel()
+        fetchMemoListTask = nil
     }
     
     // MARK: Configuration
@@ -112,6 +122,7 @@ extension MemoListViewController {
     }
 }
 
+// MARK: - Delegate
 extension MemoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) //cell을 클릭했을 때 애니메이션 구현
@@ -168,9 +179,11 @@ extension MemoListViewController : MemoCellDelegate {
 extension MemoListViewController {
     /// 메모 리스트 조회
     private func fetchMemoList() {
+        guard fetchMemoListTask == nil else { return }  // 중복 작업이 없도록
         loadingView.startLoading()
         
-        Task {
+        // 메모 조회 시작
+        fetchMemoListTask = Task {
             do {
                 let memoList = try await memoService.fetchMemoList()
                 applySectionSnapshot(with: memoList)
@@ -179,6 +192,7 @@ extension MemoListViewController {
                 showErrorAlert(error)
             }
             loadingView.stopLoading()
+            fetchMemoListTask = nil  // 새로운 작업을 담을 수 있도록
         }
     }
     
