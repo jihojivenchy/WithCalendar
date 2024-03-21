@@ -13,10 +13,10 @@ final class MenuViewController: BaseViewController {
     // MARK: - UI
     private lazy var menuTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(MenuTableViewCell.self)
+        tableView.register(MenuCell.self)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 70
+        tableView.rowHeight = 73
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
@@ -49,7 +49,8 @@ final class MenuViewController: BaseViewController {
     override func configureLayouts() {
         view.addSubview(menuTableView)
         menuTableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.left.bottom.right.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -105,54 +106,57 @@ final class MenuViewController: BaseViewController {
     }
 }
 
-//MARK: - Extension
-extension MenuViewController : UITableViewDataSource, UITableViewDelegate {
+// MARK: - Data Source
+extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(MenuTableViewCell.self, for: indexPath) else {
+        guard let cell = tableView.dequeueReusableCell(MenuCell.self, for: indexPath) else {
             return UITableViewCell()
         }
         
         let menuItems = isLoggedIn ? Menu.signedInMenuItems : Menu.signedOutMenuItems
         
-        cell.titleLabel.text = menuItems[indexPath.row].rawValue
-        cell.actionImageView.image = UIImage(systemName: menuItems[indexPath.row].imageName)
-        cell.accessoryType = .disclosureIndicator
+        cell.configure(menuItem: MenuItem(
+            title: menuItems[indexPath.row].rawValue,
+            imageName: menuItems[indexPath.row].imageName
+        ))
         
         return cell
-        
     }
-    
+}
+
+extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true) //cell을 클릭했을 때 애니메이션 구현
+        tableView.deselectRow(at: indexPath, animated: true)  // cell을 클릭했을 때 애니메이션 구현
+        triggerHapticFeedback()  // 유저에게 리액션을 주기 위한 미세한 진동음.
         
-        triggerHapticFeedback() //유저에게 리액션을 주기 위한 미세한 진동음.
+        
         
 //        if indexPath.section == 0, indexPath.row == 0{ //프로필 설정
 //            myProfileCellCliked()
-//            
+//
 //        }else if indexPath.section == 0, indexPath.row == 1 { //화면 설정
 //            displaymodeCellCliked()
-//            
+//
 //        }else if indexPath.section == 1, indexPath.row == 0 { //알림 설정
 //            notificationCellCliked()
-//            
+//
 //        }else if indexPath.section == 1, indexPath.row == 1 { //알림 리스트.
 //            notiManagerCellCliked()
-//            
+//
 //        }else if indexPath.section == 1, indexPath.row == 2{ //폰트 설정.
 //            fontSizeAdjustCellCliked()
-//            
+//
 //        }else if indexPath.section == 2, indexPath.row == 0 { //피드백
 //            feedBackCellCliked()
-//            
+//
 //        }else{ //로그아웃
 //            logInOrOutCellCliked()
 //        }
-//        
+//
     }
 }
 

@@ -33,15 +33,24 @@ final class MenuCell: BaseTableViewCell {
         return label
     }()
     
+    private let arrowImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "chevron.right")
+        imageView.tintColor = .lightGray
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     // MARK: - Layouts
     override func configureLayouts() {
         addSubview(backgroundContainer)
         backgroundContainer.addSubview(menuImageView)
         backgroundContainer.addSubview(titleLabel)
+        backgroundContainer.addSubview(arrowImageView)
         
         // 컨테이너
         backgroundContainer.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(5)
+            make.top.bottom.equalToSuperview().inset(7)
             make.left.right.equalToSuperview().inset(10)
         }
         
@@ -53,8 +62,15 @@ final class MenuCell: BaseTableViewCell {
     
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(menuImageView.snp.right).offset(20)
-            make.right.equalToSuperview()
+            make.left.equalTo(menuImageView.snp.right).offset(11)
+            make.right.equalToSuperview().inset(100)
+        }
+        
+        arrowImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().inset(10)
+            make.width.equalTo(20)
+            make.height.equalTo(17)
         }
     }
 }
