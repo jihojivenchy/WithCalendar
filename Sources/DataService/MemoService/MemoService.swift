@@ -47,7 +47,7 @@ struct MemoService {
         return memoList
     }
     
-    // 메모 삭제
+    /// 메모 삭제
     func deleteMemo(documentID : String) async throws {
         // 유저 정보 가져오기
         guard let user = Auth.auth().currentUser else {
@@ -58,12 +58,27 @@ struct MemoService {
         try await documentReference.delete()
     }
     
+    /// 메모 생성
     func createMemo(_ memoData: MemoData) async throws {
         guard let user = Auth.auth().currentUser else { return }
         
         let collectionReference = db.collection("\(user.uid).메모")
         
         try await collectionReference.addDocument(data: [
+            "memo" : memoData.memo,
+            "date" : memoData.date,
+            "fix" : memoData.fix,
+            "fixColor" : memoData.fixColor
+        ])
+    }
+    
+    /// 메모 수정
+    func updateMemo(_ memoData: MemoData) async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        let documentReference = db.collection("\(user.uid).메모").document(memoData.documentID)
+        
+        try await documentReference.updateData([
             "memo" : memoData.memo,
             "date" : memoData.date,
             "fix" : memoData.fix,

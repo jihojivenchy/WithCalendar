@@ -128,23 +128,11 @@ extension UpdateMemoViewController {
     @objc private func deleteButtonTapped(_ sender : UIBarButtonItem) {
         let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
             guard let self else { return }
-            self.deleteMemo(documentID: self.memoData.documentID)
+            self.deleteMemo()
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         showAlert(title: "삭제", message: "메모를 삭제하시겠습니까?", actions: [action, cancelAction])
-    }
-    
-    /// 메모 삭제
-    private func deleteMemo(documentID: String) {
-        Task {
-            do {
-                try await memoService.deleteMemo(documentID: documentID)
-                navigationController?.popViewController(animated: true)
-            } catch {
-                showAlert(title: "오류", message: error.localizedDescription)
-            }
-        }
     }
     
     @objc private func completeButtonTapped(_ sender : UIButton) {
@@ -156,7 +144,7 @@ extension UpdateMemoViewController {
         memoData.date = Date().convertDateToString(format: "yyyy년 MM월 dd일 HH시 mm분")
         memoData.memo = text
         memoData.fix = memoData.fixColor.isEmpty ? 0 : 1
-        createMemo()
+        updateMemo()
     }
 }
 
@@ -183,20 +171,32 @@ extension UpdateMemoViewController: UIColorPickerViewControllerDelegate {
     }
 }
 
-// MARK: - 작성한 메모 생성
+// MARK: - 작성한 메모 수정 & 삭제
 extension UpdateMemoViewController {
-    private func createMemo() {
+    private func updateMemo() {
         loadingView.startLoading()
         
         Task {
             do {
-                try await memoService.createMemo(memoData)
+                try await memoService.updateMemo(memoData)
                 navigationController?.popViewController(animated: true)
                 
             } catch {
                 showAlert(title: "오류", message: error.localizedDescription)
             }
             loadingView.stopLoading()
+        }
+    }
+    
+    /// 메모 삭제
+    private func deleteMemo() {
+        Task {
+            do {
+                try await memoService.deleteMemo(documentID: memoData.documentID)
+                navigationController?.popViewController(animated: true)
+            } catch {
+                showAlert(title: "오류", message: error.localizedDescription)
+            }
         }
     }
 }
