@@ -6,47 +6,44 @@
 //
 
 import Foundation
+import FirebaseAuth
 
-enum Menu: String {
-    case profile = "프로필 설정"
-    case displayMode = "화면 설정"
-    case notification = "알림 설정"
-    case notificationList = "알림 리스트"
-    case font = "폰트 설정"
-    case feedback = "피드백"
-    case signIn = "로그인"
-    case signOut = "로그아웃"
+struct Menu {
+    var isLoggedIn: Bool = false
+    var sections: [MenuSection] = [
+        MenuSection(title: "", items: [
+            MenuItem(title: "프로필 설정", imageName: "person"),
+            MenuItem(title: "화면 설정", imageName: "display")
+        ]),
+        MenuSection(title: "기능", items: [
+            MenuItem(title: "알림 설정", imageName: "bell"),
+            MenuItem(title: "알림 리스트", imageName: "list.bullet.rectangle.portrait"),
+            MenuItem(title: "폰트 설정", imageName: "pencil")
+        ]),
+        MenuSection(title: "기타", items: [
+            MenuItem(title: "피드백", imageName: "bubble.right"),
+            MenuItem(title: "로그인", imageName: "iphone.and.arrow.forward")
+        ])
+    ]
     
-    /// 메뉴에 표시할 시스템 이미지 이름
-    var imageName: String {
-        switch self {
-        case .profile: return "person"
-        case .displayMode: return "display"
-        case .notification: return "bell"
-        case .notificationList: return "list.bullet.rectangle.portrait"
-        case .font: return "pencil"
-        case .feedback: return "bubble.right"
-        case .signIn: return "iphone.and.arrow.forward"
-        case .signOut: return "rectangle.portrait.and.arrow.right"
+    /// 로그인 상태에 따라 메뉴 아이템이 달라짐
+    mutating func updateMenu() {
+        isLoggedIn = Auth.auth().currentUser != nil
+        
+        if isLoggedIn {
+            sections[2].items[1] = MenuItem(title: "로그아웃", imageName: "rectangle.portrait.and.arrow.right")
+        } else {
+            sections[2].items[1] = MenuItem(title: "로그인", imageName: "iphone.and.arrow.forward")
         }
-    }
-    
-    /// 로그인 되었을 때, 메뉴 리스트
-    static var signedInMenuItems: [Menu] {
-        return [
-            .profile, .displayMode, .notification, .notificationList, .font, .feedback, .signOut
-        ]
-    }
-    
-    /// 로그아웃 상태일 때, 메뉴 리스트
-    static var signedOutMenuItems: [Menu] {
-        return [
-            .displayMode, .notification, .notificationList, .font, .signIn
-        ]
     }
 }
 
 struct MenuItem {
     let title: String
     let imageName: String
+}
+
+struct MenuSection {
+    let title: String
+    var items: [MenuItem]
 }

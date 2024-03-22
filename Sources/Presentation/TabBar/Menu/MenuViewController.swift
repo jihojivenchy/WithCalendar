@@ -25,7 +25,8 @@ final class MenuViewController: BaseViewController {
     
     // MARK: - Properties
     /// 유저 로그인 상태 체크
-    private var isLoggedIn = false
+    private var menu = Menu()
+    
     final var menuDataModel = MenuDataModel()
     final let menuDataService = MenuDataService()
     
@@ -56,20 +57,15 @@ final class MenuViewController: BaseViewController {
     
     /// 유저의 로그인 상태 체크 및 테이블 뷰 업데이트
     private func checkLoginStatus() {
-        isLoggedIn = Auth.auth().currentUser != nil
+        menu.updateMenu()
         menuTableView.reloadData()
-    }
-    
-    /// 로그인 여부에 따라 메뉴 리스트 조회
-    private func getCurrentMenuItems() -> [Menu] {
-        return isLoggedIn ? Menu.signedInMenuItems : Menu.signedOutMenuItems
     }
 }
 
 // MARK: - Data Source
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getCurrentMenuItems().count
+        return menu.sections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,12 +73,8 @@ extension MenuViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let menuItems = getCurrentMenuItems()
-        
-        cell.configure(menuItem: MenuItem(
-            title: menuItems[indexPath.row].rawValue,
-            imageName: menuItems[indexPath.row].imageName
-        ))
+        let menuItem = menu.sections[indexPath.section].items[indexPath.row]
+        cell.configure(menuItem: menuItem)
         
         return cell
     }
@@ -93,33 +85,35 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         triggerHapticFeedback()  // 유저에게 리액션을 주기 위한 미세한 진동음.
         
-        let menuItems = getCurrentMenuItems()
-        let selectedItem = menuItems[indexPath.row]
+        let selectedItem = menu.sections[indexPath.section].items[indexPath.row]
 
-        switch selectedItem {
-        case .profile:
+        switch selectedItem.title {
+        case "프로필 설정":
             goToProfile()           // 프로필 이동
             
-        case .displayMode:
+        case "화면 설정":
             goToSetDisplayMode()    // 디스플레이 모드
             
-        case .notification:
+        case "알림 설정":
             goToSetNotification()   // 알림 설정
             
-        case .notificationList:
+        case "알림 리스트":
             goToNotificationList()  // 알림 리스트
             
-        case .font:
+        case "폰트 설정":
             goToSetFont()           // 폰트 설정
             
-        case .feedback:
+        case "피드백":
             goToFeedBack()          // 피드백
             
-        case .signIn:
+        case "로그인":
             signIn()                // 로그인
             
-        case .signOut:
+        case "로그아웃":
             signOut()               // 로그아웃
+            
+        default:
+            print("Error")
         }
     }
 }
