@@ -13,10 +13,14 @@ extension UITableView {
     }
     
     func register<T: UITableViewHeaderFooterView>(_ viewClass: T.Type) {
-        register(viewClass.self, forCellReuseIdentifier: viewClass.reuseIdentifier)
+        register(viewClass.self, forHeaderFooterViewReuseIdentifier: viewClass.reuseIdentifier)
     }
     
     func dequeueReusableCell<T: UITableViewCell>(_ cellClass: T.Type, for indexPath: IndexPath) -> T? {
         dequeueReusableCell(withIdentifier: cellClass.reuseIdentifier, for: indexPath) as? T
+    }
+    
+    func dequeueReusableHeaderView<T: UITableViewHeaderFooterView>(_ viewClass: T.Type) -> T? {
+        dequeueReusableHeaderFooterView(withIdentifier: viewClass.reuseIdentifier) as? T
     }
 }

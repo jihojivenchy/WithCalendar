@@ -12,10 +12,10 @@ struct Menu {
     var isLoggedIn: Bool = false
     var sections: [MenuSection] = [
         MenuSection(title: "", items: [
-            MenuItem(title: "프로필 설정", imageName: "person"),
-            MenuItem(title: "화면 설정", imageName: "display")
+            MenuItem(title: "프로필 설정", imageName: "person")
         ]),
         MenuSection(title: "기능", items: [
+            MenuItem(title: "화면 설정", imageName: "display"),
             MenuItem(title: "알림 설정", imageName: "bell"),
             MenuItem(title: "알림 리스트", imageName: "list.bullet.rectangle.portrait"),
             MenuItem(title: "폰트 설정", imageName: "pencil")

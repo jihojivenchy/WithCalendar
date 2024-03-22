@@ -20,7 +20,7 @@ final class WCTableTitleHeaderView: BaseTableHeaderFooterView {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().inset(10)
+            make.left.equalToSuperview().inset(15)
         }
     }
     

@@ -50,8 +50,7 @@ final class MenuViewController: BaseViewController {
     override func configureLayouts() {
         view.addSubview(menuTableView)
         menuTableView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
-            make.left.bottom.right.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -64,8 +63,12 @@ final class MenuViewController: BaseViewController {
 
 // MARK: - Data Source
 extension MenuViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        menu.sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menu.sections.count
+        return menu.sections[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,6 +80,28 @@ extension MenuViewController: UITableViewDataSource {
         cell.configure(menuItem: menuItem)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        switch section {
+        case 1, 2:
+            guard let headerView = tableView.dequeueReusableHeaderView(WCTableTitleHeaderView.self) else {
+                return UIView()
+            }
+            headerView.configure(titleText: menu.sections[section].title)
+            return headerView
+            
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 1, 2: return 40
+        default: return 0
+        }
     }
 }
 
