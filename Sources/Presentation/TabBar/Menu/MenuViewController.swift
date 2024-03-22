@@ -14,6 +14,7 @@ final class MenuViewController: BaseViewController {
     private lazy var menuTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(MenuCell.self)
+        tableView.register(WCTableTitleHeaderView.self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 73
@@ -27,7 +28,6 @@ final class MenuViewController: BaseViewController {
     private var isLoggedIn = false
     final var menuDataModel = MenuDataModel()
     final let menuDataService = MenuDataService()
-    
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
