@@ -33,8 +33,6 @@ final class MenuViewController: BaseViewController {
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        checkLoginStatus()
-   
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
     }

@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 
 struct Menu {
+    // MARK: - Properties
     var isLoggedIn: Bool = false
     var sections: [MenuSection] = [
         MenuSection(title: "", items: [
@@ -26,6 +27,12 @@ struct Menu {
         ])
     ]
     
+    // MARK: - Init
+    init() {
+        updateMenu()
+    }
+    
+    // MARK: - Methods
     /// 로그인 상태에 따라 메뉴 아이템이 달라짐
     mutating func updateMenu() {
         isLoggedIn = Auth.auth().currentUser != nil

@@ -659,6 +659,7 @@
 				7C2CA3212A07CD2E0055676E /* ArrayExtension.swift */,
 				7CB0C26A2B98DB0600C621EE /* UIImage+.swift */,
 				7CB0C2852BA89D5A00C621EE /* UIColor+HexString.swift */,
+				7CB0C2772BA46F0600C621EE /* UIWindow+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1156,7 +1157,6 @@
 			isa = PBXGroup;
 			children = (
 				7CB0C2792BA4742800C621EE /* WCLoadingView.swift */,
-				7CB0C2772BA46F0600C621EE /* UIWindow+.swift */,
 			);
 			path = LoadingView;
 			sourceTree = "<group>";
