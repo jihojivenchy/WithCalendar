@@ -13,7 +13,6 @@ final class NotificationViewController: UIViewController {
     //MARK: - Properties
     let center = UNUserNotificationCenter.current()
     
-    final let memoDataModel = MemoDataModel()
     final let notificationView = NotificationView() //View
     
     
