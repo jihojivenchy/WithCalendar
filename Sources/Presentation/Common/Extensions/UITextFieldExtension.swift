@@ -18,4 +18,10 @@ extension UITextField {
         self.backgroundColor = backgroundColor
     }
     
+    func addLeftPadding(with width: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
+    }
+    
 }

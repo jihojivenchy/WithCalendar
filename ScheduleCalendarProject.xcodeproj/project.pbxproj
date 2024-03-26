@@ -66,6 +66,7 @@
 		7C7EE6262BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6252BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift */; };
 		7C7EE6282BB2C9FD00F4FCE5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */; };
 		7C7EE62B2BB2DE7700F4FCE5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE62A2BB2DE7700F4FCE5 /* PlaceholderView.swift */; };
+		7C7EE62E2BB318AF00F4FCE5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE62D2BB318AF00F4FCE5 /* ProfileView.swift */; };
 		7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */; };
 		7C9BE7662B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7652B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion */; };
 		7C9BE7682B6A66BE009A1CFD /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7672B6A66BE009A1CFD /* FirebaseAnalyticsSwift */; };
@@ -260,6 +261,7 @@
 		7C7EE6252BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTableTitleHeaderView.swift; sourceTree = "<group>"; };
 		7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		7C7EE62A2BB2DE7700F4FCE5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		7C7EE62D2BB318AF00F4FCE5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7CB0C2652B98C80C00C621EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CB0C2682B98DA9900C621EE /* TabBarPageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPageType.swift; sourceTree = "<group>"; };
 		7CB0C26A2B98DB0600C621EE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -1165,6 +1167,7 @@
 			children = (
 				7CB4104129EE650200DE0710 /* MyProfileViewController.swift */,
 				7CB4104329EE651A00DE0710 /* MyProfileView.swift */,
+				7C7EE62D2BB318AF00F4FCE5 /* ProfileView.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -1370,6 +1373,7 @@
 				7CB0C2822BA55C0900C621EE /* ColorPickerPopUpView.swift in Sources */,
 				7CB4106C29EE672500DE0710 /* WelcomeViewController.swift in Sources */,
 				7CB40FC429EE394000DE0710 /* UILabelExtension.swift in Sources */,
+				7C7EE62E2BB318AF00F4FCE5 /* ProfileView.swift in Sources */,
 				7CB4104629EE653200DE0710 /* DisplayModeDataModel.swift in Sources */,
 				7CB0C2742B9F2F5A00C621EE /* MemoService.swift in Sources */,
 				7C4C416F2A191A5700787C00 /* FontSizeAdjustmentView.swift in Sources */,

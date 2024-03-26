@@ -8,8 +8,11 @@
 import UIKit
 import SnapKit
 
-final class MyProfileViewController: UIViewController {
-    //MARK: - Properties
+final class MyProfileViewController: BaseViewController {
+    // MARK: - UI
+    private let profileView = ProfileView()
+    
+    // MARK: - Properties
     final var myProfileDataModel = MyProfileDataModel(userName: "", userEmail: "", userCode: "", userUID: "")
     final let myProfileDataService = MyProfileDataService()
     final let myProfileView = MyProfileView() //View
@@ -31,10 +34,22 @@ final class MyProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupSubViews()
-        setupNavigationBar()
         handleGetUserData()
+    }
+    
+    // MARK: - Configuration
+    override func configureAttributes() {
+        navigationItem.title = "프로필 설정"
+    }
+    
+    // MARK: - Layouts
+    override func configureLayouts() {
+        view.backgroundColor = .customWhiteAndBlackColor
+        view.addSubview(profileView)
+        
+        profileView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     
@@ -109,6 +124,8 @@ extension MyProfileViewController {
                     self?.myProfileView.nameTextField.text = data.userName
                     self?.myProfileView.idTextField.text = data.userEmail
                     self?.myProfileView.codeLabel.text = "Code: \(data.userCode)"
+                    
+                    self?.profileView.configure(data: data)
                     
                     self?.loadingView.stopLoading()
                     
