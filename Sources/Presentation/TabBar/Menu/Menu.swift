@@ -27,11 +27,6 @@ struct Menu {
         ])
     ]
     
-    // MARK: - Init
-    init() {
-        updateMenu()
-    }
-    
     // MARK: - Methods
     /// 로그인 상태에 따라 메뉴 아이템이 달라짐
     mutating func updateMenu() {

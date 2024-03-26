@@ -26,13 +26,12 @@ final class MenuViewController: BaseViewController {
     // MARK: - Properties
     /// 유저 로그인 상태 체크
     private var menu = Menu()
-    
-    final var menuDataModel = MenuDataModel()
-    final let menuDataService = MenuDataService()
+    private let authService = AuthService()
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateMenuForLoginState()
         navigationController?.navigationBar.prefersLargeTitles = true
         tabBarController?.tabBar.isHidden = false
     }
@@ -52,8 +51,8 @@ final class MenuViewController: BaseViewController {
         }
     }
     
-    /// 유저의 로그인 상태 체크 및 테이블 뷰 업데이트
-    private func checkLoginStatus() {
+    /// 유저의 로그인 상태에 따라 메뉴 업데이트
+    private func updateMenuForLoginState() {
         menu.updateMenu()
         menuTableView.reloadData()
     }
@@ -133,7 +132,7 @@ extension MenuViewController: UITableViewDelegate {
             signIn()                // 로그인
             
         case "로그아웃":
-            signOut()               // 로그아웃
+            showSignOutAlert()      // 로그아웃
             
         default:
             print("Error")
@@ -174,53 +173,35 @@ extension MenuViewController {
     }
     
     private func signIn() {
-        
+        let vc = LoginViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func signOut() {
+    private func showSignOutAlert() {
+        let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            guard let self else { return }
+            self.signOut()
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
-    }
-    
-    private func logInOrOutCellCliked() {
-        loginAlert()
+        showAlert(title: "로그아웃", message: "로그아웃 하시겠습니까?", actions: [action, cancelAction])
     }
 }
 
 
-//MARK: - 로그인과 로그아웃에 관한 작업.
+// MARK: - 로그아웃
 extension MenuViewController {
-    //유저가 로그인했다면 로그아웃을 한 후 뷰를 이동.
-    //유저가 로그인하지 않았다면 그냥 뷰로 이동.
-    private func loginAlert() {
-        let action = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-            self?.handleAuthentication()
-        }
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        
-        if menuDataModel.isUserLoggedIn() {
-            showAlert(title: "로그아웃", message: "로그아웃 하시겠습니까?", actions: [action, cancelAction])
+    private func signOut() {
+        authService.signOut { [weak self] result in
+            guard let self else { return }
             
-        }else{
-            showAlert(title: "로그인", message: "로그인 하시겠습니까?", actions: [action, cancelAction])
-        }
-    }
-    
-    private func handleAuthentication() {
-        if menuDataModel.isUserLoggedIn() {
-            
-            menuDataService.firebaseLogout { [weak self] result in
-                switch result {
-                case .success(_):
-                    self?.initDataPath() //로그아웃에 성공했을 경우 캘린더 데이터 경로를 초기화시켜줌.
-                    
-                case .failure(let err):
-                    self?.showAlert(title: "로그아웃 실패", message: err.localizedDescription)
-                }
+            switch result {
+            case .success(_):
+                self.updateMenuForLoginState()
+                
+            case .failure(let error):
+                self.showAlert(title: "로그아웃 실패", message: error.localizedDescription)
             }
         }
-        
-        let vc = LoginViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

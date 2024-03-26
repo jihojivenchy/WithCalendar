@@ -10,14 +10,13 @@ import FirebaseAuth
 
 struct AuthService {
     /// 로그아웃
-    func signOut(completion: @escaping (Result<Void, NetworkError>) -> Void) {
+    func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
             completion(.success(()))
         } catch {
-            completion(.failure(NetworkError.unknown(error.localizedDescription)))
+            completion(.failure((error)))
         }
-        
     }
 }
 
