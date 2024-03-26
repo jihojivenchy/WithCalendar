@@ -499,6 +499,7 @@
 		7C6202EF2B6B497900438E69 /* DataService */ = {
 			isa = PBXGroup;
 			children = (
+				7C7EE6292BB2DC0F00F4FCE5 /* Auth */,
 				7CB0C2722B9F2B2E00C621EE /* FirestoreRequest */,
 				7CB0C26E2B99CEFA00C621EE /* NetworkError.swift */,
 				7C6203162B6B9FAF00438E69 /* Calendar */,
@@ -615,7 +616,6 @@
 			children = (
 				7C7EE61E2BAC5A2500F4FCE5 /* Menu.swift */,
 				7CB4103929EE648D00DE0710 /* MenuViewController.swift */,
-				7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */,
 				7C7EE6242BAD7F4700F4FCE5 /* View */,
 				7CB4103B29EE649900DE0710 /* MenuView.swift */,
 				7CB4103D29EE64A300DE0710 /* MenuTableViewCell.swift */,
@@ -1044,6 +1044,14 @@
 				7C7EE6252BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7C7EE6292BB2DC0F00F4FCE5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		7CB0C2722B9F2B2E00C621EE /* FirestoreRequest */ = {
