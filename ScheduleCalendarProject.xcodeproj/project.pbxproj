@@ -67,6 +67,8 @@
 		7C7EE6282BB2C9FD00F4FCE5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */; };
 		7C7EE62B2BB2DE7700F4FCE5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE62A2BB2DE7700F4FCE5 /* PlaceholderView.swift */; };
 		7C7EE62E2BB318AF00F4FCE5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE62D2BB318AF00F4FCE5 /* ProfileView.swift */; };
+		7C7EE6312BB3250B00F4FCE5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6302BB3250B00F4FCE5 /* ProfileViewController.swift */; };
+		7C7EE6332BB32C6200F4FCE5 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6322BB32C6200F4FCE5 /* ProfileService.swift */; };
 		7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */; };
 		7C9BE7662B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7652B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion */; };
 		7C9BE7682B6A66BE009A1CFD /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7672B6A66BE009A1CFD /* FirebaseAnalyticsSwift */; };
@@ -262,6 +264,8 @@
 		7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		7C7EE62A2BB2DE7700F4FCE5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		7C7EE62D2BB318AF00F4FCE5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		7C7EE6302BB3250B00F4FCE5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7C7EE6322BB32C6200F4FCE5 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		7CB0C2652B98C80C00C621EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CB0C2682B98DA9900C621EE /* TabBarPageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPageType.swift; sourceTree = "<group>"; };
 		7CB0C26A2B98DB0600C621EE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -617,6 +621,7 @@
 				7C7EE61E2BAC5A2500F4FCE5 /* Menu.swift */,
 				7CB4103929EE648D00DE0710 /* MenuViewController.swift */,
 				7C7EE6242BAD7F4700F4FCE5 /* View */,
+				7C7EE62F2BB324F900F4FCE5 /* Profile */,
 				7CB4103629EE644600DE0710 /* MyProfile */,
 				7CB4103529EE644300DE0710 /* DisplayMode */,
 				7CB4103429EE644100DE0710 /* Notification */,
@@ -1061,6 +1066,16 @@
 			path = PlaceholderView;
 			sourceTree = "<group>";
 		};
+		7C7EE62F2BB324F900F4FCE5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7C7EE6322BB32C6200F4FCE5 /* ProfileService.swift */,
+				7C7EE6302BB3250B00F4FCE5 /* ProfileViewController.swift */,
+				7C7EE62D2BB318AF00F4FCE5 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		7CB0C2722B9F2B2E00C621EE /* FirestoreRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,7 +1182,6 @@
 			children = (
 				7CB4104129EE650200DE0710 /* MyProfileViewController.swift */,
 				7CB4104329EE651A00DE0710 /* MyProfileView.swift */,
-				7C7EE62D2BB318AF00F4FCE5 /* ProfileView.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -1371,6 +1385,7 @@
 				7C2CA3482A0D26DC0055676E /* SetColorDataModel.swift in Sources */,
 				7CB4100C29EE608000DE0710 /* StartDatePickerViewController.swift in Sources */,
 				7CB0C2822BA55C0900C621EE /* ColorPickerPopUpView.swift in Sources */,
+				7C7EE6312BB3250B00F4FCE5 /* ProfileViewController.swift in Sources */,
 				7CB4106C29EE672500DE0710 /* WelcomeViewController.swift in Sources */,
 				7CB40FC429EE394000DE0710 /* UILabelExtension.swift in Sources */,
 				7C7EE62E2BB318AF00F4FCE5 /* ProfileView.swift in Sources */,
@@ -1427,6 +1442,7 @@
 				7C2CA33F2A0B84380055676E /* EventEnum.swift in Sources */,
 				7CB40FEE29EE5DE900DE0710 /* CalendarDataModel.swift in Sources */,
 				7C4C416D2A191A2700787C00 /* FontSizeAdjustmentViewController.swift in Sources */,
+				7C7EE6332BB32C6200F4FCE5 /* ProfileService.swift in Sources */,
 				7CB40FFC29EE5EFA00DE0710 /* ScheduleManagerTableViewCell.swift in Sources */,
 				7CB4107B29EFC01E00DE0710 /* FeedBackDataService.swift in Sources */,
 				7CB4108E2A0379F900DE0710 /* HolidayAPI.swift in Sources */,
