@@ -15,6 +15,7 @@ final class MemoListViewController: BaseViewController {
     // MARK: - UI
     private lazy var memoListTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.isHidden = true
         tableView.register(MemoListCell.self)
         tableView.delegate = self
         tableView.rowHeight = 80
@@ -38,6 +39,12 @@ final class MemoListViewController: BaseViewController {
         return button
     }()
     
+    private let placeholderView: PlaceholderView = {
+        let view = PlaceholderView()
+        view.configure(for: .error)
+        view.isHidden = false
+        return view
+    }()
     private let loadingView = WCLoadingView()
     
     // MARK: - Properties
@@ -80,9 +87,14 @@ final class MemoListViewController: BaseViewController {
     
     // MARK: - Layouts
     override func configureLayouts() {
-        
         view.addSubview(memoListTableView)
+        view.addSubview(placeholderView)
+        
         memoListTableView.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        placeholderView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
