@@ -161,8 +161,6 @@
 		7CB4102F29EE63E500DE0710 /* CreateMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4102E29EE63E500DE0710 /* CreateMemoViewController.swift */; };
 		7CB4103829EE647B00DE0710 /* MenuDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103729EE647B00DE0710 /* MenuDataModel.swift */; };
 		7CB4103A29EE648D00DE0710 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103929EE648D00DE0710 /* MenuViewController.swift */; };
-		7CB4103C29EE649900DE0710 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103B29EE649900DE0710 /* MenuView.swift */; };
-		7CB4103E29EE64A300DE0710 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103D29EE64A300DE0710 /* MenuTableViewCell.swift */; };
 		7CB4104029EE64E600DE0710 /* MyProfileDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4103F29EE64E600DE0710 /* MyProfileDataModel.swift */; };
 		7CB4104229EE650200DE0710 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4104129EE650200DE0710 /* MyProfileViewController.swift */; };
 		7CB4104429EE651A00DE0710 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4104329EE651A00DE0710 /* MyProfileView.swift */; };
@@ -324,8 +322,6 @@
 		7CB4102E29EE63E500DE0710 /* CreateMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoViewController.swift; sourceTree = "<group>"; };
 		7CB4103729EE647B00DE0710 /* MenuDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataModel.swift; sourceTree = "<group>"; };
 		7CB4103929EE648D00DE0710 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		7CB4103B29EE649900DE0710 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		7CB4103D29EE64A300DE0710 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		7CB4103F29EE64E600DE0710 /* MyProfileDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileDataModel.swift; sourceTree = "<group>"; };
 		7CB4104129EE650200DE0710 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		7CB4104329EE651A00DE0710 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
@@ -619,8 +615,6 @@
 				7C7EE61E2BAC5A2500F4FCE5 /* Menu.swift */,
 				7CB4103929EE648D00DE0710 /* MenuViewController.swift */,
 				7C7EE6242BAD7F4700F4FCE5 /* View */,
-				7CB4103B29EE649900DE0710 /* MenuView.swift */,
-				7CB4103D29EE64A300DE0710 /* MenuTableViewCell.swift */,
 				7CB4103629EE644600DE0710 /* MyProfile */,
 				7CB4103529EE644300DE0710 /* DisplayMode */,
 				7CB4103429EE644100DE0710 /* Notification */,
@@ -1312,7 +1306,6 @@
 				7CB4106829EE66F600DE0710 /* WritePasswordViewController.swift in Sources */,
 				7CB4101629EE612400DE0710 /* SetColorViewController.swift in Sources */,
 				7CB4107229EE677400DE0710 /* FindPasswordView.swift in Sources */,
-				7CB4103E29EE64A300DE0710 /* MenuTableViewCell.swift in Sources */,
 				7CB4100229EE5F5800DE0710 /* AddScheduleView.swift in Sources */,
 				7C2CA3322A08DDEC0055676E /* RegisterDataService.swift in Sources */,
 				7CB40FE629EE5D3F00DE0710 /* SearchUserViewController.swift in Sources */,
@@ -1411,7 +1404,6 @@
 				7C2CA3242A07F8840055676E /* EditCalendarDataService.swift in Sources */,
 				7CB0C2712B9F2B2900C621EE /* FirestoreRequest.swift in Sources */,
 				7C7EE6262BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift in Sources */,
-				7CB4103C29EE649900DE0710 /* MenuView.swift in Sources */,
 				7CB4102F29EE63E500DE0710 /* CreateMemoViewController.swift in Sources */,
 				7CB4106429EE66C900DE0710 /* WriteEmailViewController.swift in Sources */,
 				7C4006212A1538E000835EC0 /* EditScheduleViewController.swift in Sources */,
