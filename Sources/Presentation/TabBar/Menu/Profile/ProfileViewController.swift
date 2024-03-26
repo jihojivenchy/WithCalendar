@@ -24,6 +24,7 @@ final class ProfileViewController: BaseViewController {
     private let loadingView = WCLoadingView()
     
     // MARK: - Properties
+    private let profileService = ProfileService()
     private var user = User(uid: "", name: "", code: "", email: "")
     
     // MARK: - LifeCycle
@@ -56,7 +57,43 @@ final class ProfileViewController: BaseViewController {
 
 // MARK: - 프로필 조회
 extension ProfileViewController {
+    /// 프로필 조회
+    private func fetchProfile() {
+        loadingView.startLoading()
+        
+        Task {
+            do {
+                let user = try await profileService.fetchProfile()
+                self.user = user
+                profileView.configure(user: user)
+                
+            } catch {
+                showErrorAlert(error)
+            }
+            
+            loadingView.stopLoading()
+        }
+    }
     
+    private func showErrorAlert(_ error: Error) {
+        let popAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            guard let self else { return }
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        guard let networkError = error as? NetworkError else {
+            showAlert(title: "오류", message: error.localizedDescription, actions: [popAction])
+            return
+        }
+        
+        switch networkError {
+        case .authenticationRequired:
+            showAlert(title: "로그인", message: "로그인이 필요한 서비스입니다.", actions: [popAction])
+            
+        case .unknown(let description):
+            showAlert(title: "오류", message: description, actions: [popAction])
+        }
+    }
 }
 
 // MARK: - 프로필 수정
@@ -68,7 +105,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     @objc private func changeCodeButtonTapped(_ sender : UIButton) {
-        let code = "abcdefghijklmnopqrstuvwxyz0123456789"  // 유저의 고유 랜덤코드를 뽑기 위한 소스.
+        let code = "abcdefghijklmnopqrstuvwxyz0123456789"  // 유저의 고유 코드를 뽑기 위한 소스.
         user.code = code.randomString(length: 5)           // 랜덤 코드 저장
         profileView.configure(user: user)
     }

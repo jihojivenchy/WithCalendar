@@ -143,7 +143,7 @@ extension MenuViewController: UITableViewDelegate {
 // MARK: - Menu 아이템 클릭
 extension MenuViewController {
     private func goToProfile() {
-        let vc = MyProfileViewController()
+        let vc = ProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
