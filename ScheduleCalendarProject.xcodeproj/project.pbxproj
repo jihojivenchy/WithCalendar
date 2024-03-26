@@ -64,6 +64,7 @@
 		7C7EE6212BAC641F00F4FCE5 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6202BAC641F00F4FCE5 /* MenuCell.swift */; };
 		7C7EE6232BAC9E0200F4FCE5 /* BaseTableHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6222BAC9E0200F4FCE5 /* BaseTableHeaderFooterView.swift */; };
 		7C7EE6262BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6252BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift */; };
+		7C7EE6282BB2C9FD00F4FCE5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */; };
 		7C9BE7642B6A66BE009A1CFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7632B6A66BE009A1CFD /* FirebaseAnalytics */; };
 		7C9BE7662B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7652B6A66BE009A1CFD /* FirebaseAnalyticsOnDeviceConversion */; };
 		7C9BE7682B6A66BE009A1CFD /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C9BE7672B6A66BE009A1CFD /* FirebaseAnalyticsSwift */; };
@@ -258,6 +259,7 @@
 		7C7EE6202BAC641F00F4FCE5 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		7C7EE6222BAC9E0200F4FCE5 /* BaseTableHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableHeaderFooterView.swift; sourceTree = "<group>"; };
 		7C7EE6252BAD7F6600F4FCE5 /* WCTableTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTableTitleHeaderView.swift; sourceTree = "<group>"; };
+		7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		7CB0C2652B98C80C00C621EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CB0C2682B98DA9900C621EE /* TabBarPageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPageType.swift; sourceTree = "<group>"; };
 		7CB0C26A2B98DB0600C621EE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -613,6 +615,7 @@
 			children = (
 				7C7EE61E2BAC5A2500F4FCE5 /* Menu.swift */,
 				7CB4103929EE648D00DE0710 /* MenuViewController.swift */,
+				7C7EE6272BB2C9FD00F4FCE5 /* AuthService.swift */,
 				7C7EE6242BAD7F4700F4FCE5 /* View */,
 				7CB4103B29EE649900DE0710 /* MenuView.swift */,
 				7CB4103D29EE64A300DE0710 /* MenuTableViewCell.swift */,
@@ -1419,6 +1422,7 @@
 				7C7EE61F2BAC5A2500F4FCE5 /* Menu.swift in Sources */,
 				7CB4101A29EE615C00DE0710 /* SetColorCollectionViewCell.swift in Sources */,
 				7C7EE6212BAC641F00F4FCE5 /* MenuCell.swift in Sources */,
+				7C7EE6282BB2C9FD00F4FCE5 /* AuthService.swift in Sources */,
 				7C51A20E2A10E506009E2801 /* CalendarDataService.swift in Sources */,
 				7CB4108A29FA2CF800DE0710 /* UserData.swift in Sources */,
 				7CB0C2842BA5A34B00C621EE /* ColorPickerCell.swift in Sources */,
