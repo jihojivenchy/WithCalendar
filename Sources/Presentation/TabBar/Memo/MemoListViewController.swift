@@ -15,7 +15,6 @@ final class MemoListViewController: BaseViewController {
     // MARK: - UI
     private lazy var memoListTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.isHidden = true
         tableView.register(MemoListCell.self)
         tableView.delegate = self
         tableView.rowHeight = 80
@@ -41,8 +40,7 @@ final class MemoListViewController: BaseViewController {
     
     private let placeholderView: PlaceholderView = {
         let view = PlaceholderView()
-        view.configure(for: .error)
-        view.isHidden = false
+        view.isHidden = true
         return view
     }()
     private let loadingView = WCLoadingView()
@@ -167,7 +165,7 @@ extension MemoListViewController : MemoCellDelegate {
                 try await memoService.deleteMemo(documentID: documentID)
                 deleteMemoItem(documentID: documentID)
             } catch {
-                showErrorAlert(error)
+                showAlert(title: "오류", message: error.localizedDescription)
             }
         }
     }
@@ -198,29 +196,37 @@ extension MemoListViewController {
         fetchMemoListTask = Task {
             do {
                 let memoList = try await memoService.fetchMemoList()
+                
+                // 작성된 memo가 있는지 여부에 따라 플레이스 홀더 뷰 or 테이블 뷰를 보여주기
+                placeholderView.configure(for: .emptyMemo)
+                placeholderView.isHidden = memoList.isEmpty ? false : true
+                memoListTableView.isHidden = memoList.isEmpty ? true : false
                 applySectionSnapshot(with: memoList)
                 
             } catch {
-                showErrorAlert(error)
+                updatePlaceholderView(for: error)
             }
+            
             loadingView.stopLoading()
             fetchMemoListTask = nil  // 새로운 작업을 담을 수 있도록
         }
     }
     
-    /// 에러 종류에 따라 달리 보여주는 Alert
-    private func showErrorAlert(_ error: Error) {
+    private func updatePlaceholderView(for error: Error) {
+        placeholderView.isHidden = false
+        memoListTableView.isHidden = true
+        
         guard let networkError = error as? NetworkError else {
-            showAlert(title: "오류", message: error.localizedDescription)
+            placeholderView.configure(for: .error)
             return
         }
         
         switch networkError {
         case .authenticationRequired:
-            showAlert(title: "로그인 오류", message: "로그인이 필요합니다.")
+            placeholderView.configure(for: .needSignIn)
             
-        case .unknown(let description):
-            showAlert(title: "오류", message: description ?? "알 수 없는 오류가 발생했습니다.")
+        case .unknown:
+            placeholderView.configure(for: .error)
         }
     }
 }
