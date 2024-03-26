@@ -124,9 +124,9 @@ final class ProfileView: BaseView {
 }
 
 extension ProfileView {
-    func configure(data: MyProfileDataModel) {
-        nameTextField.text = data.userName
-        idLabel.text = data.userEmail
-        codeLabel.text = "Code: \(data.userCode)"
+    func configure(user: User) {
+        nameTextField.text = user.name
+        idLabel.text = user.email
+        codeLabel.text = "Code: \(user.code)"
     }
 }

@@ -24,7 +24,7 @@ final class ProfileViewController: BaseViewController {
     private let loadingView = WCLoadingView()
     
     // MARK: - Properties
-    
+    private var user = User(uid: "", name: "", code: "", email: "")
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +68,8 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     @objc private func changeCodeButtonTapped(_ sender : UIButton) {
-        let code = "abcdefghijklmnopqrstuvwxyz0123456789" //유저의 고유 랜덤코드를 뽑기 위한 소스.
-        let userCode = code.randomString(length: 5)
-        let data = MyProfileDataModel(userName: "", userEmail: "", userCode: userCode, userUID: "")
-        profileView.configure(data: data)
+        let code = "abcdefghijklmnopqrstuvwxyz0123456789"  // 유저의 고유 랜덤코드를 뽑기 위한 소스.
+        user.code = code.randomString(length: 5)           // 랜덤 코드 저장
+        profileView.configure(user: user)
     }
 }
