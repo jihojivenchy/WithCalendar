@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class ProfileView: BaseView {
-    private let nameTextField: UITextField = {
+    let nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "이름을 입력해주세요."
         textField.font = .boldSystemFont(ofSize: 16)

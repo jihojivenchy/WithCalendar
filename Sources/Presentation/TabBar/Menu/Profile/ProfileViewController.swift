@@ -31,6 +31,7 @@ final class ProfileViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        fetchProfile()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -99,7 +100,31 @@ extension ProfileViewController {
 // MARK: - 프로필 수정
 extension ProfileViewController {
     @objc private func saveButtonPressed(_ sender : UIBarButtonItem) {
-       
+        view.endEditing(true)
+        
+        guard let name = profileView.nameTextField.text, !name.isEmpty else {
+            showAlert(title: "이름을 작성해주세요.")
+            return
+        }
+        
+        user.name = name
+        updateProfile()
+    }
+    
+    private func updateProfile() {
+        loadingView.startLoading()
+        
+        Task {
+            do {
+                try await profileService.updateProfile(user)
+                showAlert(title: "저장이 완료되었습니다.")
+                
+            } catch {
+                showAlert(title: "오류", message: error.localizedDescription)
+            }
+            
+            loadingView.stopLoading()
+        }
     }
 }
 

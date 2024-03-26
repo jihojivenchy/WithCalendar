@@ -125,7 +125,6 @@ extension MyProfileViewController {
                     self?.myProfileView.idTextField.text = data.userEmail
                     self?.myProfileView.codeLabel.text = "Code: \(data.userCode)"
                     
-                    self?.profileView.configure(data: data)
                     
                     self?.loadingView.stopLoading()
                     

@@ -30,4 +30,19 @@ struct ProfileService {
         
         return User(uid: user.uid, name: name, code: code, email: email)
     }
+    
+    /// 프로필 수정
+    func updateProfile(_ user: User) async throws {
+        // 유저 정보 가져오기
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            throw NetworkError.authenticationRequired
+        }
+        
+        let documentReference = db.collection("Users").document(userUID)
+        
+        try await documentReference.updateData([
+            "NickName": user.name,
+            "code": user.code
+        ])
+    }
 }
